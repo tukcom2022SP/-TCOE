@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -93,17 +96,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#337C9E">
-    <Switch
-        android:id="@+id/settingTime"
-        android:layout_gravity="center"
-        android:text="Setting Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"/>
 
 
+        <Switch
+            android:id="@+id/settingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Setting Time"
+            android:textSize="15sp" />
 
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -113,12 +116,14 @@
         >
 
         <Button
+            android:id="@+id/btnReset"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/round_button"
             android:text="Reset"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:layout_weight="1"/>
 
 
         <TimePicker
@@ -126,7 +131,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:timePickerMode="spinner"/>
+            android:timePickerMode="spinner"
+           />
 
 
         <Button
@@ -136,6 +142,7 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/round_button"
             android:text="OK"
+            android:layout_weight="1"
             android:textColor="@color/white"/>
 
     </LinearLayout>
@@ -162,3 +169,5 @@
         />
 
 </LinearLayout>
+
+</ScrollView>

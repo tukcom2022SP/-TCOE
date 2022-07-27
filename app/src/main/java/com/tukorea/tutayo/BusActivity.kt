@@ -22,6 +22,7 @@ class BusActivity : AppCompatActivity() {
     lateinit var nowHour : TextView
     lateinit var nowMinute : TextView*/
     lateinit var OkBtn:Button
+    lateinit var ResetBtn:Button
     lateinit var tx1:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +46,11 @@ class BusActivity : AppCompatActivity() {
         /*      tvHour = findViewById<TextView>(R.id.tvHour)
         tvMinute = findViewById<TextView>(R.id.tvMinute)*/
         OkBtn = findViewById<Button>(R.id.btnOk)
+        ResetBtn = findViewById(R.id.btnReset)
         tx1 = findViewById(R.id.tx1)
 
         val dataFormat4 = SimpleDateFormat("HH:mm:ss")
-        tx1.text = dataFormat4.format(current)
+        tx1.text = "현재시각" +dataFormat4.format(current) + " 기준"
         /* nowHour.text = timePicker.hour.toString()
         nowMinute.text = timePicker.minute.toString()
 */
@@ -69,7 +71,13 @@ class BusActivity : AppCompatActivity() {
         tvMinute.text = timePicker.minute.toString()}*/
 
             // 시간간격 출력
-            text.setText("가장 가까운 버스 간격 : " + (end - start).toString() + "ms")
+            text.setText("가장 가까운 버스 간격 : " + (end - start).toString() + "ms")}
+
+        ResetBtn.setOnClickListener {
+            tx1.text =  "현재시각" +dataFormat4.format(current) + " 기준"
+
+        }
+
             settingTime.setOnClickListener {
                 if (settingTime.isChecked) {
                     linear.visibility = View.VISIBLE
@@ -88,6 +96,6 @@ class BusActivity : AppCompatActivity() {
             }
 
 
-        }
+
     }}
 
