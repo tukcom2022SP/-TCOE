@@ -15,22 +15,22 @@
         tools:targetApi="31" >
         <activity
             android:name=".BusActivity"
+            android:exported="false" >
+
+        </activity>
+
+        <activity android:name=".TaxiActivity" android:exported="true"/>
+
+        <activity
+            android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-<<<<<<< HEAD
-        <activity android:name=".TaxiActivity" android:exported="true"/>
-=======
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" >
 
         </activity>
->>>>>>> d3342f33f4d5b28877265bbcd23c096f7e9590a1
+
     </application>
 
 </manifest>
