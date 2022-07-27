@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/layout/activity_main.xml" value="0.333786231884058" />
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/layout/main_activity.xml" value="0.333786231884058" />
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/layout/main_drawer.xml" value="0.33" />
@@ -12,6 +13,13 @@
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/menu/main_menulist_logout.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+=======
+        <entry key="..\:/TUtayo/app/src/main/res/layout/bus_activity.xml" value="0.2558876811594203" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/main_activity.xml" value="0.17274569402228976" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_activity.xml" value="0.1" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_jeongwang.xml" value="0.17274569402228976" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_oido.xml" value="0.17274569402228976" />
+>>>>>>> c20222f42f23fc2ac4fc4ba3501a0bfbc18b1814
       </map>
     </option>
   </component>
