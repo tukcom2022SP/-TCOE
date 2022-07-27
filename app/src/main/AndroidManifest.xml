@@ -24,10 +24,17 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" >
+<<<<<<< HEAD
     <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
     </intent-filter>
+=======
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+>>>>>>> cc291dc1ded7837ad64c241610ef2332e67a8827
 
         </activity>
 
