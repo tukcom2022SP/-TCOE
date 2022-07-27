@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">TUtayo</string>
+<<<<<<< HEAD
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+=======
+    <string name="description">Korean Description</string>
+>>>>>>> d3342f33f4d5b28877265bbcd23c096f7e9590a1
 </resources>
