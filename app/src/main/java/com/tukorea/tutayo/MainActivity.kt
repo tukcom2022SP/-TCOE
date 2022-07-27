@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         taxiButton.setOnClickListener {
             Toast.makeText(this, "택시 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
         }
-
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
