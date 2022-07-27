@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/TUtayo/app/src/main/res/layout/main_activity.xml" value="0.17274569402228976" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_activity.xml" value="0.1" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_jeongwang.xml" value="0.17274569402228976" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_oido.xml" value="0.17274569402228976" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
