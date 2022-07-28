@@ -36,8 +36,6 @@ class BusActivity : AppCompatActivity() {
 
         val current = System.currentTimeMillis()
 
-
-
         linear = findViewById(R.id.linear)
         settingTime = findViewById(R.id.settingTime)
         busschedule = findViewById(R.id.schedule)
