@@ -35,9 +35,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         taxiButton = findViewById<ImageButton>(R.id.taxiBtn)
 
 
-
-
-
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
             Toast.makeText(this, "메뉴 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
@@ -47,10 +44,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         shuttleButton.setOnClickListener {
             Toast.makeText(this, "셔틀 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,BusActivity::class.java)
+            startActivity(intent)
         }
 
         taxiButton.setOnClickListener {
             Toast.makeText(this, "택시 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,TaxiActivity::class.java)
+            startActivity(intent)
         }
     }
 

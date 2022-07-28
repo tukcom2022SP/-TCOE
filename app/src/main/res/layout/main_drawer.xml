@@ -8,15 +8,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!--
-
-   <include
-        layout="@layout/main_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    -->
-
 
     <!-- 로그인 구현을 위해 로그인, 아웃일 경우 각각의 메뉴 리스트를 구성했으나,
     아직 기능 미구현 상태이므로 디폴트로 로그인이 안되었을 경우를 상정하고 코드 작성-->
