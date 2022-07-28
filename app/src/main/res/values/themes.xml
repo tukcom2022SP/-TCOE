@@ -1,10 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-<<<<<<< HEAD
-    <style name="Theme.TUtayo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-=======
-    <style name="Theme.TUtayo" parent="Theme.AppCompat.Light">
->>>>>>> c20222f42f23fc2ac4fc4ba3501a0bfbc18b1814
+
+    <style name="Theme.TUtayo" parent="Theme.AppCompat.Light.NoActionBar">
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

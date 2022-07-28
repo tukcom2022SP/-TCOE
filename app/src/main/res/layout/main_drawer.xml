@@ -5,17 +5,15 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:layout_gravity="start"
+    android:fitsSystemWindows="true">
 
-    <!--
 
-   <include
-        layout="@layout/main_toolbar"
+
+    <include
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    -->
+        android:layout_height="wrap_content"
+        layout="@layout/main_activity"/>
 
 
     <!-- 로그인 구현을 위해 로그인, 아웃일 경우 각각의 메뉴 리스트를 구성했으나,

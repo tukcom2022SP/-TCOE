@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.main_toolbar.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -23,19 +24,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.main_drawer)
 
 
-        val drawerview : View = View.inflate(this, R.layout.main_drawer, null)
 
-        navigationView = drawerview.findViewById<NavigationView>(R.id.nav_view)
-        drawerLayout = drawerview.findViewById<DrawerLayout>(R.id.drawer_layout)
+        navigationView = findViewById<NavigationView>(R.id.nav_view)
+        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         menuButton = findViewById<ImageView>(R.id.menuBtn)
         shuttleButton = findViewById<ImageButton>(R.id.shuttleBtn)
         taxiButton = findViewById<ImageButton>(R.id.taxiBtn)
 
+        //-----------메뉴 툴바 버전------------
 
+//        setSupportActionBar(main_layout_toolbar)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+//        supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        //-------------------------------------------------
 
 
         menuButton.setOnClickListener {
@@ -43,18 +49,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Toast.makeText(this, "메뉴 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
 
         }
+
         navigationView.setNavigationItemSelectedListener(this)
 
         shuttleButton.setOnClickListener {
-            Toast.makeText(this, "셔틀 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,BusActivity::class.java)
+            startActivity(intent)
         }
 
         taxiButton.setOnClickListener {
             Toast.makeText(this, "택시 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,TaxiActivity::class.java)
+            startActivity(intent)
         }
-
-
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when(item.itemId){
+//            android.R.id.home ->{
+//                drawerLayout.openDrawer(GravityCompat.START)
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
