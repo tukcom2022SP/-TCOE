@@ -25,23 +25,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/shuttleBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:background="#00ff0000"
+            android:scaleType="fitXY"
+            android:src="@drawable/main_bus_logo" />
 
         <ImageButton
             android:id="@+id/taxiBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:gravity="center"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:background="#00ff0000"
+            android:scaleType="fitXY"
+            android:src="@drawable/main_taxi_logo" />
+
+
     </LinearLayout>
 
     <LinearLayout
