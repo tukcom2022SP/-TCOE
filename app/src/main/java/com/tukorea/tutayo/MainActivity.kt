@@ -34,15 +34,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         shuttleButton = findViewById<ImageButton>(R.id.shuttleBtn)
         taxiButton = findViewById<ImageButton>(R.id.taxiBtn)
 
-        //-----------메뉴 툴바 버전------------
-
-//        setSupportActionBar(main_layout_toolbar)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
-//        supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        //-------------------------------------------------
-
 
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
@@ -53,6 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
 
         shuttleButton.setOnClickListener {
+            Toast.makeText(this, "셔틀 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
             val intent = Intent(this,BusActivity::class.java)
             startActivity(intent)
         }
@@ -64,14 +56,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when(item.itemId){
-//            android.R.id.home ->{
-//                drawerLayout.openDrawer(GravityCompat.START)
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
