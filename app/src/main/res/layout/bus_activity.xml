@@ -17,6 +17,27 @@
         android:src="@drawable/bus"
         android:layout_gravity="center"
         />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="내 위치"/>
+    <RadioGroup
+        android:id="@+id/locationrdo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/schoolRdo"
+            android:text="학교"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/jeongRdo"
+            android:text="정왕역"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/nowtime"
