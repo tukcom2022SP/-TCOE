@@ -24,11 +24,7 @@ class BusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bus_activity)
-<<<<<<< HEAD
 
-        var text: TextView = findViewById(R.id.nextBus_now)
-        var current = System.currentTimeMillis()
-=======
         val nowbutton: Button = findViewById(R.id.nowtime)
         // val btn : Button = findViewById(R.id.ttime)
         val text: TextView = findViewById(R.id.nextBus_now)
@@ -36,7 +32,6 @@ class BusActivity : AppCompatActivity() {
         var end: Long = 0
 
         val current = System.currentTimeMillis()
->>>>>>> f553265abf1d4382f6f4c11ab04bca17f33db893
 
         linear = findViewById(R.id.linear)
         settingTime = findViewById(R.id.settingTime)
