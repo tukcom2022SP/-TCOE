@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_login -> Toast.makeText(this, "로그인 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
+            //R.id.menu_login -> Toast.makeText(this, "로그인 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
             R.id.menu_mypage -> Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
             R.id.menu_shuttle -> {
                 Toast.makeText(this, "셔틀버스 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()

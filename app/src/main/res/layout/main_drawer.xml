@@ -15,15 +15,31 @@
         layout="@layout/main_activity"/>
 
 
-    <!-- 로그인 구현을 위해 로그인, 아웃일 경우 각각의 메뉴 리스트를 구성했으나,
-    아직 기능 미구현 상태이므로 디폴트로 로그인이 안되었을 경우를 상정하고 코드 작성-->
+    <!-- 임시 작업. 브랜치 분기 업로드 테스트용 -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/main_menulist_login"
-        app:headerLayout="@layout/main_header"/>
+        android:fitsSystemWindows="true">
+
+        <include
+            android:id="@+id/nav_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <include
+            android:id="@+id/logout_menu"
+            android:visibility="invisible"
+            app:menu="@menu/main_menulist_logout"/>
+
+        <include
+            android:id="@+id/login_menu"
+            android:visibility="visible"
+            app:menu="@menu/main_menulist_login"/>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
