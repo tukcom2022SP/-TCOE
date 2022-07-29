@@ -53,20 +53,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center">
-      <!--  <TextView
-            android:id="@+id/nHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시 " />
-        <TextView
-            android:id="@+id/nMinute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00" />-->
+
 
         <TextView
             android:id="@+id/tx1"
@@ -84,34 +71,7 @@
         android:textSize="20sp"
         />
 
-<!--
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center">
-    <TextView
-        android:id="@+id/tvHour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="시 " />
-    <TextView
-        android:id="@+id/tvMinute"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="분  기준 가장 가까운 버스시간" />
-</LinearLayout>
--->
 
     <LinearLayout
         android:layout_width="match_parent"
