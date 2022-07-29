@@ -11,6 +11,7 @@ class TaxiActivity : AppCompatActivity() {
     private lateinit var JFragment : Fragment
     private lateinit var OFragment : Fragment
     private lateinit var transaction : FragmentTransaction
+    private lateinit var viewPagerFragment : ViewPagerFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +22,13 @@ class TaxiActivity : AppCompatActivity() {
         fragmentManager = supportFragmentManager
         JFragment = JeongwangFragment()
         OFragment = OidoFragment()
+        viewPagerFragment = ViewPagerFragment()
 
         transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.taxi_fragment_frame, JFragment).commitAllowingStateLoss()
+
+
+
+        transaction.replace(R.id.taxi_fragment_frame, viewPagerFragment).commitAllowingStateLoss()
 
 
 
