@@ -17,7 +17,7 @@ class TaxiActivity : AppCompatActivity() {
         setContentView(R.layout.taxi_activity)
 
 
-
+        //커밋용 주석
         fragmentManager = supportFragmentManager
         JFragment = JeongwangFragment()
         OFragment = OidoFragment()
