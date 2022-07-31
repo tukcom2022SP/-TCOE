@@ -16,40 +16,21 @@
 
 
     <!-- 원래 코드. 로그인으로밖에 나오지 않음-->
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:id="@+id/nav_view"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="start"-->
-<!--        android:fitsSystemWindows="true"-->
-<!--        app:menu="@menu/main_menulist_login"-->
-<!--        app:headerLayout="@layout/main_header"/>-->
-
-
-    <!-- 임시 작업 -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        app:menu="@menu/main_menulist_login"
+        app:headerLayout="@layout/main_header"/>
 
-        <include
-            android:id="@+id/nav_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
-        <include
-            android:id="@+id/logout_menu"
-            android:visibility="gone"
-            app:menu="@menu/main_menulist_logout"/>
 
-        <include
-            android:id="@+id/login_menu"
-            android:visibility="visible"
-            app:menu="@menu/main_menulist_login"/>
+    <!-- 임시 작업 -->
 
-    </com.google.android.material.navigation.NavigationView>
+
+
 
 
 
