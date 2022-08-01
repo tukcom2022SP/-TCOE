@@ -44,6 +44,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
 
+
                 <data
                     android:host="oauth"
                     android:scheme="@string/kakao_app_key2"/>
