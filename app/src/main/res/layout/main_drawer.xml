@@ -15,8 +15,7 @@
         layout="@layout/main_activity"/>
 
 
-    <!-- 로그인 구현을 위해 로그인, 아웃일 경우 각각의 메뉴 리스트를 구성했으나,
-    아직 기능 미구현 상태이므로 디폴트로 로그인이 안되었을 경우를 상정하고 코드 작성-->
+    <!-- 원래 코드. 로그인으로밖에 나오지 않음-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -25,5 +24,14 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/main_menulist_login"
         app:headerLayout="@layout/main_header"/>
+
+
+
+    <!-- 임시 작업 -->
+
+
+
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

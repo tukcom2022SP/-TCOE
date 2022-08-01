@@ -28,7 +28,6 @@ class NewTaxiFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var fragmentManager : FragmentManager
     private lateinit var JFragment : Fragment
     private lateinit var OFragment : Fragment
     private lateinit var transaction : FragmentTransaction
