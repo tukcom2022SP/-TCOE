@@ -40,22 +40,17 @@ class NewTaxiFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        writeNew.setOnClickListener {
 
-        }
-
-
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.spinner_items,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            location_spinner.adapter = adapter
-        }
+//        ArrayAdapter.createFromResource(
+//            requireContext(),
+//            R.array.spinner_items,
+//            android.R.layout.simple_spinner_item
+//        ).also { adapter ->
+//            // Specify the layout to use when the list of choices appears
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            // Apply the adapter to the spinner
+//            location_spinner.adapter = adapter
+//        }
     }
 
     override fun onCreateView(
@@ -63,7 +58,7 @@ class NewTaxiFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_taxi, container, false)
+        return inflater.inflate(R.layout.taxi_fragment_new, container, false)
     }
 
     companion object {
