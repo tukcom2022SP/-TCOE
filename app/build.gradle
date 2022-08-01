@@ -32,8 +32,11 @@ android {
     }
 
     //카카오 로그인 - ViewBinding 설정
-    buildFeatures{
+    buildFeatures {
         viewBinding true
+    }
+    viewBinding {
+        enabled = true
     }
 }
 

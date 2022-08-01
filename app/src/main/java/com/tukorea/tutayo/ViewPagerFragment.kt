@@ -46,7 +46,9 @@ class ViewPagerFragment : Fragment() {
 
         //탭레이아웃 attach
         TabLayoutMediator(taxi_tablayout, taxi_viewpager) { tab, position ->
-            tab.text = "Tab ${position + 1}"
+            //tab.text = "Tab ${position + 1}"
+            if(position == 0) tab.text = "정왕"
+            else tab.text = "오이도"
         }.attach()
     }
 }

@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">TUtayo</string>
-    <string name="kakao_app_key">843c940f21a4911ec4e114032322cb5f</string>
-    <string name="kakao_app_key2">kakao843c940f21a4911ec4e114032322cb5f</string>
+
+    <string-array name="spinner_items">
+        <item>정왕역</item>
+        <item>오이도역</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
