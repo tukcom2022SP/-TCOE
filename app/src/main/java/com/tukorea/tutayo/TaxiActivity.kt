@@ -1,7 +1,6 @@
 package com.tukorea.tutayo
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -40,5 +39,8 @@ class TaxiActivity : AppCompatActivity() {
 
 
 
+
+
     }
+
 }

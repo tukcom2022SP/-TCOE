@@ -41,9 +41,6 @@ class NewTaxiFragment : Fragment() {
         }
 
 
-
-
-// Create an ArrayAdapter using the string array and a default spinner layout
 //        ArrayAdapter.createFromResource(
 //            requireContext(),
 //            R.array.spinner_items,
