@@ -153,3 +153,4 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
+src/main/res/values/kakao_strings.xml
