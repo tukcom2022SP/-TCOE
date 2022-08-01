@@ -3,6 +3,7 @@ package com.tukorea.tutayo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.kakao.sdk.common.util.Utility
 import kotlinx.android.synthetic.main.main_toolbar.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -39,6 +41,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         taxiButton = findViewById<ImageButton>(R.id.taxiBtn)
         testSwitch = findViewById<Switch>(R.id.test_switch)
 
+
+        val keyHash = Utility.getKeyHash(this)
+        Log.e("Key", "keyHash : ${keyHash}")
 
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
@@ -96,7 +101,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intent = Intent(this, BusActivity::class.java)
                 startActivity(intent)
             }
+
             R.id.menu_taxi -> {
+                //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 메뉴로 리턴하고
+                //아니면 택시액티비티로 리턴 시키기
+
                 Toast.makeText(this, "택시매칭 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, TaxiActivity::class.java)
                 startActivity(intent)

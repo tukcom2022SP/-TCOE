@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TUtayo</string>
+    <string name="kakao_app_key">{843c940f21a4911ec4e114032322cb5f}</string>
+    <string name="kakao_app_key2">kakao{843c940f21a4911ec4e114032322cb5f}</string>
 </resources>
