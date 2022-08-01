@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/TUtayo/app/src/main/res/layout/bus_activity.xml" value="0.2558876811594203" />
         <entry key="..\:/TUtayo/app/src/main/res/layout/item.xml" value="0.3333333333333333" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/location_spinner.xml" value="0.1828125" />
         <entry key="..\:/TUtayo/app/src/main/res/layout/main_activity.xml" value="0.17274569402228976" />
         <entry key="..\:/TUtayo/app/src/main/res/layout/main_drawer.xml" value="0.1" />
         <entry key="..\:/TUtayo/app/src/main/res/layout/main_header.xml" value="0.18020833333333333" />
@@ -14,6 +15,7 @@
         <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_jeongwang.xml" value="0.17274569402228976" />
         <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_oido.xml" value="0.17274569402228976" />
         <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_view_pager.xml" value="0.35520833333333335" />
+        <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_new.xml" value="0.3333333333333333" />
       </map>
     </option>
   </component>

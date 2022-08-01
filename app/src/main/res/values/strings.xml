@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TUtayo</string>
+    <string-array name="spinner_items">
+        <item>정왕역</item>
+        <item>오이도역</item>
+    </string-array>
+
 </resources>

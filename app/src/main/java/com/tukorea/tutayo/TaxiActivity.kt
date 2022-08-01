@@ -1,10 +1,12 @@
 package com.tukorea.tutayo
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import kotlinx.android.synthetic.main.taxi_new.*
 
 class TaxiActivity : AppCompatActivity() {
     private lateinit var fragmentManager : FragmentManager
@@ -17,18 +19,15 @@ class TaxiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.taxi_activity)
 
-
-        //커밋용 주석
         fragmentManager = supportFragmentManager
         JFragment = JeongwangFragment()
         OFragment = OidoFragment()
         viewPagerFragment = ViewPagerFragment()
 
         transaction = fragmentManager.beginTransaction()
-
-
-
         transaction.replace(R.id.taxi_fragment_frame, viewPagerFragment).commitAllowingStateLoss()
+
+
 
 
 
