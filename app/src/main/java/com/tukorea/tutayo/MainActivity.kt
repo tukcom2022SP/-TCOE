@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         //==============================================================================
-        //switch 버튼 테스트를 통해 전환시에 메뉴가 올바르게 바뀌나 테스트하였음
+        //switch 버튼을 통해 전환시에 메뉴가 올바르게 바뀌나 테스트
         //20220731 테스트 결과 : 성공
 
         testSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
