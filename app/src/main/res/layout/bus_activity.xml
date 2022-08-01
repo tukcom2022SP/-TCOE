@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+=======
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+>>>>>>> c4f24ad4a0ba04e0493d1216af8cf5746f38aca2
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="wrap_content"
     tools:context=".MainActivity"
     android:orientation="vertical"
@@ -73,3 +82,13 @@
     </LinearLayout>
 
 </LinearLayout>
+=======
+    android:layout_height="match_parent"
+    tools:context=".BusActivity"
+    android:orientation="vertical">
+
+
+    </LinearLayout>
+
+</ScrollView>
+>>>>>>> c4f24ad4a0ba04e0493d1216af8cf5746f38aca2

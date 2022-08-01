@@ -12,6 +12,18 @@ import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
+<<<<<<< HEAD
+=======
+class BusActivity : AppCompatActivity() {
+    lateinit var linear: LinearLayout
+    lateinit var settingTime: Switch
+    lateinit var busschedule: Switch
+    lateinit var scheduleimg: ImageView
+    lateinit var timePicker: TimePicker
+    lateinit var OkBtn: Button
+    lateinit var ResetBtn: Button
+    lateinit var tx1: TextView
+>>>>>>> c4f24ad4a0ba04e0493d1216af8cf5746f38aca2
 
 class BusActivity : AppCompatActivity() {
     lateinit var intertv:TextView
@@ -20,6 +32,7 @@ class BusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bus_activity)
+<<<<<<< HEAD
 
 
         val df = SimpleDateFormat("HH:mm")
@@ -324,5 +337,9 @@ class BusActivity : AppCompatActivity() {
         return String.format("%d:%02d", h, m)
     }
 
+=======
+
+    }
+>>>>>>> c4f24ad4a0ba04e0493d1216af8cf5746f38aca2
 }
 
