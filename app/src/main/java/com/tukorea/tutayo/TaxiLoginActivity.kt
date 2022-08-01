@@ -64,15 +64,5 @@ class TaxiLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun kakaoLogout(){
-        //로그아웃
-        UserApiClient.instance.logout { error ->
-            if (error != null) {
-                Toast.makeText(this, "Test) 로그아웃 실패, SDK에서 토큰 삭제 : ${error}", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                Toast.makeText(this, "Test) 로그아웃 성공, SDK에서 토큰 삭제", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+
 }
