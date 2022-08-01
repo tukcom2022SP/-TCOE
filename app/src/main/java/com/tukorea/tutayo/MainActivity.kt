@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
@@ -48,6 +49,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val keyHash = Utility.getKeyHash(this)
         Log.d("키", "keyHash : ${keyHash}")
+
+        KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
 
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
@@ -112,18 +115,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.menu_taxi -> {
                 //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 메뉴로 리턴하고
                 //아니면 택시액티비티로 리턴 시키기
-                val callback:(OAuthToken?,Throwable?) -> Unit = { token , error ->
-                    if(token == null){
-                        val intent = Intent(this, TaxiLoginActivity::class.java)
-                        startActivity(intent)
-                    } else if(token != null){
-                        Toast.makeText(this, "택시매칭 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, TaxiActivity::class.java)
-                        startActivity(intent)
-                    }
+                if(OAuthToken == null){
+                    val intent = Intent(this, TaxiLoginActivity::class.java)
+                    startActivity(intent)
+                } else if(OAuthToken != null){
+                    Toast.makeText(this, "택시매칭 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, TaxiActivity::class.java)
+                    startActivity(intent)
                 }
-
-                callback
 
             }
         }
