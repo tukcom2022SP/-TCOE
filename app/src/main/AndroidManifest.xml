@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tukorea.tutayo" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -30,6 +31,27 @@
             </intent-filter>
 
         </activity>
+
+        <activity android:name=".TaxiLoginActivity"
+            android:exported="true"/>
+
+        <!-- kakao login activity -->
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+
+                <data
+                    android:host="oauth"
+                    android:scheme="@string/kakao_app_key2"/>
+            </intent-filter>
+        </activity>
+
 
     </application>
 

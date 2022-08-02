@@ -112,7 +112,10 @@ class ListViewAdapter (val List : MutableList<String>) : BaseAdapter(){
              time.setTextColor(Color.BLUE)
              time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23F);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 034c8ab611d0fa00bffb5835217a55dd3d7ef66e
 
              return converView!!
          }

@@ -216,6 +216,7 @@ class BusActivity : AppCompatActivity() {
         list_item4.add( 16*60+40 )
         list_item4.add( 16*60+55 )
 
+
         var listview = findViewById<ListView>(R.id.mainListview)
 
 

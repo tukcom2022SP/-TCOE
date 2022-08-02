@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.taxi_activity.*
 import kotlinx.android.synthetic.main.taxi_fragment_view_pager.*
 
 class ViewPagerFragment : Fragment() {
@@ -47,7 +46,9 @@ class ViewPagerFragment : Fragment() {
 
         //탭레이아웃 attach
         TabLayoutMediator(taxi_tablayout, taxi_viewpager) { tab, position ->
-            tab.text = "Tab ${position + 1}"
+            //tab.text = "Tab ${position + 1}"
+            if(position == 0) tab.text = "정왕"
+            else tab.text = "오이도"
         }.attach()
     }
 }
