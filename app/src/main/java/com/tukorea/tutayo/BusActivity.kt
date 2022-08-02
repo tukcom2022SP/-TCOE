@@ -223,10 +223,6 @@ class BusActivity : AppCompatActivity() {
         listview.adapter = listAdapter
 
 
-        val time = listAdapter.getItem(1)
-        Log.d("다다미1",time.toString())
-
-
         var listview2 = findViewById<ListView>(R.id.mainListview2)
         var listAdapter2 = ListViewAdapter2(list_item2)
         listview2.adapter = listAdapter2
@@ -279,7 +275,7 @@ class BusActivity : AppCompatActivity() {
         for(i in list_item4.indices){
             if(caltoday<=list_item4[i]){
                 jeongwangtime=list_item4[i]
-                intertv2.text = convertSecondsToHMmSs(jeongwangtime)
+                intertv2.text =convertSecondsToHMmSs(jeongwangtime-caltoday)
                 break
 
             }
