@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 
 class ListViewAdapter (val List : MutableList<String>) : BaseAdapter(){
+
     override fun getCount(): Int {
         return List.size
     }
@@ -29,7 +30,7 @@ class ListViewAdapter (val List : MutableList<String>) : BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
 
-
+        var count:Int
 
         val list_item3 = mutableListOf<Int>()
         list_item3.add(9*60)
@@ -94,7 +95,7 @@ class ListViewAdapter (val List : MutableList<String>) : BaseAdapter(){
 
        //= converView2!!.findViewById<TextView>(R.id.intertv)
 
-        val df = SimpleDateFormat("HH:mm")
+        val df = SimpleDateFormat("HH:mm:")
         var current = System.currentTimeMillis() //long타입의 초
 
         var curr = df.format(current).toString()
@@ -108,14 +109,11 @@ class ListViewAdapter (val List : MutableList<String>) : BaseAdapter(){
         var curr_min2 = curr_arr2[1]  //현재 분 string
         var caltoday2 = curr_hour2.toInt()*60 +curr_min2.toInt()
 
-         if(caltoday <= caltoday2 && ((caltoday + 9) >= caltoday2)){
+
+         if(caltoday> caltoday2){
              time.setTextColor(Color.BLUE)
              time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23F);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 034c8ab611d0fa00bffb5835217a55dd3d7ef66e
 
              return converView!!
          }
