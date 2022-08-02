@@ -1,5 +1,6 @@
 package com.tukorea.tutayo
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -12,13 +13,13 @@ import com.kakao.sdk.user.UserApiClient
 
 class TaxiLoginActivity : AppCompatActivity() {
     lateinit var kakao : ImageView
+    //lateinit var navigationView : NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.taxi_needlogin)
 
         kakao = findViewById<ImageView>(R.id.kakao_login_button)
-
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
         kakao.setOnClickListener {
@@ -37,6 +38,8 @@ class TaxiLoginActivity : AppCompatActivity() {
                 //최종적으로 카카오 로그인 및 유저 정보 가져온 결과
                 UserApiClient.instance.me { user, error ->
                     Toast.makeText(this, "Test) 로그인 성공 : ${user}", Toast.LENGTH_SHORT).show()
+                    getLoginData()
+
                 }
             }
         }
@@ -57,6 +60,8 @@ class TaxiLoginActivity : AppCompatActivity() {
                     UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                 } else if (token != null) {
                     Toast.makeText(this, "Test) 로그인 성공 : ${token.accessToken}", Toast.LENGTH_SHORT).show()
+                    getLoginData()
+
                 }
             }
         } else {
@@ -64,5 +69,16 @@ class TaxiLoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun getLoginData(){
+        UserApiClient.instance.me {user, error ->
+            if (error != null) {
+                Toast.makeText(this, "오류가 발생했습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show()
+            }
+            else if(user != null){
+                val intent = Intent(this, TaxiActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
 
 }
