@@ -216,117 +216,12 @@ class BusActivity : AppCompatActivity() {
         list_item4.add( 16*60+40 )
         list_item4.add( 16*60+55 )
 
-/*list_item.add("9:00")
-       list_item.add("9:20")
-       list_item.add("9:50")
 
-       list_item.add("10:10")
-       list_item.add("10:25")
-       list_item.add("10:45")
-
-       list_item.add("11:00")
-       list_item.add("11:20")
-       list_item.add("11:40")
-
-       list_item.add("12:00")
-       list_item.add("12:22")
-       list_item.add("12:45")
-
-       list_item.add("13:02")
-       list_item.add("13:15")
-       list_item.add("13:25")
-       list_item.add("13:45")
-
-       list_item.add("14:07")
-       list_item.add("14:30")
-       list_item.add("14:50")
-
-       list_item.add("15:10")
-       list_item.add("15:20")
-       list_item.add("15:30")
-       list_item.add("15:45")
-
-       list_item.add("16:05")
-       list_item.add("16:20")
-       list_item.add("16:30")
-       list_item.add("16:45")
-
-       list_item.add("17:05")
-       list_item.add("17:25")
-       list_item.add("17:45")
-
-       list_item.add("18:05")
-       list_item.add("18:25")
-       list_item.add("18:45")
-
-       list_item.add("19:05")
-       list_item.add("19:25")
-       list_item.add("19:45")
-
-       list_item.add("20:10")
-
-       val list_item2 = mutableListOf<String>()
-
-       list_item2.add("8:41")
-       list_item2.add("8:59")
-
-       list_item2.add("9:5")
-       list_item2.add("9:15")
-       list_item2.add("9:20")
-       list_item2.add("9:35")
-       list_item2.add("9:50")
-
-       list_item2.add("10:05")
-       list_item2.add("10:20")
-       list_item2.add("10:35")
-       list_item2.add("10:55")
-
-       list_item2.add("11:10")
-       list_item2.add("11:30")
-       list_item2.add("11:50")
-
-       list_item2.add("12:10")
-       list_item2.add("12:32")
-       list_item2.add("12:55")
-
-       list_item2.add("13:12")
-       list_item2.add("13:25")
-       list_item2.add("13:35")
-       list_item2.add("13:55")
-
-       list_item2.add("14:17")
-       list_item2.add("14:40")
-
-       list_item2.add("15:00")
-       list_item2.add("15:20")
-       list_item2.add("15:30")
-       list_item2.add("15:40")
-       list_item2.add("15:55")
-
-       list_item2.add("16:15")
-       list_item2.add("16:30")
-       list_item2.add("16:40")
-       list_item2.add("16:55")*/
         var listview = findViewById<ListView>(R.id.mainListview)
 
 
         var listAdapter = ListViewAdapter(list_item)
         listview.adapter = listAdapter
-
-        //var a = listview.getChildAt(0).setBackgroundColor(Color.parseColor("#000000"))
-        // a.setBackgroundColor(Color.parseColor(Color.CYAN))
-        // a.setBackgroundColor(Color.CYAN)
-        // var b = listAdapter.getItem(0) as View
-        // b.setBackgroundColor(Color.CYAN)
-
-        /* for(i in 0..list_item.size) {
-             if(list_item[i]=="9:00")
-                 // listAdapter.getView()
-                 // listAdapter.getView(i,)
-               // listview.getChildAt(i).setBackgroundColor(Color.CYAN);
-         }*/
-        /*Log.d("디스이즈",listview.getChildAt(0).toString())*/
-
 
 
         val time = listAdapter.getItem(1)
