@@ -33,10 +33,7 @@ class ListViewAdapter (val List : MutableList<String>) : BaseAdapter(){
         time.text = List[position]
 
         //time.setTextColor(Color.CYAN)
-
-
-
-
+        
 
         return converView!!
 

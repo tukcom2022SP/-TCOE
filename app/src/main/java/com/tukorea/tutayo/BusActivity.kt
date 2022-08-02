@@ -301,7 +301,7 @@ class BusActivity : AppCompatActivity() {
         })
 */
 /*
-       //var a= listview.getChildAt(0).setBackgroundColor(Color.parseColor("#ffffff"))
+       var a= listview.getChildAt(0).setBackgroundColor(Color.parseColor("#ffffff"))
          //   listview.getChildAt(1).setBackgroundColor(Color.parseColor(Col));
         listview.setChoiceMode(ListView.CHOICE_MODE_SINGLE)
 
@@ -311,7 +311,7 @@ class BusActivity : AppCompatActivity() {
             view.setBackgroundColor(Color.CYAN)
         })*/
 
-
+        listview.getChildAt(0).setBackgroundColor(Color.parseColor("#ffffff"))
 
     }
 
