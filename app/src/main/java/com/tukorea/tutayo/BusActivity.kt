@@ -275,7 +275,8 @@ class BusActivity : AppCompatActivity() {
         for(i in list_item4.indices){
             if(caltoday<=list_item4[i]){
                 jeongwangtime=list_item4[i]
-                intertv2.text =convertSecondsToHMmSs(jeongwangtime-caltoday)
+                intertv2.text =convertSecondsToHMmSs(jeongwangtime-caltoday).toString()
+                Log.d("ㅈㅈㅈㅈ",convertSecondsToHMmSs(jeongwangtime-caltoday).toString())
                 break
 
             }
