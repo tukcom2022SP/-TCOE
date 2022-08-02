@@ -286,28 +286,6 @@ class BusActivity : AppCompatActivity() {
         }
 
 
-//listview 색 바꾸기
-
-/*
-        listview.setChoiceMode(ListView.CHOICE_MODE_SINGLE)
-
-        listview.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
-            updateview?.setBackgroundColor(Color.TRANSPARENT)
-            updateview = view
-            view.setBackgroundColor(Color.CYAN)
-        })
-*/
-/*
-       //var a= listview.getChildAt(0).setBackgroundColor(Color.parseColor("#ffffff"))
-         //   listview.getChildAt(1).setBackgroundColor(Color.parseColor(Col));
-        listview.setChoiceMode(ListView.CHOICE_MODE_SINGLE)
-
-        listview.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
-            updateview?.setBackgroundColor(Color.TRANSPARENT)
-            updateview = view
-            view.setBackgroundColor(Color.CYAN)
-        })*/
-
 
 
     }
