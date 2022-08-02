@@ -24,6 +24,7 @@ class TaxiLoginActivity : AppCompatActivity() {
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
         navigationView = findViewById(R.id.nav_view)
+
         kakao.setOnClickListener {
             kakaoLogin()
         }
@@ -41,8 +42,6 @@ class TaxiLoginActivity : AppCompatActivity() {
                 UserApiClient.instance.me { user, error ->
                     Toast.makeText(this, "Test) 로그인 성공 : ${user}", Toast.LENGTH_SHORT).show()
                     getLoginData()
-                    navigationView!!.getMenu().findItem(R.id.menu_logout).setVisible(true)
-                    navigationView!!.getMenu().findItem(R.id.menu_login).setVisible(false)
 
                 }
             }
@@ -65,8 +64,6 @@ class TaxiLoginActivity : AppCompatActivity() {
                 } else if (token != null) {
                     Toast.makeText(this, "Test) 로그인 성공 : ${token.accessToken}", Toast.LENGTH_SHORT).show()
                     getLoginData()
-                    navigationView!!.getMenu().findItem(R.id.menu_logout).setVisible(true)
-                    navigationView!!.getMenu().findItem(R.id.menu_login).setVisible(false)
 
                 }
             }
@@ -81,6 +78,8 @@ class TaxiLoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "오류가 발생했습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show()
             }
             else if(user != null){
+                navigationView!!.getMenu().findItem(R.id.menu_logout).setVisible(true)
+                navigationView!!.getMenu().findItem(R.id.menu_login).setVisible(false)
                 val intent = Intent(this, TaxiActivity::class.java)
                 startActivity(intent)
             }
