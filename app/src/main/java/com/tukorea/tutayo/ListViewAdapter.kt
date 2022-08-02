@@ -112,11 +112,7 @@ class ListViewAdapter (val List : MutableList<String>) : BaseAdapter(){
              time.setTextColor(Color.BLUE)
              time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23F);
 
-             val layoutManager = LinearLayoutManager(requireContext())
-             View.layoutManager = layoutManager
 
-             val centerOfScreen = recyclerView.width / 2
-             layoutManager.scrollToPositionWithOffset( itemPosition , centerOfScreen)
 
              return converView!!
          }
