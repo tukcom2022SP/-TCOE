@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.navigation.NavigationView
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
@@ -13,7 +14,7 @@ import com.kakao.sdk.user.UserApiClient
 
 class TaxiLoginActivity : AppCompatActivity() {
     lateinit var kakao : ImageView
-    //lateinit var navigationView : NavigationView
+    lateinit var navigationView : NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +23,7 @@ class TaxiLoginActivity : AppCompatActivity() {
         kakao = findViewById<ImageView>(R.id.kakao_login_button)
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
+        navigationView = findViewById(R.id.nav_view)
         kakao.setOnClickListener {
             kakaoLogin()
         }
@@ -39,6 +41,8 @@ class TaxiLoginActivity : AppCompatActivity() {
                 UserApiClient.instance.me { user, error ->
                     Toast.makeText(this, "Test) 로그인 성공 : ${user}", Toast.LENGTH_SHORT).show()
                     getLoginData()
+                    navigationView!!.getMenu().findItem(R.id.menu_logout).setVisible(true)
+                    navigationView!!.getMenu().findItem(R.id.menu_login).setVisible(false)
 
                 }
             }
@@ -61,6 +65,8 @@ class TaxiLoginActivity : AppCompatActivity() {
                 } else if (token != null) {
                     Toast.makeText(this, "Test) 로그인 성공 : ${token.accessToken}", Toast.LENGTH_SHORT).show()
                     getLoginData()
+                    navigationView!!.getMenu().findItem(R.id.menu_logout).setVisible(true)
+                    navigationView!!.getMenu().findItem(R.id.menu_login).setVisible(false)
 
                 }
             }
