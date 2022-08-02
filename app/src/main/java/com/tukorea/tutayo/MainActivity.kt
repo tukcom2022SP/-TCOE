@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.Switch
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -29,10 +28,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var shuttleButton: ImageButton
     lateinit var taxiButton: ImageButton
 
-    //=================== 테스트용, 후에 삭제예정 ==================================
-    //나중에 코드 정리할때 위에 import android.wiget.Switch도 잊지 않고 삭제하기!
-    lateinit var testSwitch : Switch
-    //===========================================================================
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +39,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menuButton = findViewById<ImageView>(R.id.menuBtn)
         shuttleButton = findViewById<ImageButton>(R.id.shuttleBtn)
         taxiButton = findViewById<ImageButton>(R.id.taxiBtn)
-        testSwitch = findViewById<Switch>(R.id.test_switch)
 
 
         val keyHash = Utility.getKeyHash(this)
@@ -73,24 +67,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-        //==============================================================================
-        //switch 버튼을 통해 전환시에 메뉴가 올바르게 바뀌나 테스트
-        //20220731 테스트 결과 : 성공
-
-        testSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
-            if(isChecked){
-                Toast.makeText(this, "쨘 로그아웃 등장이오", Toast.LENGTH_SHORT).show()
-                navigationView.getMenu().findItem(R.id.menu_logout).setVisible(true)
-                navigationView.getMenu().findItem(R.id.menu_login).setVisible(false)
-            }
-            else{
-                Toast.makeText(this, "쨘 로그인 등장이오", Toast.LENGTH_SHORT).show()
-                navigationView.getMenu().findItem(R.id.menu_logout).setVisible(false)
-                navigationView.getMenu().findItem(R.id.menu_login).setVisible(true)
-            }
-        }
-
-        // ============================================================================
     }
 
 

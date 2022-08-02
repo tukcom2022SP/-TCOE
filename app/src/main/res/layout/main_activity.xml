@@ -55,15 +55,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-        <Switch
-            android:id="@+id/test_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="메뉴전환 테스트용 스위치" />
-    </LinearLayout>
+        android:layout_weight="1"/>
 
 
 
