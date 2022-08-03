@@ -60,9 +60,4 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.kakao.sdk:v2-user:2.8.5' //카카오 로그인 sdk 추가
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 01bf49862514a4879c3221b9e84f44866f0c074f
 }
