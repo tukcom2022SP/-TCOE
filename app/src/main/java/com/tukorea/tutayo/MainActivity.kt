@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Log.d("키", "keyHash : ${keyHash}")
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
+        checkLogin() //최초에 로그인 되어 있는지 체크
 
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
@@ -62,8 +63,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         taxiButton.setOnClickListener {
             Toast.makeText(this, "택시 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,TaxiActivity::class.java)
-            startActivity(intent)
+            getLoginData()
         }
 
 
@@ -89,16 +89,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.menu_taxi -> {
-                //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 메뉴로 리턴하고
+                //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 토스트 메시지 띄움
                 //아니면 택시액티비티로 리턴 시키기
-                if(OAuthToken == null){
-                    val intent = Intent(this, TaxiLoginActivity::class.java)
-                    startActivity(intent)
-                } else if(OAuthToken != null){
-                    Toast.makeText(this, "택시매칭 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, TaxiActivity::class.java)
-                    startActivity(intent)
-                }
+                getLoginData()
 
             }
         }
@@ -160,6 +153,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "Test) 로그아웃 성공, SDK에서 토큰 삭제", Toast.LENGTH_SHORT).show()
                 navigationView.getMenu().findItem(R.id.menu_logout).setVisible(false)
                 navigationView.getMenu().findItem(R.id.menu_login).setVisible(true)
+            }
+        }
+    }
+
+    private fun getLoginData(){
+        UserApiClient.instance.me {user, error ->
+            if (error != null) {
+                Toast.makeText(this, "로그인 후에 이용해 주세요.", Toast.LENGTH_SHORT).show()
+            }
+            else if(user != null){
+                val intent = Intent(this, TaxiActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun checkLogin(){
+        UserApiClient.instance.me {user, error ->
+            if (error != null) {
+
+            }
+            else if(user != null){
+                navigationView.getMenu().findItem(R.id.menu_logout).setVisible(true)
+                navigationView.getMenu().findItem(R.id.menu_login).setVisible(false)
             }
         }
     }
