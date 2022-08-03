@@ -76,7 +76,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 kakaoLogin()
             }
             R.id.menu_logout -> {
-                kakaoLogout()
+                val dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setMessage("정말 로그아웃 하시겠습니까?")
+                dlg.setNegativeButton("취소",null)
+                dlg.setPositiveButton("동의"){ dlg , which->
+                    kakaoLogout()
+                }
+                dlg.show()
+
             }
             R.id.menu_mypage -> Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
             R.id.menu_shuttle -> {
