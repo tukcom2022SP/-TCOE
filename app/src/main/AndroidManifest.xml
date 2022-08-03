@@ -31,9 +31,7 @@
             </intent-filter>
 
         </activity>
-
-        <activity android:name=".TaxiLoginActivity"
-            android:exported="true"/>
+        
 
         <!-- kakao login activity -->
         <activity
