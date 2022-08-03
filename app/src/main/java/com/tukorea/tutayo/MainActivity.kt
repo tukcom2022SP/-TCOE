@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.menu_taxi -> {
-                //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 메뉴로 리턴하고
+                //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 토스트 메시지 띄움
                 //아니면 택시액티비티로 리턴 시키기
                 getLoginData()
 
@@ -160,8 +160,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun getLoginData(){
         UserApiClient.instance.me {user, error ->
             if (error != null) {
-                val intent = Intent(this, TaxiLoginActivity::class.java)
-                startActivity(intent)
+                Toast.makeText(this, "로그인 후에 이용해 주세요.", Toast.LENGTH_SHORT).show()
             }
             else if(user != null){
                 val intent = Intent(this, TaxiActivity::class.java)
