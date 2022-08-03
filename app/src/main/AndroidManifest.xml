@@ -31,7 +31,7 @@
             </intent-filter>
 
         </activity>
-        
+
 
         <!-- kakao login activity -->
         <activity

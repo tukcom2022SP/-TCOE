@@ -1,5 +1,6 @@
 package com.tukorea.tutayo
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -49,20 +50,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
-            Toast.makeText(this, "메뉴 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
 
         }
 
         navigationView.setNavigationItemSelectedListener(this)
 
         shuttleButton.setOnClickListener {
-            Toast.makeText(this, "셔틀 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(this,BusActivity::class.java)
             startActivity(intent)
         }
 
         taxiButton.setOnClickListener {
-            Toast.makeText(this, "택시 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
             getLoginData()
         }
 
@@ -74,16 +73,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_login -> {
-                Toast.makeText(this, "로그인 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
                 kakaoLogin()
             }
             R.id.menu_logout -> {
                 kakaoLogout()
-                Toast.makeText(this, "로그아웃 메뉴 실행", Toast.LENGTH_SHORT).show()
             }
             R.id.menu_mypage -> Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
             R.id.menu_shuttle -> {
-                Toast.makeText(this, "셔틀버스 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, BusActivity::class.java)
                 startActivity(intent)
             }
@@ -91,6 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.menu_taxi -> {
                 //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 토스트 메시지 띄움
                 //아니면 택시액티비티로 리턴 시키기
+
                 getLoginData()
 
             }
@@ -147,10 +144,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //로그아웃
         UserApiClient.instance.logout { error ->
             if (error != null) {
-                Toast.makeText(this, "Test) 로그아웃 실패, SDK에서 토큰 삭제 : ${error}", Toast.LENGTH_SHORT).show()
+                var dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setTitle("알림")
+                dlg.setMessage("로그아웃에 실패하였습니다. 다시 시도해 주세요.")
+                dlg.show()
+
             }
             else {
-                Toast.makeText(this, "Test) 로그아웃 성공, SDK에서 토큰 삭제", Toast.LENGTH_SHORT).show()
+
+                var dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setTitle("알림")
+                dlg.setMessage("성공적으로 로그아웃 되었습니다!")
+                dlg.show()
+
+
                 navigationView.getMenu().findItem(R.id.menu_logout).setVisible(false)
                 navigationView.getMenu().findItem(R.id.menu_login).setVisible(true)
             }
@@ -160,7 +167,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun getLoginData(){
         UserApiClient.instance.me {user, error ->
             if (error != null) {
-                Toast.makeText(this, "로그인 후에 이용해 주세요.", Toast.LENGTH_SHORT).show()
+
+                var dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setTitle("알림")
+                dlg.setMessage("로그인 후에 이용 가능합니다.")
+                dlg.show()
             }
             else if(user != null){
                 val intent = Intent(this, TaxiActivity::class.java)
