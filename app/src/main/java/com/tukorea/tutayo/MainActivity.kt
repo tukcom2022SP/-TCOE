@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         shuttleButton = findViewById<ImageButton>(R.id.shuttleBtn)
         taxiButton = findViewById<ImageButton>(R.id.taxiBtn)
 
-
         val keyHash = Utility.getKeyHash(this)
-        Log.d("키", "keyHash : ${keyHash}")
+        Log.d("Hash", keyHash)
+
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
 

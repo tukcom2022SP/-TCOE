@@ -10,6 +10,7 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 
+
 class TaxiLoginActivity : AppCompatActivity() {
     lateinit var kakao : ImageView
 
@@ -19,12 +20,12 @@ class TaxiLoginActivity : AppCompatActivity() {
 
         kakao = findViewById<ImageView>(R.id.kakao_login_button)
 
-
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
         kakao.setOnClickListener {
             kakaoLogin()
         }
     }
+
 
     private fun kakaoLogin() {
         // 카카오계정으로 로그인 공통 callback 구성
