@@ -16,7 +16,7 @@ import java.util.*
 class BusActivity : AppCompatActivity() {
     lateinit var intertv:TextView
     lateinit var intertv2:TextView
-    var updateview: View? = null // above oncreate method
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bus_activity)
@@ -224,10 +224,6 @@ class BusActivity : AppCompatActivity() {
         listview.adapter = listAdapter
 
 
-        val time = listAdapter.getItem(1)
-        Log.d("다다미1",time.toString())
-
-
         var listview2 = findViewById<ListView>(R.id.mainListview2)
         var listAdapter2 = ListViewAdapter2(list_item2)
         listview2.adapter = listAdapter2
@@ -251,53 +247,44 @@ class BusActivity : AppCompatActivity() {
         Log.d("지금",caltoday.toString())
         Log.d("지금2",list_item3[1].toString())
 //버스시간-현재시간 0보다 크거나 같을때 그값을 var neartime으로 지정
-        var nearschooltime:Int?=0
-        val schoolinter:String
-        var schooltime:Int=0
-        var jeongwangtime:Int=0
+
+
         for(i in list_item3.indices){
+            var cato=0
             if(caltoday<=list_item3[i]){
-                schooltime=list_item3[i]
-                intertv.text = convertSecondsToHMmSs(schooltime)
-
-
-//listview 와 listview3 비교해서 같은거 있을때 listview에 색칠
-                for(j in 0..list_item.size){
-                    if(list_item[j]==convertSecondsToHMmSs(schooltime).toString()){
-                        Log.d("확",list_item[j])
-                        //현재 listview의 위치와 글자는 찾았음
-                        Log.d("확1",j.toString())
-                        //j번째의 listview의 textcolor를 바꾸고 싶음
-                        break
-                    }
+                cato++
+                if(cato==1){
+               var schooltime=list_item3[i] -caltoday
+                var s_t=schooltime.toString()
+                if(Integer.parseInt(s_t)<1){
+                    intertv.text = "잠시후 도착"
                 }
-
-                break
+                else {
+                    intertv.text = String.format("$s_t 분 남았습니다")
+                }
+                    break
             }
 
-        }
+        }}
 
         for(i in list_item4.indices){
+            var cato=0
             if(caltoday<=list_item4[i]){
-                jeongwangtime=list_item4[i]
-                intertv2.text = convertSecondsToHMmSs(jeongwangtime)
-                break
+                cato++
+                if(cato==1){
+                    var schooltime=list_item4[i] -caltoday
+                    var s_t=schooltime.toString()
+                    if(Integer.parseInt(s_t)<1){
+                        intertv2.text = "잠시후 도착"
+                    }
+                    else {
+                        intertv2.text = String.format("$s_t 분 남았습니다")
+                    }
+                    break
+                }
 
-            }
-        }
+            }}
+    }}
 
 
 
-
-    }
-
-
-
-    fun convertSecondsToHMmSs(seconds: Int): String? {
-
-        val m = seconds % 60
-        val h = seconds/60
-        return String.format("%d:%02d", h, m)
-    }
-
-}

@@ -1,9 +1,11 @@
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
-}
 
+}
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdk 32
 
@@ -41,7 +43,8 @@ android {
 }
 
 dependencies {
-
+    implementation platform('com.google.firebase:firebase-bom:30.3.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
@@ -58,4 +61,8 @@ dependencies {
     implementation 'com.kakao.sdk:v2-user:2.8.5' //카카오 로그인 sdk 추가
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 01bf49862514a4879c3221b9e84f44866f0c074f
 }

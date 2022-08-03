@@ -65,7 +65,6 @@ class ListViewAdapter2 (val List : MutableList<String>) : BaseAdapter(){
         list_item4.add( 16*60+40 )
         list_item4.add( 16*60+55 )
 
-
         var converView = convertView
 
         if (converView == null) {
@@ -91,12 +90,11 @@ class ListViewAdapter2 (val List : MutableList<String>) : BaseAdapter(){
         var curr_hour2 = curr_arr2[0] //현재 시 string
         var curr_min2 = curr_arr2[1]  //현재 분 string
         var caltoday2 = curr_hour2.toInt()*60 +curr_min2.toInt()
-        // var a = List[position].toInt()
-        // Log.d("a",a.toString())
-        // Integer.parseInt(List[position])
+
         if(caltoday <= caltoday2 && ((caltoday + 9) >= caltoday2)){
             time.setTextColor(Color.BLUE)
             time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23F);
+
             return converView!!
         }
 
@@ -108,3 +106,5 @@ class ListViewAdapter2 (val List : MutableList<String>) : BaseAdapter(){
     }
 
 }
+
+
