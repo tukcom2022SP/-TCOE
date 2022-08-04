@@ -18,9 +18,7 @@
         <activity
             android:name=".RealBusActivity"
             android:exported="false" />
-        <activity
-            android:name=".BusActivity"
-            android:exported="false"></activity>
+
         <activity
             android:name=".TaxiActivity"
             android:exported="true" />
@@ -32,9 +30,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-<<<<<<< HEAD
-        </activity> <!-- kakao login activity -->
-=======
 
         </activity>
 
@@ -46,7 +41,7 @@
 
 
         <!-- kakao login activity -->
->>>>>>> b0cddeeaf63f5a8524db190f5c9e19ce21d7ea36
+
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true"
