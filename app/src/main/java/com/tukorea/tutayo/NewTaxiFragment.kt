@@ -1,10 +1,12 @@
 package com.tukorea.tutayo
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,50 +40,67 @@ class NewTaxiFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-
-            firestore = FirebaseFirestore.getInstance()
-
-            //작성하던 글 초기화
-            resetBtn.setOnClickListener {
-                position.clearCheck()
-                Log.d("tmp", "clicked radioBtn id: ${position.checkedRadioButtonId}")
-                sex_restriction.clearCheck()
-                departure_hour.setText("00")
-                departure_minute.setText("00")
-                am_or_pm.setText("am")
-                newtaxi_memo.setText("")
             }
-
-            //새 글 작성 버튼 클릭 이벤트
-            submitBtn.setOnClickListener {
-
-                //메모를 제외하고 작성하지 않은 부분이 존재하면 제출 불가
-                //position.checkedRadioButtonId = null
-            }
-
-
         }
-
-
-//        ArrayAdapter.createFromResource(
-//            requireContext(),
-//            R.array.spinner_items,
-//            android.R.layout.simple_spinner_item
-//        ).also { adapter ->
-//            // Specify the layout to use when the list of choices appears
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            // Apply the adapter to the spinner
-//            location_spinner.adapter = adapter
-//        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.taxi_fragment_new, container, false)
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        firestore = FirebaseFirestore.getInstance()
+
+        //출구 선택 스피너
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.spinner_items,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            location_spinner.adapter = adapter
+        }
+
+        //출구 번호 스피너는 오디도역 선택시에만 보이도록 함
+        position.setOnCheckedChangeListener { compoundButton, b ->
+            if(rb_jeongwang.isChecked) location_spinner.visibility = View.INVISIBLE
+            else location_spinner.visibility = View.VISIBLE
+        }
+
+        //초기화 버튼 클릭시 작성한 내용 리셋
+        resetBtn.setOnClickListener {
+            position.clearCheck()
+            sex_restriction.clearCheck()
+            departure_hour.setText("00")
+            departure_minute.setText("00")
+            am_or_pm.setText("am")
+            newtaxi_memo.setText("")
+            location_spinner.visibility = View.INVISIBLE
+        }
+
+        //작성 취소하기
+        cancelBtn.setOnClickListener {
+            (activity as TaxiActivity).toJFragment()
+        }
+
+
+
+
+
+
+    }
+
+
+
+
 
     companion object {
         /**
