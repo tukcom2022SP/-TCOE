@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "572422734581",
+    "project_id": "tcoeproject",
+    "storage_bucket": "tcoeproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572422734581:android:2784082392ace93350bbbc",
+        "android_client_info": {
+          "package_name": "com.tukorea.tutayo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572422734581-gtbqq87i5iajgio1mb5oc4ntf4vmhhi3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsZhHB06KNpDmlvL4CXJl0aAJigE_75pI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572422734581-gtbqq87i5iajgio1mb5oc4ntf4vmhhi3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

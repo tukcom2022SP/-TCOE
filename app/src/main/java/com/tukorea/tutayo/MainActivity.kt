@@ -1,5 +1,8 @@
 package com.tukorea.tutayo
 
+import android.app.AlertDialog
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,30 +43,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         shuttleButton = findViewById<ImageButton>(R.id.shuttleBtn)
         taxiButton = findViewById<ImageButton>(R.id.taxiBtn)
 
-
         val keyHash = Utility.getKeyHash(this)
-        Log.d("키", "keyHash : ${keyHash}")
+        Log.d("Hash", keyHash)
+
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
+        checkLogin() //최초에 로그인 되어 있는지 체크
 
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
-            Toast.makeText(this, "메뉴 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
 
         }
 
         navigationView.setNavigationItemSelectedListener(this)
 
         shuttleButton.setOnClickListener {
-            Toast.makeText(this, "셔틀 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,BusActivity::class.java)
+
+            val intent = Intent(this,RealBusActivity::class.java)
             startActivity(intent)
         }
 
         taxiButton.setOnClickListener {
-            Toast.makeText(this, "택시 버튼 실행 테스트", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,TaxiActivity::class.java)
-            startActivity(intent)
+            getLoginData()
         }
 
 
@@ -74,31 +75,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_login -> {
-                Toast.makeText(this, "로그인 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
                 kakaoLogin()
+                //성별을 받아오기 위한 추가 동의 필요
+                genderData()
+
             }
             R.id.menu_logout -> {
-                kakaoLogout()
-                Toast.makeText(this, "로그아웃 메뉴 실행", Toast.LENGTH_SHORT).show()
+                val dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setMessage("정말 로그아웃 하시겠습니까?")
+                dlg.setNegativeButton("취소",null)
+                dlg.setPositiveButton("동의"){ dlg , which->
+                    kakaoLogout()
+                }
+                dlg.show()
+
             }
-            R.id.menu_mypage -> Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
+            R.id.menu_mypage -> {
+                Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
+                getLoginData2()
+            }
+
             R.id.menu_shuttle -> {
-                Toast.makeText(this, "셔틀버스 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, BusActivity::class.java)
+                val intent = Intent(this, RealBusActivity::class.java)
                 startActivity(intent)
             }
 
             R.id.menu_taxi -> {
-                //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 메뉴로 리턴하고
+                //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 토스트 메시지 띄움
                 //아니면 택시액티비티로 리턴 시키기
-                if(OAuthToken == null){
-                    val intent = Intent(this, TaxiLoginActivity::class.java)
-                    startActivity(intent)
-                } else if(OAuthToken != null){
-                    Toast.makeText(this, "택시매칭 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, TaxiActivity::class.java)
-                    startActivity(intent)
-                }
+                getLoginData()
 
             }
         }
@@ -154,13 +159,112 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //로그아웃
         UserApiClient.instance.logout { error ->
             if (error != null) {
-                Toast.makeText(this, "Test) 로그아웃 실패, SDK에서 토큰 삭제 : ${error}", Toast.LENGTH_SHORT).show()
+                var dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setTitle("알림")
+                dlg.setMessage("로그아웃에 실패하였습니다. 다시 시도해 주세요.")
+                dlg.show()
+
             }
             else {
-                Toast.makeText(this, "Test) 로그아웃 성공, SDK에서 토큰 삭제", Toast.LENGTH_SHORT).show()
+
+                var dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setTitle("알림")
+                dlg.setMessage("성공적으로 로그아웃 되었습니다!")
+                dlg.show()
+
+
                 navigationView.getMenu().findItem(R.id.menu_logout).setVisible(false)
                 navigationView.getMenu().findItem(R.id.menu_login).setVisible(true)
             }
         }
     }
+
+    private fun getLoginData(){
+        UserApiClient.instance.me {user, error ->
+            if (error != null) {
+
+                var dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setTitle("알림")
+                dlg.setMessage("로그인 후에 이용 가능합니다.")
+                dlg.show()
+            }
+            else if(user != null){
+                val intent = Intent(this, TaxiActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun getLoginData2(){
+        UserApiClient.instance.me {user, error ->
+            if (error != null) {
+
+                var dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setTitle("알림")
+                dlg.setMessage("로그인 후에 이용 가능합니다.")
+                dlg.show()
+            }
+            else if(user != null){
+                val intent = Intent(this, MyPageActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun checkLogin(){
+        UserApiClient.instance.me {user, error ->
+            if (error != null) {
+
+            }
+            else if(user != null){
+                navigationView.getMenu().findItem(R.id.menu_logout).setVisible(true)
+                navigationView.getMenu().findItem(R.id.menu_login).setVisible(false)
+            }
+        }
+    }
+
+    private fun genderData(){
+
+
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+
+            }
+            else if (user != null) {
+                var scopes = mutableListOf<String>()
+
+                if (user.kakaoAccount?.genderNeedsAgreement == true) { scopes.add("gender") }
+
+
+                if (scopes.count() > 0) {
+
+                    // OpenID Connect 사용 시
+                    // scope 목록에 "openid" 문자열을 추가하고 요청해야 함
+                    // 해당 문자열을 포함하지 않은 경우, ID 토큰이 재발급되지 않음
+                    // scopes.add("openid")
+
+                    //scope 목록을 전달하여 카카오 로그인 요청
+                    UserApiClient.instance.loginWithNewScopes(this, scopes) { token, error ->
+                        if (error != null) {
+                            Log.e(TAG, "사용자 추가 동의 실패", error)
+                        } else {
+                            Log.d(TAG, "allowed scopes: ${token!!.scopes}")
+
+                            // 사용자 정보 재요청
+                            UserApiClient.instance.me { user, error ->
+                                if (error != null) {
+                                    Log.e(TAG, "사용자 정보 요청 실패", error)
+                                }
+                                else if (user != null) {
+                                    Log.i(TAG, "사용자 정보 요청 성공")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 }
