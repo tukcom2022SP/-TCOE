@@ -1,17 +1,15 @@
 package com.tukorea.tutayo
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import kotlinx.android.synthetic.main.taxi_activity.*
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.taxi_fragment_new.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,12 +30,36 @@ class NewTaxiFragment : Fragment() {
     private lateinit var OFragment : Fragment
     private lateinit var transaction : FragmentTransaction
     private lateinit var viewPagerFragment : ViewPagerFragment
+    private var firestore : FirebaseFirestore? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
+            firestore = FirebaseFirestore.getInstance()
+
+            //작성하던 글 초기화
+            resetBtn.setOnClickListener {
+                position.clearCheck()
+                Log.d("tmp", "clicked radioBtn id: ${position.checkedRadioButtonId}")
+                sex_restriction.clearCheck()
+                departure_hour.setText("00")
+                departure_minute.setText("00")
+                am_or_pm.setText("am")
+                newtaxi_memo.setText("")
+            }
+
+            //새 글 작성 버튼 클릭 이벤트
+            submitBtn.setOnClickListener {
+
+                //메모를 제외하고 작성하지 않은 부분이 존재하면 제출 불가
+                //position.checkedRadioButtonId = null
+            }
+
+
         }
 
 

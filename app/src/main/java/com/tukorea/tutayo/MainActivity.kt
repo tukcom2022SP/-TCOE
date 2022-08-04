@@ -21,6 +21,8 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.main_toolbar.*
 
+
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var navigationView : NavigationView
@@ -43,7 +45,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val keyHash = Utility.getKeyHash(this)
         Log.d("Hash", keyHash)
-
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
         checkLogin() //최초에 로그인 되어 있는지 체크
