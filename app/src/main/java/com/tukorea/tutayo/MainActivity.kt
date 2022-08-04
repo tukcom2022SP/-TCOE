@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         shuttleButton.setOnClickListener {
 
-            val intent = Intent(this,BusActivity::class.java)
+            val intent = Intent(this,RealBusActivity::class.java)
             startActivity(intent)
         }
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.menu_mypage -> Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
             R.id.menu_shuttle -> {
-                val intent = Intent(this, BusActivity::class.java)
+                val intent = Intent(this, RealBusActivity::class.java)
                 startActivity(intent)
             }
 
