@@ -18,6 +18,7 @@
             android:id="@+id/intertv"
             android:text="시간차이"
             android:textSize="20dp"
+            android:fontFamily="@font/bmjua"
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="#EA2B2B"/>
@@ -27,6 +28,7 @@
             android:id="@+id/intertv2"
             android:text="시간차이2"
             android:textSize="20dp"
+            android:fontFamily="@font/bmjua"
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="#EA2B2B"/>
@@ -44,7 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="학교 출발"/>
+            android:text="학교 출발"
+            android:fontFamily="@font/bmjua"/>
 
         <TextView
             android:id="@+id/JeongWang_text_view"
@@ -54,7 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="정왕역 출발"/>
+            android:text="정왕역 출발"
+            android:fontFamily="@font/bmjua"/>
 
     </LinearLayout>
     <LinearLayout
