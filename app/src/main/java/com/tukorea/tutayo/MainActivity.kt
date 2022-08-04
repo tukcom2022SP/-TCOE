@@ -1,6 +1,7 @@
 package com.tukorea.tutayo
 
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -245,17 +246,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     //scope 목록을 전달하여 카카오 로그인 요청
                     UserApiClient.instance.loginWithNewScopes(this, scopes) { token, error ->
                         if (error != null) {
-                            //Log.e(TAG, "사용자 추가 동의 실패", error)
+                            Log.e(TAG, "사용자 추가 동의 실패", error)
                         } else {
-                            //Log.d(TAG, "allowed scopes: ${token!!.scopes}")
+                            Log.d(TAG, "allowed scopes: ${token!!.scopes}")
 
                             // 사용자 정보 재요청
                             UserApiClient.instance.me { user, error ->
                                 if (error != null) {
-                                    //Log.e(TAG, "사용자 정보 요청 실패", error)
+                                    Log.e(TAG, "사용자 정보 요청 실패", error)
                                 }
                                 else if (user != null) {
-                                    //Log.i(TAG, "사용자 정보 요청 성공")
+                                    Log.i(TAG, "사용자 정보 요청 성공")
                                 }
                             }
                         }
