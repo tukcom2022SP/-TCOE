@@ -33,6 +33,12 @@
         </activity>
 
 
+        <activity
+            android:name=".MyPageActivity"
+            android:exported="true">
+        </activity>
+
+
         <!-- kakao login activity -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"

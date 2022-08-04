@@ -85,7 +85,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 dlg.show()
 
             }
-            R.id.menu_mypage -> Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
+            R.id.menu_mypage -> {
+                Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MyPageActivity::class.java)
+                startActivity(intent)
+            }
+
             R.id.menu_shuttle -> {
                 val intent = Intent(this, BusActivity::class.java)
                 startActivity(intent)
@@ -171,6 +176,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun getLoginData(){
+        UserApiClient.instance.me {user, error ->
+            if (error != null) {
+
+                var dlg = AlertDialog.Builder(this@MainActivity)
+                dlg.setTitle("알림")
+                dlg.setMessage("로그인 후에 이용 가능합니다.")
+                dlg.show()
+            }
+            else if(user != null){
+                val intent = Intent(this, TaxiActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun getLoginData2(){
         UserApiClient.instance.me {user, error ->
             if (error != null) {
 
