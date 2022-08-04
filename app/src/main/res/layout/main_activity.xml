@@ -32,10 +32,10 @@
             android:id="@+id/shuttleBtn"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
             android:background="#00ff0000"
+            android:gravity="center"
             android:scaleType="fitXY"
             android:src="@drawable/main_bus_logo" />
 
@@ -43,9 +43,9 @@
             android:id="@+id/taxiBtn"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:gravity="center"
             android:layout_gravity="center"
             android:background="#00ff0000"
+            android:gravity="center"
             android:scaleType="fitXY"
             android:src="@drawable/main_taxi_logo" />
 

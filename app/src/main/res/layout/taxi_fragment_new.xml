@@ -20,7 +20,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/newtaxi_title"
-                android:text="위치"/>
+                android:text="위치"
+                android:fontFamily="@font/bmjua"/>
 
             <RadioGroup
                 android:id="@+id/position"
@@ -32,14 +33,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
-                    android:text="정왕역"/>
+                    android:text="정왕역"
+                    android:fontFamily="@font/bmjua"/>
 
                 <RadioButton
                     android:id="@+id/rb_oido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
-                    android:text="오이도역"/>
+                    android:text="오이도역"
+                    android:fontFamily="@font/bmjua"/>
 
             </RadioGroup>
 
@@ -65,7 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/newtaxi_title"
-                android:text="성별 제한"/>
+                android:text="성별 제한"
+                android:fontFamily="@font/bmjua"/>
 
             <RadioGroup
                 android:id="@+id/sex_restriction"
@@ -77,13 +81,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
-                    android:text="동성만"/>
+                    android:text="동성만"
+                    android:fontFamily="@font/bmjua"/>
 
                 <RadioButton
                     android:id="@+id/rb_any_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
+                    android:fontFamily="@font/bmjua"
                     android:text="성별 상관 없음"/>
                 <!--누르면 타임피커 다이얼로그로 뜨도록 함-->
 
@@ -109,35 +115,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/newtaxi_title"
-                android:text="출발 시간 설정"/>
+                android:text="출발 시간 설정"
+                android:fontFamily="@font/bmjua"/>
 
             <TextView
                 android:id="@+id/departure_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12"/>
+                android:text="12"
+                android:fontFamily="@font/bmjua"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="시"/>
+                android:text="시"
+                android:fontFamily="@font/bmjua"/>
 
             <TextView
                 android:id="@+id/departure_minute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23분"/>
+                android:text="23분"
+                android:fontFamily="@font/bmjua"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="분"/>
+                android:text="분"
+                android:fontFamily="@font/bmjua"/>
 
             <TextView
                 android:id="@+id/am_or_pm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="am"/>
+                android:text="am"
+                android:fontFamily="@font/bmjua"/>
 
             <Button
                 android:id="@+id/set_departure_time_btn"
@@ -145,7 +157,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="변경"
-                android:textSize="10sp"/>
+                android:textSize="10sp"
+                android:fontFamily="@font/bmjua"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -166,13 +179,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/newtaxi_title"
-                android:text="메모?유의사항?"/>
+                android:text="메모?유의사항?"
+                android:fontFamily="@font/bmjua"/>
 
             <EditText
                 android:id="@+id/newtaxi_memo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="\n간단한 메모 작성? \n"/>
+                android:hint="\n간단한 메모 작성? \n"
+                android:fontFamily="@font/bmjua"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -186,17 +201,20 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="초기화"/>
+            android:text="초기화"
+            android:fontFamily="@font/bmjua"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="작성"/>
+            android:text="작성"
+            android:fontFamily="@font/bmjua"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="취소"/>
+            android:text="취소"
+            android:fontFamily="@font/bmjua"/>
 
 
     </LinearLayout>
