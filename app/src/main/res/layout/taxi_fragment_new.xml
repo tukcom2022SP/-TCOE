@@ -83,6 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
+                    android:fontFamily="@font/bmjua"
                     android:text="성별 상관 없음"/>
 
                 <RadioButton
@@ -93,13 +94,6 @@
                     android:text="동성만"
                     android:fontFamily="@font/bmjua"/>
 
-                <RadioButton
-                    android:id="@+id/rb_any_sex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:fontFamily="@font/bmjua"
-                    android:text="성별 상관 없음"/>
 
                 <!--누르면 타임피커 다이얼로그로 뜨도록 함-->
 
