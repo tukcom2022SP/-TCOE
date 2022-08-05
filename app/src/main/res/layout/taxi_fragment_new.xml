@@ -67,12 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-<<<<<<< HEAD
             android:orientation="vertical">
             android:background="#00FFFFFF"
-=======
             android:orientation="horizontal">
->>>>>>> 00124b6751a24aaa4e6272ed9239955a1e8fb806
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,12 +143,10 @@
                 android:id="@+id/departure_minute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:text="23"
                 android:fontFamily="@font/bmjua"/>
-=======
-                android:text="23"/>
->>>>>>> 00124b6751a24aaa4e6272ed9239955a1e8fb806
+            android:text="23"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
