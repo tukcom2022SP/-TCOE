@@ -113,15 +113,19 @@ class RVAdapter2  (val items : MutableList<String>) :RecyclerView.Adapter<RVAdap
                 val mireInter = item4[position + 1] - item4[position]
 //현재와 지금 위치 격차 18분   지금이랑 이후 격차는 10
                 if (caltoday <= caltoday2 && caltoday2 < caltoday + mireInter) {
-                    time.setTextColor(Color.BLUE)
-                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23F);
+                    time.setTextColor(Color.BLACK)
+                    time.setBackgroundColor(Color.LTGRAY)
+                    time.typeface.isBold
+                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
 
                 }
             }
             else {
                 if (caltoday > 19 * 60 + 45) {
-                    time.setTextColor(Color.BLUE)
-                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23F);
+                    time.setTextColor(Color.BLACK)
+                    time.setBackgroundColor(Color.LTGRAY)
+                    time.typeface.isBold
+                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
                 }
             }
 
