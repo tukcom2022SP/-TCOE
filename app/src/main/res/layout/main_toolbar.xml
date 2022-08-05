@@ -27,10 +27,6 @@
             android:textSize="20dp"/>
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fc26f72576b41ee6b6cb707592bf1eb2b3d5b673
         <ImageView
             android:id="@+id/menuBtn"
             android:layout_width="30dp"

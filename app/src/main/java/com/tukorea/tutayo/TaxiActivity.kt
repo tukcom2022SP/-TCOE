@@ -22,6 +22,9 @@ class TaxiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.taxi_activity)
 
+        var userId = intent.getLongExtra("user_id", 0)
+        //var gender = intent.get ...
+
         fragmentManager = supportFragmentManager
         JFragment = JeongwangFragment()
         OFragment = OidoFragment()
@@ -30,6 +33,12 @@ class TaxiActivity : AppCompatActivity() {
 
         transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.taxi_fragment_frame, viewPagerFragment).commitAllowingStateLoss()
+
+        //새 글 프래그먼트로 사용자 정보 전달
+        var bundle = Bundle()
+        bundle.putLong("user_id",0)
+        //bundle.put ... 성별 정보
+        NewFragment.arguments = bundle
 
         //새 글 작성 버튼 클릭시 새 글 프래그먼트로 넘어감
         writeNew.setOnClickListener {
@@ -54,6 +63,7 @@ class TaxiActivity : AppCompatActivity() {
     fun toNewFragment() {
         transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.taxi_fragment_frame, NewFragment).commitAllowingStateLoss()
+
         Log.i("TAG","새 글 작성 프래그먼트 호출")
     }
 

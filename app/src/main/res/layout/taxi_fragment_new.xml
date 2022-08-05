@@ -93,17 +93,6 @@
                     android:text="동성만"
                     android:fontFamily="@font/bmjua"/>
 
-<<<<<<< HEAD
-
-=======
-                <RadioButton
-                    android:id="@+id/rb_any_sex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:fontFamily="@font/bmjua"
-                    android:text="성별 상관 없음"/>
->>>>>>> f3ad486bbd79b3a41661a7c3cf0aa6d1e0864b2c
                 <!--누르면 타임피커 다이얼로그로 뜨도록 함-->
 
             </RadioGroup>
@@ -148,12 +137,7 @@
                 android:id="@+id/departure_minute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:text="23"/>
-=======
-                android:text="23분"
-                android:fontFamily="@font/bmjua"/>
->>>>>>> f3ad486bbd79b3a41661a7c3cf0aa6d1e0864b2c
 
             <TextView
                 android:layout_width="wrap_content"

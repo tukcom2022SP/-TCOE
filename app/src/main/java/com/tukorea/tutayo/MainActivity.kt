@@ -22,7 +22,7 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.main_toolbar.*
-
+import kotlinx.android.synthetic.main.mypage_activity.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -34,19 +34,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var taxiButton: ImageButton
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_drawer)
-
 
         navigationView = findViewById<NavigationView>(R.id.nav_view)
         drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         menuButton = findViewById<ImageView>(R.id.menuBtn)
         shuttleButton = findViewById<ImageButton>(R.id.shuttleBtn)
         taxiButton = findViewById<ImageButton>(R.id.taxiBtn)
-
-        val keyHash = Utility.getKeyHash(this)
-        Log.d("Hash", keyHash)
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
         checkLogin() //최초에 로그인 되어 있는지 체크
@@ -66,6 +64,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         taxiButton.setOnClickListener {
             getLoginData()
+            val intent = Intent(this, TaxiActivity::class.java) //택시 액티비티로 데이터를 전달하기 위한 인텐트
+            UserApiClient.instance.me { user, error ->
+                Log.i("TAG", "type: ${user?.id?.javaClass}") //Long
+                Log.i("TAG", "type: ${user?.kakaoAccount?.gender?.javaClass}") //null
+
+                intent.putExtra("user_id", "${user?.id}")
+                intent.putExtra("user_gender", "${user?.kakaoAccount?.gender}")
+            }
         }
 
 
@@ -225,7 +231,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun genderData(){
-
 
         UserApiClient.instance.me { user, error ->
             if (error != null) {
