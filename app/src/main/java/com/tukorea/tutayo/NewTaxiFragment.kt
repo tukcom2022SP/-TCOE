@@ -1,17 +1,19 @@
 package com.tukorea.tutayo
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import kotlinx.android.synthetic.main.taxi_activity.*
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.taxi_fragment_new.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,34 +34,112 @@ class NewTaxiFragment : Fragment() {
     private lateinit var OFragment : Fragment
     private lateinit var transaction : FragmentTransaction
     private lateinit var viewPagerFragment : ViewPagerFragment
+    private var db = Firebase.firestore
+    private var firestore : FirebaseFirestore? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            }
         }
-
-
-//        ArrayAdapter.createFromResource(
-//            requireContext(),
-//            R.array.spinner_items,
-//            android.R.layout.simple_spinner_item
-//        ).also { adapter ->
-//            // Specify the layout to use when the list of choices appears
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            // Apply the adapter to the spinner
-//            location_spinner.adapter = adapter
-//        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.taxi_fragment_new, container, false)
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        //main에서 받아온 사용자 정보
+        var userId = arguments?.getLong("user_id")
+        //var gender = arguments?.get ..
+
+
+        firestore = FirebaseFirestore.getInstance()
+
+        //출구 선택 스피너
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.spinner_items,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            location_spinner.adapter = adapter
+        }
+
+        //출구 번호 스피너는 오디도역 선택시에만 보이도록 함
+        position.setOnCheckedChangeListener { compoundButton, b ->
+            if(rb_jeongwang.isChecked) location_spinner.visibility = View.INVISIBLE
+            else location_spinner.visibility = View.VISIBLE
+        }
+
+        //초기화 버튼 클릭시 작성한 내용 리셋
+        resetBtn.setOnClickListener {
+            position.clearCheck()
+            sex_restriction.clearCheck()
+            departure_hour.setText("00")
+            departure_minute.setText("00")
+            am_or_pm.setText("am")
+            newtaxi_memo.setText("")
+            location_spinner.visibility = View.INVISIBLE
+        }
+
+        //작성 취소하기
+        cancelBtn.setOnClickListener {
+            (activity as TaxiActivity).toJFragment()
+        }
+
+        //게시글 작성 후 제출 - 파이어스토어에 게시글 정보 추가
+        submitBtn.setOnClickListener {
+            if(false) { //하나라도 선택하지 않았을 경우 제출 불가능
+                //제출 불가능 알람 다이얼로그 띄우기
+            }
+            else { //모두 작성 완료한 경우 제출 가능
+
+                var tmpList = listOf(0,1,2)
+                //해시맵 제출출
+               val share = hashMapOf(
+                    "kakaoUserId" to userId,
+                    "uploadTime" to Timestamp.now(),
+                    "sex" to 0, //임시
+                    "restriction" to 0, //임시
+                    "entranceNum" to 0, //임시
+                    "maxNum" to 0, //임시
+                )
+
+                db.collection("taxiShare").document()
+                    .set(share)
+                    .addOnSuccessListener { documentReference ->
+                        // 제출 성공 시
+                        Log.d("FIREBASE", "DocumentSnapshot added. ID: ${documentReference}")
+                    }
+                    .addOnFailureListener { e ->
+                        //제출 실패 시
+                        Log.w("FIREBASE", "Error adding document", e)
+                    }
+                (activity as TaxiActivity).toJFragment() //게시글 페이지 이동
+
+            }
+        }
+
+
+
+
+
+    }
+
+
+
+
 
     companion object {
         /**

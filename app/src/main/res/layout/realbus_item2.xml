@@ -9,12 +9,13 @@
 
     <TextView
         android:id="@+id/RcyviewItem2"
-        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:text="아이템"
+        android:text="리스트뷰 아이템"
         android:textColor="#5C5C5C"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"
         />
 
 </LinearLayout>

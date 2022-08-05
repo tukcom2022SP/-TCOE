@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 
 class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapter.ViewHolder>(){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVAdapter.ViewHolder {
+
         val view = LayoutInflater.from(parent.context).inflate(R.layout.realbus_item1, parent, false)
 
         return ViewHolder(view)
@@ -38,6 +41,7 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
     override fun getItemCount(): Int {
         return items.size
     }
+
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
@@ -116,15 +120,20 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
                 val mireInter = item3[position + 1] - item3[position]
 //현재와 지금 위치 격차 18분   지금이랑 이후 격차는 10
                 if (caltoday <= caltoday2 && caltoday2 < caltoday + mireInter) {
-                    time.setTextColor(Color.BLUE)
-                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23F);
+                    time.setTextColor(Color.BLACK)
+                    time.setBackgroundColor(Color.LTGRAY)
+                    time.typeface.isBold
+                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
+
 
                 }
             }
             else {
                 if (caltoday > 19 * 60 + 45) {
-                    time.setTextColor(Color.BLUE)
-                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23F);
+                    time.setTextColor(Color.BLACK)
+                    time.setBackgroundColor(Color.LTGRAY)
+                    time.typeface.isBold
+                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
                 }
             }
 
@@ -132,5 +141,6 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
 
         }
     }
+
 
 }
