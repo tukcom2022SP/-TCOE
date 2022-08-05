@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/purple_200">
 
 
     <LinearLayout
@@ -37,7 +38,7 @@
             android:background="#00ff0000"
             android:gravity="center"
             android:scaleType="fitXY"
-            android:src="@drawable/main_bus_logo" />
+            android:src="@drawable/tour_bus_icon" />
 
         <ImageButton
             android:id="@+id/taxiBtn"
@@ -47,7 +48,7 @@
             android:background="#00ff0000"
             android:gravity="center"
             android:scaleType="fitXY"
-            android:src="@drawable/main_taxi_logo" />
+            android:src="@drawable/taxicab_icon" />
 
 
     </LinearLayout>

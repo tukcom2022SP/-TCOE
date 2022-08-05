@@ -22,15 +22,11 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:text="TUTayo"
             android:fontFamily="@font/bmjua"
-            android:textSize="20dp"/>
+            android:text="TUTayo"
+            android:textSize="20dp" />
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fc26f72576b41ee6b6cb707592bf1eb2b3d5b673
         <ImageView
             android:id="@+id/menuBtn"
             android:layout_width="30dp"
@@ -41,7 +37,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="20dp"
-            android:background="#00ff0000"
+            android:background="#00FFFFFF"
             android:gravity="right"
             android:src="@drawable/ic_menu" />
 

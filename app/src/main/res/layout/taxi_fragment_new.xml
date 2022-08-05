@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@color/purple_200">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -14,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#00FFFFFF">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,6 +66,7 @@
             android:layout_height="wrap_content"
             android:padding="30dp"
             android:orientation="vertical">
+            android:background="#00FFFFFF"
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,7 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#00FFFFFF">
 
 
             <TextView
@@ -135,7 +139,7 @@
                 android:id="@+id/departure_minute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23분"
+                android:text="23"
                 android:fontFamily="@font/bmjua"/>
 
             <TextView
@@ -173,20 +177,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#00FFFFFF">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/newtaxi_title"
-                android:text="메모?유의사항?"
+                android:text="유의사항"
                 android:fontFamily="@font/bmjua"/>
 
             <EditText
                 android:id="@+id/newtaxi_memo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="\n간단한 메모 작성? \n"
+                android:hint="\n간단한 메모 작성 \n"
                 android:fontFamily="@font/bmjua"/>
 
         </LinearLayout>
@@ -214,7 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="취소"
-            android:fontFamily="@font/bmjua"/>
+            android:fontFamily="@font/bmjua" />
 
 
     </LinearLayout>
