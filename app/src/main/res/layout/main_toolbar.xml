@@ -27,7 +27,6 @@
             android:textSize="20dp"/>
 
 
-
         <ImageView
             android:id="@+id/menuBtn"
             android:layout_width="30dp"

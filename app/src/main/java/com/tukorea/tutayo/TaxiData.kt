@@ -3,10 +3,13 @@ package com.tukorea.tutayo
 import java.sql.Timestamp
 
 class TaxiData(
-    uploadTime: Timestamp,   //업로드시간
-    sex: Int,               //작성자 성별
-    restriction: Int,       //성별 규제 - 동성만 0, 상관없음 1
-    entranceNum: Int,       //출구번호
-    maxNum: Int,            //최대인원
-    currentNum: Int         //현재인원 - 디폴트 0
+    var docId: String = "",         //문서 id
+    var kakaoUserId: Long = 0,      //작성자 id
+    var uploadTime: Timestamp,      //업로드시간
+    var sex: Int = 0,               //작성자 성별
+    var restriction: Int = 0,       //성별 제한 - 상관 없음 0, 동성만 1
+    var entranceNum: Int = 0,       //출구번호
+    var maxNum: Int = 0,            //최대인원
+    var shareMember: List<String>,  //합승 명단
+    var requestUser: List<String>   //합승 요청 명단
 )

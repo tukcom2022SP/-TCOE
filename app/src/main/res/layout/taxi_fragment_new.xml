@@ -94,7 +94,6 @@
                     android:text="동성만"
                     android:fontFamily="@font/bmjua"/>
 
-
                 <!--누르면 타임피커 다이얼로그로 뜨도록 함-->
 
             </RadioGroup>
@@ -139,9 +138,7 @@
                 android:id="@+id/departure_minute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23분"
-                android:fontFamily="@font/bmjua"/>
-
+                android:text="23"/>
 
             <TextView
                 android:layout_width="wrap_content"
