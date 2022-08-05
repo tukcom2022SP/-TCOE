@@ -220,11 +220,7 @@ class RealBusActivity : AppCompatActivity() {
         rv.adapter = rvAdapter
         rv.layoutManager = LinearLayoutManager(this)
 
-        rvAdapter.itemClick = object : RVAdapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-                Toast.makeText(baseContext, item[position], Toast.LENGTH_LONG).show()
-            }
-        }
+
 
         rv2.adapter = rvAdapter2
         rv2.layoutManager = LinearLayoutManager(this)
