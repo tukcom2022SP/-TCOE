@@ -23,7 +23,7 @@ class TaxiActivity : AppCompatActivity() {
         setContentView(R.layout.taxi_activity)
 
         var userId = intent.getLongExtra("user_id", 0)
-        //var gender = intent.get ...
+        var gender = intent.getStringExtra("user_gender")
 
         fragmentManager = supportFragmentManager
         JFragment = JeongwangFragment()
@@ -36,8 +36,8 @@ class TaxiActivity : AppCompatActivity() {
 
         //새 글 프래그먼트로 사용자 정보 전달
         var bundle = Bundle()
-        bundle.putLong("user_id",0)
-        //bundle.put ... 성별 정보
+        bundle.putLong("user_id",userId)
+        bundle.putString("user_gender",gender)
         NewFragment.arguments = bundle
 
         //새 글 작성 버튼 클릭시 새 글 프래그먼트로 넘어감
@@ -45,16 +45,6 @@ class TaxiActivity : AppCompatActivity() {
             writeNew.visibility = View.INVISIBLE
             toNewFragment()
         }
-
-
-
-
-
-
-
-
-
-
 
 
     }
@@ -75,12 +65,12 @@ class TaxiActivity : AppCompatActivity() {
         Log.i("TAG","게시글 프래그먼트 호출")
     }
 
-//    //오이도 프래그먼트 전환
-//    fun toOFragment() {
-//        transaction = fragmentManager.beginTransaction()
-//        transaction.replace(R.id.taxi_fragment_frame, OFragment).commitAllowingStateLoss()
-//        Log.i("TAG","오이도 프래그먼트 호출")
-//    }
+    //오이도 프래그먼트 전환
+    fun toOFragment() {
+        transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.taxi_fragment_frame, OFragment).commitAllowingStateLoss()
+        Log.i("TAG","오이도 프래그먼트 호출")
+    }
 
 //    override fun onBackPressed() {
 //        //현재 게시글 리스트 페이지인 경우 메인 화면으로 이동

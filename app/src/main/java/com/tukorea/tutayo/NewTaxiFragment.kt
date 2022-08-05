@@ -57,10 +57,10 @@ class NewTaxiFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        //main에서 받아온 사용자 정보
+        //taxi 액티비티에서 받아온 사용자 정보
         var userId = arguments?.getLong("user_id")
-        //var gender = arguments?.get ..
-
+        var gender = arguments?.getString("user_gender")
+        Log.i("TAG","kakao userId: ${userId}, gender: ${gender}")
 
         firestore = FirebaseFirestore.getInstance()
 
@@ -108,16 +108,21 @@ class NewTaxiFragment : Fragment() {
                 var tmpList = listOf(0,1,2)
                 //해시맵 제출출
                val share = hashMapOf(
-                    "kakaoUserId" to userId,
-                    "uploadTime" to Timestamp.now(),
-                    "sex" to 0, //임시
-                    "restriction" to 0, //임시
-                    "entranceNum" to 0, //임시
-                    "maxNum" to 0, //임시
+                   "kakaoUserId" to userId,         //작성자 id
+                   "gender" to gender,              //작성자 성별
+                   "uploadTime" to Timestamp.now(), //업로드 시간
+                   "positioon" to 0,                //출발 역
+                   "entranceNum" to 0,              //출구 번호
+                   "restriction" to 0,              //성별 제한
+                   "departure_hour" to departure_hour.text.toString(),      //출발 시간
+                   "departure_minute" to departure_minute.text.toString(),  //출발 분
+                   "am_or_pm" to am_or_pm.text.toString(),                  //오전 오후
+                   "maxNum" to 0,                           //최대 탑승 인원
+                    "memo" to newtaxi_memo.text.toString()  //간단 메모
                 )
 
-                db.collection("taxiShare").document()
-                    .set(share)
+                db.collection("taxiShare")
+                    .add(share)
                     .addOnSuccessListener { documentReference ->
                         // 제출 성공 시
                         Log.d("FIREBASE", "DocumentSnapshot added. ID: ${documentReference}")

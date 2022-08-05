@@ -66,11 +66,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             getLoginData()
             val intent = Intent(this, TaxiActivity::class.java) //택시 액티비티로 데이터를 전달하기 위한 인텐트
             UserApiClient.instance.me { user, error ->
-                Log.i("TAG", "type: ${user?.id?.javaClass}") //Long
-                Log.i("TAG", "type: ${user?.kakaoAccount?.gender?.javaClass}") //null
+                Log.i("TAG", "user info: ${user?.id?.javaClass}, ${user?.kakaoAccount?.gender}") //Long
 
-                intent.putExtra("user_id", "${user?.id}")
-                intent.putExtra("user_gender", "${user?.kakaoAccount?.gender}")
+                intent.putExtra("user_id", user?.id) //Long
+                intent.putExtra("user_gender", "${user?.kakaoAccount?.gender.toString()}") //String
             }
         }
 
