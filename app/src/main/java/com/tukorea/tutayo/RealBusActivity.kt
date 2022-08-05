@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import java.text.SimpleDateFormat
 
 class RealBusActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class RealBusActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.realbus_activity)
         val df = SimpleDateFormat("HH:mm")
@@ -22,6 +24,7 @@ class RealBusActivity : AppCompatActivity() {
         val item2 = mutableListOf<String>()
         val item3 = mutableListOf<Int>()
         val item4 = mutableListOf<Int>()
+
         intertv = findViewById(R.id.intertv)
         intertv2 = findViewById(R.id.intertv2)
       
@@ -253,6 +256,10 @@ class RealBusActivity : AppCompatActivity() {
                     if(Integer.parseInt(s_t)<1){
                         intertv.text = "잠시후 도착"
                     }
+                    else if(Integer.parseInt(s_t)>25){
+                        intertv.text = "버스가 없습니다."
+                    }
+
                     else {
                         intertv.text = String.format("$s_t 분 남았습니다")
                     }
@@ -269,6 +276,9 @@ class RealBusActivity : AppCompatActivity() {
                     var s_t=schooltime.toString()
                     if(Integer.parseInt(s_t)<1){
                         intertv2.text = "잠시후 도착"
+                    }
+                    else if(Integer.parseInt(s_t)>25){
+                        intertv2.text = "버스가 없습니다."
                     }
                     else {
                         intertv2.text = String.format("$s_t 분 남았습니다")
