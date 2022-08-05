@@ -17,12 +17,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/intertv"
             android:text="시간차이"
-<<<<<<< HEAD
-            android:textSize="20dp"
             android:fontFamily="@font/bmjua"
-=======
             android:textSize="15dp"
->>>>>>> dam/#9-Rebus
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="#EA2B2B"/>
@@ -31,12 +27,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/intertv2"
             android:text="시간차이2"
-<<<<<<< HEAD
-            android:textSize="20dp"
             android:fontFamily="@font/bmjua"
-=======
             android:textSize="15dp"
->>>>>>> dam/#9-Rebus
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="#EA2B2B"/>
