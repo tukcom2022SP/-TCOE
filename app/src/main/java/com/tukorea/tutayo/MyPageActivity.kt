@@ -16,15 +16,6 @@ class MyPageActivity : AppCompatActivity() {
             name.text = "${user?.kakaoAccount?.profile?.nickname}"
             email.text = "${user?.kakaoAccount?.email}"
             gender.text = "${user?.kakaoAccount?.gender}"
-
-
-            //comment
-            /* 확인 결과, 이메일과 성별란은 null이 뜨는데,
-            이는 오류가 아니라 카카오 로그인 동의 항목 설정으로 인해 뜨는 것임
-            (이메일과 성별은 필수 동의를 하려면 검수를 해야 되는데 검수 받는 과정이 번거로움
-            아무튼 결론은 : 틀린 코드가 아님)
-            */
-
         }
     }
 }

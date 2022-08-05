@@ -1,6 +1,7 @@
 package com.tukorea.tutayo
 
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,8 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.main_toolbar.*
+
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,7 +47,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val keyHash = Utility.getKeyHash(this)
         Log.d("Hash", keyHash)
-
 
         KakaoSdk.init(this, this.getString(R.string.kakao_app_key))
         checkLogin() //최초에 로그인 되어 있는지 체크
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.menu_login -> {
                 kakaoLogin()
                 //성별을 받아오기 위한 추가 동의 필요
-                genderData()
+                //genderData()
 
             }
             R.id.menu_logout -> {
@@ -121,12 +123,49 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             } else if(token != null){
                 //최종적으로 카카오 로그인 및 유저 정보 가져온 결과
                 UserApiClient.instance.me { user, error ->
-                    Toast.makeText(this, "Test) 로그인 성공 : ${user}", Toast.LENGTH_SHORT).show()
-                    navigationView.getMenu().findItem(R.id.menu_logout).setVisible(true)
-                    navigationView.getMenu().findItem(R.id.menu_login).setVisible(false)
+                    if (error != null) {
+
+                    }
+                    else if (user != null) {
+                        var scopes = mutableListOf<String>()
+
+                        if (user.kakaoAccount?.genderNeedsAgreement == true) { scopes.add("gender") }
+
+
+                        if (scopes.count() > 0) {
+
+                            // OpenID Connect 사용 시
+                            // scope 목록에 "openid" 문자열을 추가하고 요청해야 함
+                            // 해당 문자열을 포함하지 않은 경우, ID 토큰이 재발급되지 않음
+                            scopes.add("openid")
+
+                            //scope 목록을 전달하여 카카오 로그인 요청
+                            UserApiClient.instance.loginWithNewScopes(this, scopes) { token, error ->
+                                if (error != null) {
+                                    Log.e(TAG, "사용자 추가 동의 실패", error)
+                                } else {
+                                    Log.d(TAG, "allowed scopes: ${token!!.scopes}")
+
+                                    // 사용자 정보 재요청
+                                    UserApiClient.instance.me { user, error ->
+                                        if (error != null) {
+                                            Log.e(TAG, "사용자 정보 요청 실패", error)
+                                        }
+                                        else if (user != null) {
+                                            Log.i(TAG, "사용자 정보 요청 성공")
+                                            Toast.makeText(this, "Test) 로그인 성공 : ${token.accessToken}", Toast.LENGTH_SHORT).show()
+                                            navigationView.getMenu().findItem(R.id.menu_logout).setVisible(true)
+                                            navigationView.getMenu().findItem(R.id.menu_login).setVisible(false)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
+
 
         // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
@@ -144,9 +183,47 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
                     UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                 } else if (token != null) {
-                    Toast.makeText(this, "Test) 로그인 성공 : ${token.accessToken}", Toast.LENGTH_SHORT).show()
-                    navigationView.getMenu().findItem(R.id.menu_logout).setVisible(true)
-                    navigationView.getMenu().findItem(R.id.menu_login).setVisible(false)
+                    UserApiClient.instance.me { user, error ->
+                        if (error != null) {
+
+                        }
+                        else if (user != null) {
+                            var scopes = mutableListOf<String>()
+
+                            if (user.kakaoAccount?.genderNeedsAgreement == true) { scopes.add("gender") }
+
+
+                            if (scopes.count() > 0) {
+
+                                // OpenID Connect 사용 시
+                                // scope 목록에 "openid" 문자열을 추가하고 요청해야 함
+                                // 해당 문자열을 포함하지 않은 경우, ID 토큰이 재발급되지 않음
+                                scopes.add("openid")
+
+                                //scope 목록을 전달하여 카카오 로그인 요청
+                                UserApiClient.instance.loginWithNewScopes(this, scopes) { token, error ->
+                                    if (error != null) {
+                                        Log.e(TAG, "사용자 추가 동의 실패", error)
+                                    } else {
+                                        Log.d(TAG, "allowed scopes: ${token!!.scopes}")
+
+                                        // 사용자 정보 재요청
+                                        UserApiClient.instance.me { user, error ->
+                                            if (error != null) {
+                                                Log.e(TAG, "사용자 정보 요청 실패", error)
+                                            }
+                                            else if (user != null) {
+                                                Log.i(TAG, "사용자 정보 요청 성공")
+                                                Toast.makeText(this, "Test) 로그인 성공 : ${token.accessToken}", Toast.LENGTH_SHORT).show()
+                                                navigationView.getMenu().findItem(R.id.menu_logout).setVisible(true)
+                                                navigationView.getMenu().findItem(R.id.menu_login).setVisible(false)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         } else {
@@ -240,22 +317,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     // OpenID Connect 사용 시
                     // scope 목록에 "openid" 문자열을 추가하고 요청해야 함
                     // 해당 문자열을 포함하지 않은 경우, ID 토큰이 재발급되지 않음
-                    // scopes.add("openid")
+                    scopes.add("openid")
 
                     //scope 목록을 전달하여 카카오 로그인 요청
                     UserApiClient.instance.loginWithNewScopes(this, scopes) { token, error ->
                         if (error != null) {
-                            //Log.e(TAG, "사용자 추가 동의 실패", error)
+                            Log.e(TAG, "사용자 추가 동의 실패", error)
                         } else {
-                            //Log.d(TAG, "allowed scopes: ${token!!.scopes}")
+                            Log.d(TAG, "allowed scopes: ${token!!.scopes}")
 
                             // 사용자 정보 재요청
                             UserApiClient.instance.me { user, error ->
                                 if (error != null) {
-                                    //Log.e(TAG, "사용자 정보 요청 실패", error)
+                                    Log.e(TAG, "사용자 정보 요청 실패", error)
                                 }
                                 else if (user != null) {
-                                    //Log.i(TAG, "사용자 정보 요청 성공")
+                                    Log.i(TAG, "사용자 정보 요청 성공")
                                 }
                             }
                         }

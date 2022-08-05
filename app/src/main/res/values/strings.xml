@@ -2,8 +2,9 @@
     <string name="app_name">TUtayo</string>
 
     <string-array name="spinner_items">
-        <item>정왕역</item>
-        <item>오이도역</item>
+        <item>1번 출구</item>
+        <item>2번 출구</item>
+        <item>3번 출구</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

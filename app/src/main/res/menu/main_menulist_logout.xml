@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_logout"
+        android:title="로그아웃"
+        android:fontFamily="@font/bmjua"/>
+    <item
+        android:id="@+id/menu_mypage"
+        android:title="마이 페이지"
+        android:fontFamily="@font/bmjua"/>
+    <item
+        android:id="@+id/menu_shuttle"
+        android:title="셔틀버스 시간 안내"
+        android:fontFamily="@font/bmjua"/>
+    <item
+        android:id="@+id/menu_taxi"
+        android:title="택시 탑승 매칭"
+        android:fontFamily="@font/bmjua"/>
+</menu>
