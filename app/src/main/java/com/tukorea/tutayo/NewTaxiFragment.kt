@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.Timestamp
@@ -105,28 +104,29 @@ class NewTaxiFragment : Fragment() {
                 //제출 불가능 알람 다이얼로그 띄우기
             }
             else { //모두 작성 완료한 경우 제출 가능
-                val share = hashMapOf(
+
+                var tmpList = listOf(0,1,2)
+                //해시맵 제출출
+               val share = hashMapOf(
                     "kakaoUserId" to userId,
                     "uploadTime" to Timestamp.now(),
                     "sex" to 0, //임시
                     "restriction" to 0, //임시
                     "entranceNum" to 0, //임시
-                    "maxNum" to 4, //임시
-                    "shareMember" to ArrayList<String>(), //작성자 포함
-                    "requestUser" to ArrayList<String>()
+                    "maxNum" to 0, //임시
                 )
 
-                db.collection("taxiShare")
-                    .add(share)
+                db.collection("taxiShare").document()
+                    .set(share)
                     .addOnSuccessListener { documentReference ->
                         // 제출 성공 시
-                        Log.d("FIREBASE", "DocumentSnapshot added. ID: ${documentReference.id}")
+                        Log.d("FIREBASE", "DocumentSnapshot added. ID: ${documentReference}")
                     }
                     .addOnFailureListener { e ->
                         //제출 실패 시
                         Log.w("FIREBASE", "Error adding document", e)
                     }
-                (activity as TaxiActivity).toJFragment()
+                (activity as TaxiActivity).toJFragment() //게시글 페이지 이동
 
             }
         }

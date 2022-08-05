@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 
 class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapter.ViewHolder>(){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVAdapter.ViewHolder {
+
         val view = LayoutInflater.from(parent.context).inflate(R.layout.realbus_item1, parent, false)
 
         return ViewHolder(view)
@@ -38,6 +41,7 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
     override fun getItemCount(): Int {
         return items.size
     }
+
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
@@ -132,5 +136,6 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
 
         }
     }
+
 
 }
