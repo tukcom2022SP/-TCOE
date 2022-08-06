@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.taxi_fragment_new.*
 import java.text.SimpleDateFormat
 
 class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapter.ViewHolder>(){
@@ -100,6 +102,7 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
             val time = itemView.findViewById<TextView>(R.id.RcyviewItem)
 
 
+
             val df = SimpleDateFormat("HH:mm")
             var current = System.currentTimeMillis() //long타입의 초
 
@@ -124,6 +127,8 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
                     time.setBackgroundColor(Color.LTGRAY)
                     time.typeface.isBold
                     time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
+
+
 
 
                 }

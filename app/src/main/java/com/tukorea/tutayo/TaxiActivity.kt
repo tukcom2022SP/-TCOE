@@ -1,8 +1,10 @@
 package com.tukorea.tutayo
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -18,10 +20,24 @@ class TaxiActivity : AppCompatActivity() {
     private lateinit var transaction : FragmentTransaction
     private lateinit var viewPagerFragment : ViewPagerFragment
 
+    //새 글 작성 프래그먼트 전환
+    fun toNewFragment() {
+        transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.taxi_fragment_frame, NewFragment).commitAllowingStateLoss()
+        
+        Log.i("TAG","새 글 작성 프래그먼트 호출")
+    }
+
+    //정왕 프래그먼트 전환
+    fun toJFragment() {
+        transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.taxi_fragment_frame, viewPagerFragment).commitAllowingStateLoss()
+        writeNew.visibility = View.VISIBLE
+        Log.i("TAG","게시글 프래그먼트 호출")
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.taxi_activity)
-
         var userId = intent.getLongExtra("user_id", 0)
         //var gender = intent.get ...
 
@@ -42,8 +58,9 @@ class TaxiActivity : AppCompatActivity() {
 
         //새 글 작성 버튼 클릭시 새 글 프래그먼트로 넘어감
         writeNew.setOnClickListener {
-            writeNew.visibility = View.INVISIBLE
-            toNewFragment()
+            //writeNew.visibility = View.INVISIBLE
+
+           toNewFragment()
         }
 
 
@@ -59,21 +76,6 @@ class TaxiActivity : AppCompatActivity() {
 
     }
 
-    //새 글 작성 프래그먼트 전환
-    fun toNewFragment() {
-        transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.taxi_fragment_frame, NewFragment).commitAllowingStateLoss()
-
-        Log.i("TAG","새 글 작성 프래그먼트 호출")
-    }
-
-    //정왕 프래그먼트 전환
-    fun toJFragment() {
-        transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.taxi_fragment_frame, viewPagerFragment).commitAllowingStateLoss()
-        writeNew.visibility = View.VISIBLE
-        Log.i("TAG","게시글 프래그먼트 호출")
-    }
 
 //    //오이도 프래그먼트 전환
 //    fun toOFragment() {

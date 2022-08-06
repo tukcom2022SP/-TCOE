@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SmoothScroller
+import kotlinx.android.synthetic.main.taxi_fragment_new.*
 import java.text.SimpleDateFormat
 
 class RealBusActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class RealBusActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.realbus_activity)
+
         val df = SimpleDateFormat("HH:mm")
         val item = mutableListOf<String>()
         val item2 = mutableListOf<String>()
@@ -245,6 +247,7 @@ class RealBusActivity : AppCompatActivity() {
         for(i in item3.indices){
             var cato=0
             if(caltoday<=item3[i]){
+
                 cato++
                 if(cato==1){
                     var schooltime=item3[i] -caltoday
