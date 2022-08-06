@@ -57,6 +57,8 @@ class NewTaxiFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        Log.i("TAG", "checked radio button id : ${position.checkedRadioButtonId}")
+
         //taxi 액티비티에서 받아온 사용자 정보
         var userId = arguments?.getLong("user_id")
         var gender = arguments?.getString("user_gender")
@@ -85,7 +87,7 @@ class NewTaxiFragment : Fragment() {
         //초기화 버튼 클릭시 작성한 내용 리셋
         resetBtn.setOnClickListener {
             position.clearCheck()
-            sex_restriction.clearCheck()
+            gender_restriction.clearCheck()
             departure_hour.setText("00")
             departure_minute.setText("00")
             am_or_pm.setText("am")
@@ -100,13 +102,12 @@ class NewTaxiFragment : Fragment() {
 
         //게시글 작성 후 제출 - 파이어스토어에 게시글 정보 추가
         submitBtn.setOnClickListener {
-            if(false) { //하나라도 선택하지 않았을 경우 제출 불가능
+            if(false) { //메모를 제외한 모든 칸을 채우지 않으면 제출 불가
                 //제출 불가능 알람 다이얼로그 띄우기
             }
             else { //모두 작성 완료한 경우 제출 가능
 
-                var tmpList = listOf(0,1,2)
-                //해시맵 제출출
+                //해시맵 형태로 데이터베이스에 add
                val share = hashMapOf(
                    "kakaoUserId" to userId,         //작성자 id
                    "gender" to gender,              //작성자 성별

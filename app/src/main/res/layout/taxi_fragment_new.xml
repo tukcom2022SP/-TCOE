@@ -67,9 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:orientation="vertical">
             android:background="#00FFFFFF"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,12 +78,12 @@
                 android:fontFamily="@font/bmjua"/>
 
             <RadioGroup
-                android:id="@+id/sex_restriction"
+                android:id="@+id/gender_restriction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <RadioButton
-                    android:id="@+id/rb_any_sex"
+                    android:id="@+id/rb_any_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"

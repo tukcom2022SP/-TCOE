@@ -1,5 +1,6 @@
 package com.tukorea.tutayo
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,8 +23,11 @@ class TaxiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.taxi_activity)
 
-        var userId = intent.getLongExtra("user_id", 0)
-        var gender = intent.getStringExtra("user_gender")
+        val intent = getIntent()
+        //if(intent.extras != null)
+            var userId = intent.getLongExtra("user_id", 0)
+            var gender = intent.getStringExtra("user_gender")
+            Log.i("TAG","main->taxi intent - user_id: ${userId}, user_gender: ${gender}")
 
         fragmentManager = supportFragmentManager
         JFragment = JeongwangFragment()
@@ -36,8 +40,16 @@ class TaxiActivity : AppCompatActivity() {
 
         //새 글 프래그먼트로 사용자 정보 전달
         var bundle = Bundle()
-        bundle.putLong("user_id",userId)
-        bundle.putString("user_gender",gender)
+
+        try {
+            bundle.putLong("user_id",userId)
+            bundle.putString("user_gender",gender)
+            Log.i("TAG", "bundle : userid(${userId}), gender:${gender}") //bundle에 넣기 전부터 값이 없음
+        } catch (e : Exception) {
+            Log.e("TAG", "putExtra error: ${e}")
+        }
+
+
         NewFragment.arguments = bundle
 
         //새 글 작성 버튼 클릭시 새 글 프래그먼트로 넘어감
@@ -54,7 +66,7 @@ class TaxiActivity : AppCompatActivity() {
         transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.taxi_fragment_frame, NewFragment).commitAllowingStateLoss()
 
-        Log.i("TAG","새 글 작성 프래그먼트 호출")
+        Log.i("TAG","NewTaxiFragment")
     }
 
     //정왕 프래그먼트 전환
@@ -62,14 +74,14 @@ class TaxiActivity : AppCompatActivity() {
         transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.taxi_fragment_frame, viewPagerFragment).commitAllowingStateLoss()
         writeNew.visibility = View.VISIBLE
-        Log.i("TAG","게시글 프래그먼트 호출")
+        Log.i("TAG","JFragment")
     }
 
     //오이도 프래그먼트 전환
     fun toOFragment() {
         transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.taxi_fragment_frame, OFragment).commitAllowingStateLoss()
-        Log.i("TAG","오이도 프래그먼트 호출")
+        Log.i("TAG","OFragment")
     }
 
 //    override fun onBackPressed() {

@@ -58,18 +58,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         shuttleButton.setOnClickListener {
 
-            val intent = Intent(this,RealBusActivity::class.java)
+            var intent = Intent(this,RealBusActivity::class.java)
             startActivity(intent)
         }
 
         taxiButton.setOnClickListener {
             getLoginData()
-            val intent = Intent(this, TaxiActivity::class.java) //택시 액티비티로 데이터를 전달하기 위한 인텐트
+            var intent = Intent(this, TaxiActivity::class.java) //택시 액티비티로 데이터를 전달하기 위한 인텐트
             UserApiClient.instance.me { user, error ->
-                Log.i("TAG", "user info: ${user?.id?.javaClass}, ${user?.kakaoAccount?.gender}") //Long
 
-                intent.putExtra("user_id", user?.id) //Long
-                intent.putExtra("user_gender", "${user?.kakaoAccount?.gender.toString()}") //String
+                //사용자 정보
+                var userId = user?.id //type: Long
+                var gender = user?.kakaoAccount?.gender.toString()
+
+                Log.i("TAG", "user info: ${userId}, ${gender}")
+                //여기까진 값이 들어있음
+
+                if (userId != null && gender != null) {
+                    intent.putExtra("user_id", userId.toLong()) //Long
+                    intent.putExtra("user_gender", gender) //String
+                    startActivity(intent)
+
+                }
+                else {
+                    Log.d("DEBUG","userId || gender == null")
+                }
+
             }
         }
 
@@ -270,8 +284,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 dlg.show()
             }
             else if(user != null){
-                val intent = Intent(this, TaxiActivity::class.java)
-                startActivity(intent)
+                Log.i("TAG","로그인 성공 - user: ${user}")
             }
         }
     }
