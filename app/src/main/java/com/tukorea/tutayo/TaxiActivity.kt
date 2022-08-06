@@ -41,14 +41,14 @@ class TaxiActivity : AppCompatActivity() {
         //새 글 프래그먼트로 사용자 정보 전달
         var bundle = Bundle()
 
-        try {
+        if(userId != null && gender != null) {
             bundle.putLong("user_id",userId)
             bundle.putString("user_gender",gender)
-            Log.i("TAG", "bundle : userid(${userId}), gender:${gender}") //bundle에 넣기 전부터 값이 없음
-        } catch (e : Exception) {
-            Log.e("TAG", "putExtra error: ${e}")
-        }
 
+        }
+        else {
+            Log.i("TAG", "bundle.putExtra failed")
+        }
 
         NewFragment.arguments = bundle
 

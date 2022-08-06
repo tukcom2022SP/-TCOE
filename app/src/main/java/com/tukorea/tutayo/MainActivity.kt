@@ -75,19 +75,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 //여기까진 값이 들어있음
 
                 if (userId != null && gender != null) {
-                    intent.putExtra("user_id", userId.toLong()) //Long
-                    intent.putExtra("user_gender", gender) //String
-                    startActivity(intent)
+                    intent.putExtra("user_id", userId.toLong()) //type: Long
+                    intent.putExtra("user_gender", gender)      //type: String
+                    startActivity(intent)   //택시 액티비티 전환
 
                 }
                 else {
-                    Log.d("DEBUG","userId || gender == null")
+                    Log.d("DEBUG","user info: null")
                 }
-
             }
         }
-
-
     }
 
 
