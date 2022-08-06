@@ -112,15 +112,17 @@ class NewTaxiFragment : Fragment() {
                    "kakaoUserId" to userId,         //작성자 id
                    "gender" to gender,              //작성자 성별
                    "uploadTime" to Timestamp.now(), //업로드 시간
-                   "positioon" to 0,                //출발 역
+                   "position" to 0,                //출발 역
                    "entranceNum" to 0,              //출구 번호
                    "restriction" to 0,              //성별 제한
                    "departure_hour" to departure_hour.text.toString(),      //출발 시간
                    "departure_minute" to departure_minute.text.toString(),  //출발 분
                    "am_or_pm" to am_or_pm.text.toString(),                  //오전 오후
                    "maxNum" to 0,                           //최대 탑승 인원
-                    "memo" to newtaxi_memo.text.toString()  //간단 메모
-                )
+                   "memo" to newtaxi_memo.text.toString(),  //간단 메모
+                   "shareList" to emptyList<String>(),      //합승 명단이 저장될 리스트
+                   "shareReqList" to emptyList<String>()    //합승 요청 명단
+               )
 
                 db.collection("taxiShare")
                     .add(share)
