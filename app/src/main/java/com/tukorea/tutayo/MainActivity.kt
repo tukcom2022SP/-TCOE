@@ -82,8 +82,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(item.itemId){
             R.id.menu_login -> {
                 kakaoLogin()
-                //성별을 받아오기 위한 추가 동의 필요
-                //genderData()
+
 
             }
             R.id.menu_logout -> {
