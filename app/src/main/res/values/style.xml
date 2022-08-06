@@ -23,4 +23,10 @@
         <item name="fontFamily">@font/bmjua</item>
     </style>
 
+    <style name="main_title_text">
+        <item name="android:textSize">@dimen/main_title_size</item>
+        <item name="fontFamily">@font/bmjua</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
 </resources>

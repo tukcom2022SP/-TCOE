@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.taxi_activity.*
-import kotlinx.android.synthetic.main.taxi_fragment_new.*
+import kotlinx.android.synthetic.main.taxi_fragment_add.*
 
 class TaxiActivity : AppCompatActivity() {
     private lateinit var fragmentManager : FragmentManager
