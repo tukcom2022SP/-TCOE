@@ -24,7 +24,7 @@ class TaxiActivity : AppCompatActivity() {
     fun toNewFragment() {
         transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.taxi_fragment_frame, NewFragment).commitAllowingStateLoss()
-        
+
         Log.i("TAG","새 글 작성 프래그먼트 호출")
     }
 
@@ -58,7 +58,7 @@ class TaxiActivity : AppCompatActivity() {
 
         //새 글 작성 버튼 클릭시 새 글 프래그먼트로 넘어감
         writeNew.setOnClickListener {
-            //writeNew.visibility = View.INVISIBLE
+            writeNew.visibility = View.INVISIBLE
 
            toNewFragment()
         }
