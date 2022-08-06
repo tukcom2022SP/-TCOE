@@ -23,6 +23,7 @@
         <item name="fontFamily">@font/bmjua</item>
     </style>
 
+    <!--메인화면 타이틀 글씨-->
     <style name="main_title_text">
         <item name="android:textSize">@dimen/main_title_size</item>
         <item name="fontFamily">@font/bmjua</item>

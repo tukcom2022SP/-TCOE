@@ -5,6 +5,7 @@
     <dimen name = "newTaxi_title_size">20sp</dimen>
     <dimen name = "newTaxi_time_size">18sp</dimen>
     <dimen name = "newTaxi_buttonTxt_size">20sp</dimen>
+    <dimen name = "plus_minus_size">30dp</dimen>
 
     <!--메인 화면-->
     <dimen name = "ride_icon_size">60dp</dimen>

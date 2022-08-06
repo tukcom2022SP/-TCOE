@@ -78,10 +78,22 @@ class NewTaxiFragment : Fragment() {
             location_spinner.adapter = adapter
         }
 
-        //출구 번호 스피너는 오디도역 선택시에만 보이도록 함
+        //출구 번호 스피너는 오이도역 선택시에만 보이도록 함
         position.setOnCheckedChangeListener { compoundButton, b ->
             if(rb_jeongwang.isChecked) location_spinner.visibility = View.INVISIBLE
             else location_spinner.visibility = View.VISIBLE
+        }
+
+        minusBtn.setOnClickListener {
+            var nowMax = maxNum_EditTxt.text.toString().toInt()
+            if(nowMax > 1) nowMax -= 1
+            maxNum_EditTxt.setText(nowMax.toString())
+        }
+
+        plusBtn.setOnClickListener {
+            var nowMax = maxNum_EditTxt.text.toString().toInt()
+            if(nowMax < 5) nowMax += 1
+            maxNum_EditTxt.setText(nowMax.toString())
         }
 
         //초기화 버튼 클릭시 작성한 내용 리셋

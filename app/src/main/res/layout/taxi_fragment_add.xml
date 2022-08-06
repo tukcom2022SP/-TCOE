@@ -57,8 +57,8 @@
                     <!--오이도역 선택시에만 보이는 출구 선택 스피너-->
                     <Spinner
                         android:id="@+id/location_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="40dp"
                         android:visibility="invisible" />
@@ -197,6 +197,31 @@
                         android:layout_height="wrap_content"
                         style="@style/newtaxi_title"
                         android:text="최대 탑승 인원"/>
+
+                    <ImageButton
+                        android:id="@+id/minusBtn"
+                        android:layout_width="@dimen/plus_minus_size"
+                        android:layout_height="@dimen/plus_minus_size"
+                        android:src="@drawable/minus_icon"
+                        android:scaleType="fitCenter"
+                        android:background="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/maxNum_EditTxt"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:textSize="25sp"
+                        android:gravity="center"
+                        android:fontFamily="@font/bmjua"
+                        android:text="3"/>
+
+                    <ImageButton
+                        android:id="@+id/plusBtn"
+                        android:layout_width="@dimen/plus_minus_size"
+                        android:layout_height="@dimen/plus_minus_size"
+                        android:src="@drawable/plus_icon"
+                        android:scaleType="fitCenter"
+                        android:background="@color/white"/>
 
                 </LinearLayout>
 
