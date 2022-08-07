@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:background="@color/purple_200">
+    android:padding="20dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -15,8 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:orientation="horizontal"
-            android:background="#00FFFFFF">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,12 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-<<<<<<< HEAD
-            android:orientation="vertical">
-            android:background="#00FFFFFF"
-=======
             android:orientation="horizontal">
->>>>>>> 00124b6751a24aaa4e6272ed9239955a1e8fb806
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,9 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:orientation="horizontal"
-            android:background="#00FFFFFF">
-
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -146,12 +138,9 @@
                 android:id="@+id/departure_minute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:text="23"
                 android:fontFamily="@font/bmjua"/>
-=======
-                android:text="23"/>
->>>>>>> 00124b6751a24aaa4e6272ed9239955a1e8fb806
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -188,8 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:orientation="horizontal"
-            android:background="#00FFFFFF">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
