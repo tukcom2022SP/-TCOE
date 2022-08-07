@@ -40,6 +40,8 @@ class NewTaxiFragment : Fragment() {
     private var db = Firebase.firestore
     private var firestore : FirebaseFirestore? = null
 
+    private lateinit var taxiActivity: TaxiActivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -112,12 +114,11 @@ class NewTaxiFragment : Fragment() {
 
         }
 
-
             //최대 탑승 인원 빼기
         minusBtn.setOnClickListener {
             var nowMax = maxNum_EditTxt.text.toString().toInt()
             if(nowMax > 1) nowMax -= 1
-            else Toast.makeText(this, "최대 인원은 한 명 미만으로 설정할 수 없습니다",Toast.LENGTH_SHORT)
+            else Toast.makeText(taxiActivity, "최대 인원은 한 명 미만으로 설정할 수 없습니다",Toast.LENGTH_SHORT).show()
             maxNum_EditTxt.setText(nowMax.toString())
         }
 
@@ -125,6 +126,7 @@ class NewTaxiFragment : Fragment() {
         plusBtn.setOnClickListener {
             var nowMax = maxNum_EditTxt.text.toString().toInt()
             if(nowMax < 5) nowMax += 1
+            else Toast.makeText(taxiActivity, "최대 인원은 5명을 초과하여 설정할 수 없습니다",Toast.LENGTH_SHORT).show()
             maxNum_EditTxt.setText(nowMax.toString())
         }
 
@@ -146,8 +148,9 @@ class NewTaxiFragment : Fragment() {
 
         //게시글 작성 후 제출 - 파이어스토어에 게시글 정보 추가
         submitBtn.setOnClickListener {
-            if(false) { //메모를 제외한 모든 칸을 채우지 않으면 제출 불가
-                //제출 불가능 알람 다이얼로그 띄우기
+
+            if(position.checkedRadioButtonId == -1 || gender_restriction.checkedRadioButtonId == -1) { //라디오버튼 선택하지 않으면 제출 불가
+                Toast.makeText(taxiActivity, "위치와 성별 제한을 모두 선택하세요", Toast.LENGTH_SHORT).show()
             }
             else { //모두 작성 완료한 경우 제출 가능
 
@@ -168,17 +171,19 @@ class NewTaxiFragment : Fragment() {
                    "shareReqList" to emptyList<String>()                    //합승 요청 명단
                )
 
+                //DB에 문서 추가
                 db.collection("taxiShare")
                     .add(share)
                     .addOnSuccessListener { documentReference ->
                         // 제출 성공 시
                         Log.d("FIREBASE", "DocumentSnapshot added. ID: ${documentReference}")
+                        Toast.makeText(taxiActivity, "새 글이 작성되었습니다", Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { e ->
                         //제출 실패 시
                         Log.w("FIREBASE", "Error adding document", e)
                     }
-                (activity as TaxiActivity).toJFragment() //게시글 페이지 이동
+                (activity as TaxiActivity).toJFragment() //게시글 페이지로 이동
 
             }
         }
@@ -186,6 +191,7 @@ class NewTaxiFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        taxiActivity = context as TaxiActivity
     }
 
 
