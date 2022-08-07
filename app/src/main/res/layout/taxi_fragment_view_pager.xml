@@ -27,6 +27,7 @@
             android:id="@+id/taxi_tablayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/purple_200"
             android:layout_weight="9"
             android:layout_gravity="bottom"/>
 
