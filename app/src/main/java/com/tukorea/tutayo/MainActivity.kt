@@ -23,7 +23,12 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.main_toolbar.*
 import kotlinx.android.synthetic.main.mypage_activity.*
-
+val JEONGWANG = 0
+val OIDO = 1
+val MALE = 0
+val FEMALE = 1
+val ANY_GENDER = 0
+val SAME_GENDER = 1
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

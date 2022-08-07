@@ -8,7 +8,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -165,7 +166,7 @@
                             android:text="성별 상관 없음"/>
 
                         <RadioButton
-                            android:id="@+id/rb_same_sex"
+                            android:id="@+id/rb_same_gender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/newtaxi_default"
@@ -257,7 +258,7 @@
                             <EditText
                                 android:id="@+id/newtaxi_memo"
                                 android:layout_width="fill_parent"
-                                android:layout_height="150dp"
+                                android:layout_height="200dp"
                                 android:hint="\n간단한 메모 작성 \n"
                                 android:fontFamily="@font/bmjua"/>
                         </androidx.core.widget.NestedScrollView>
@@ -275,7 +276,8 @@
     <!--하단 버튼-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
         android:orientation="horizontal"
         android:gravity="center">
 
