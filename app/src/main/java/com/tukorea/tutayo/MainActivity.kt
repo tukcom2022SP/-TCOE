@@ -23,7 +23,12 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.main_toolbar.*
 import kotlinx.android.synthetic.main.mypage_activity.*
-
+val JEONGWANG = 0
+val OIDO = 1
+val MALE = 0
+val FEMALE = 1
+val ANY_GENDER = 0
+val SAME_GENDER = 1
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,23 +63,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         shuttleButton.setOnClickListener {
 
-            val intent = Intent(this,RealBusActivity::class.java)
+            var intent = Intent(this,RealBusActivity::class.java)
             startActivity(intent)
         }
 
         taxiButton.setOnClickListener {
             getLoginData()
-            val intent = Intent(this, TaxiActivity::class.java) //택시 액티비티로 데이터를 전달하기 위한 인텐트
+            var intent = Intent(this, TaxiActivity::class.java) //택시 액티비티로 데이터를 전달하기 위한 인텐트
             UserApiClient.instance.me { user, error ->
-                Log.i("TAG", "type: ${user?.id?.javaClass}") //Long
-                Log.i("TAG", "type: ${user?.kakaoAccount?.gender?.javaClass}") //null
 
-                intent.putExtra("user_id", "${user?.id}")
-                intent.putExtra("user_gender", "${user?.kakaoAccount?.gender}")
+                //사용자 정보
+                var userId = user?.id //type: Long
+                var gender = user?.kakaoAccount?.gender.toString()
+
+                Log.i("TAG", "user info: ${userId}, ${gender}")
+                //여기까진 값이 들어있음
+
+                if (userId != null && gender != null) {
+                    intent.putExtra("user_id", userId.toLong()) //type: Long
+                    intent.putExtra("user_gender", gender)      //type: String
+                    startActivity(intent)   //택시 액티비티 전환
+
+                }
+                else {
+                    Log.d("DEBUG","user info: null")
+                }
             }
         }
-
-
     }
 
 
@@ -271,8 +286,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 dlg.show()
             }
             else if(user != null){
-                val intent = Intent(this, TaxiActivity::class.java)
-                startActivity(intent)
+                Log.i("TAG","로그인 성공 - user: ${user}")
             }
         }
     }

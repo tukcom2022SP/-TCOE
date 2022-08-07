@@ -12,6 +12,7 @@
         <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_jeongwang.xml" value="0.17274569402228976" />
         <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_oido.xml" value="0.17274569402228976" />
         <entry key="..\:/TUtayo/app/src/main/res/layout/taxi_fragment_view_pager.xml" value="0.35520833333333335" />
+<<<<<<< HEAD
         <entry key="..\:/Users/Administrator/Desktop/Tutayo/TCOE/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/Tutayo/TCOE/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/Tutayo/TCOE/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
@@ -39,6 +40,15 @@
         <entry key="..\:/Users/Administrator/Desktop/Tutayo/TCOE/app/src/main/res/menu/main_menulist_logout.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Administrator/Desktop/Tutayo/TCOE/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/Tutayo/TCOE/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+=======
+        <entry key="..\:/Users/dami0/TuTayo/TCOE/app/src/main/res/layout/bus_activity.xml" value="0.1" />
+        <entry key="..\:/Users/dami0/TuTayo/TCOE/app/src/main/res/layout/main_activity.xml" value="0.1" />
+        <entry key="..\:/Users/dami0/TuTayo/TCOE/app/src/main/res/layout/main_toolbar.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/dami0/TuTayo/TCOE/app/src/main/res/layout/realbus_activity.xml" value="0.264" />
+        <entry key="..\:/Users/dami0/TuTayo/TCOE/app/src/main/res/layout/realbus_item1.xml" value="0.16" />
+        <entry key="..\:/Users/dami0/TuTayo/TCOE/app/src/main/res/layout/realbus_item2.xml" value="0.1" />
+        <entry key="..\:/Users/dami0/TuTayo/TCOE/app/src/main/res/layout/taxi_fragment_new.xml" value="0.25364583333333335" />
+>>>>>>> d651962522db679015acb8e6f3cb0932901e93ca
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/layout/bus_activity.xml" value="0.32563405797101447" />
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/layout/bus_timeitem2.xml" value="0.32563405797101447" />
         <entry key="..\:/Users/user/Desktop/TUTayo/app/src/main/res/layout/main_activity.xml" value="0.32563405797101447" />
