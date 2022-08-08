@@ -47,8 +47,6 @@ class NewTaxiFragment : Fragment() {
 
     //DB에 저장될 새 글 데이터
 
-    var userId: Long? = arguments?.getLong("user_id")          //작성자 id
-    var gender: String? = arguments?.getString("user_gender")  //작성자 성별
 
     val date: LocalDateTime = LocalDateTime.now()   //현재 시간
     var station: Int = JEONGWANG    //출발 역
@@ -80,6 +78,8 @@ class NewTaxiFragment : Fragment() {
         super.onStart()
         clearAll()
 
+        var userId: Long? = arguments?.getLong("user_id")          //작성자 id
+        var gender: String? = arguments?.getString("user_gender")  //작성자 성별
         Log.i("TAG","kakao userId: ${userId}, gender: ${gender} login")
 
         //파이어베이스
@@ -87,9 +87,15 @@ class NewTaxiFragment : Fragment() {
 
         //역 선택 라디오버튼 리스너
         position.setOnCheckedChangeListener { radioGroup, checkedId ->
+            if(rb_jeongwang.isChecked) location_spinner.visibility = View.INVISIBLE
+            else location_spinner.visibility = View.VISIBLE
+
             when(checkedId){
                 R.id.rb_jeongwang -> station = JEONGWANG
-                R.id.rb_oido -> station = OIDO
+                R.id.rb_oido -> {
+                    station = OIDO
+                    Log.i("TAG","station: ${station}, OIDO: ${OIDO}")
+                }
                 else -> Log.i("TAG","newTaxi: position set error")
             }
             Log.i("TAG","position: ${position}")
@@ -116,12 +122,6 @@ class NewTaxiFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
-        }
-
-        //출구 번호 스피너는 오이도역 선택시에만 보이도록 함
-        position.setOnCheckedChangeListener { compoundButton, b ->
-            if(rb_jeongwang.isChecked) location_spinner.visibility = View.INVISIBLE
-            else location_spinner.visibility = View.VISIBLE
         }
 
         departure_timePicker.setOnTimeChangedListener { timePicker, hr, min ->

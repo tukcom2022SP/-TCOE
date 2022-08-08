@@ -44,6 +44,7 @@ class TaxiActivity : AppCompatActivity() {
         if(userId != null && gender != null) {
             bundle.putLong("user_id",userId)
             bundle.putString("user_gender",gender)
+            Log.i("TAG","taxiActivity -> NewTaxiFragment bundle - putLong: ${userId}, bundle putString ${gender}")
         }
         else {
             Log.i("TAG", "bundle.putExtra failed")
