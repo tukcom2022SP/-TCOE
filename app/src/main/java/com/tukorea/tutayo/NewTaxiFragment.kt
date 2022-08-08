@@ -17,6 +17,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.taxi_fragment_add.*
 import kotlinx.android.synthetic.main.taxi_fragment_add.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.temporal.ChronoField
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -68,9 +71,12 @@ class NewTaxiFragment : Fragment() {
         //DB에 저장될 데이터(-1: 오류)
         var userId: Long? = arguments?.getLong("user_id")          //작성자 id
         var gender: String? = arguments?.getString("user_gender")  //작성자 성별
-        var station: Int = JEONGWANG   //출발 역
-        var entrance: Int= -1   //출발 출구
+        val date: LocalDateTime = LocalDateTime.now()   //현재 시간
+        var station: Int = JEONGWANG    //출발 역
+        var entrance: Int = 1           //출발 출구
         var genderRest = ANY_GENDER     //성별 제한
+        var departureHr: Int = date.get(ChronoField.HOUR_OF_DAY)       //출발 시간
+        var departureMin: Int = date.get(ChronoField.MINUTE_OF_DAY) - 60 * departureHr    //출발 분
         Log.i("TAG","kakao userId: ${userId}, gender: ${gender}")
 
         //파이어베이스
@@ -115,6 +121,35 @@ class NewTaxiFragment : Fragment() {
             else location_spinner.visibility = View.VISIBLE
         }
 
+        //디폴트 시간 설정
+        departure_hour.setText("${departureHr}")
+        departure_minute.setText("${departureMin}")
+
+        departure_timePicker.setOnTimeChangedListener { timePicker, hr, min ->
+            departureHr = hr
+            departureMin = min
+        }
+
+        //출발 시간 변경 버튼 클릭시 동작
+        set_departure_time_btn.setOnClickListener {
+
+            if(set_departure_time_btn.text.toString() == "변경") { //버튼이 변경 버튼일 경우
+                set_departure_time_btn.setText("설정")
+                departure_timePicker.visibility = View.VISIBLE
+            }
+            else { //버튼이 설정 버튼일 경우
+                Log.i("TAG","timePicker set: ${departureHr}시 ${departureMin}분 설정")
+                set_departure_time_btn.setText("변경")
+                departure_timePicker.visibility = View.INVISIBLE
+
+                departure_hour.setText(departureHr.toString())
+                departure_minute.setText(departureMin.toString())
+
+                if(departureHr >= 0 || departureHr < 12) am_or_pm.setText("오전")
+                else am_or_pm.setText("오후")
+            }
+        }
+
         //성별 제한 선택 라디오버튼 리스너
         gender_restriction.setOnCheckedChangeListener { radioGroup, checkedId ->
             when (checkedId) {
@@ -123,7 +158,6 @@ class NewTaxiFragment : Fragment() {
                 else -> Log.i("TAG", "newTaxi: gender restriction set error")
             }
             Log.i("TAG","genderRest: ${genderRest}")
-
         }
 
         //최대 탑승 인원 빼기
@@ -174,9 +208,8 @@ class NewTaxiFragment : Fragment() {
                    "position" to station,                       //출발 역
                    "entranceNum" to entrance,                   //출구 번호
                    "restriction" to genderRest,                 //성별 제한
-                   "departure_hour" to departure_hour.text.toString(),      //출발 시간
-                   "departure_minute" to departure_minute.text.toString(),  //출발 분
-                   "am_or_pm" to am_or_pm.text.toString(),                  //오전 오후
+                   "departure_hour" to departureHr,             //출발 시간
+                   "departure_minute" to departureMin,          //출발 분
                    "maxNum" to maxNum_EditTxt.text.toString().toInt(),      //최대 탑승 인원
                    "memo" to newtaxi_memo.text.toString(),                  //간단 메모
                    "shareList" to emptyList<String>(),                      //합승 명단이 저장될 리스트
@@ -204,8 +237,6 @@ class NewTaxiFragment : Fragment() {
         super.onAttach(context)
         taxiActivity = context as TaxiActivity
     }
-
-
 
     companion object {
         /**
