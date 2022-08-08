@@ -10,14 +10,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.taxi_fragment_add.*
-import kotlinx.android.synthetic.main.taxi_fragment_add.view.*
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.temporal.ChronoField
 
@@ -37,14 +34,22 @@ class NewTaxiFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-//    private lateinit var JFragment : Fragment
-//    private lateinit var OFragment : Fragment
-//    private lateinit var transaction : FragmentTransaction
-//    private lateinit var viewPagerFragment : ViewPagerFragment
     private var db = Firebase.firestore
     private var firestore : FirebaseFirestore? = null
 
     private lateinit var taxiActivity: TaxiActivity
+
+    //DB에 저장될 새 글 데이터
+    var userId: Long? = arguments?.getLong("user_id")          //작성자 id
+    var gender: String? = arguments?.getString("user_gender")  //작성자 성별
+    val date: LocalDateTime = LocalDateTime.now()   //현재 시간
+    var station: Int = JEONGWANG    //출발 역
+    var entrance: Int = 1           //출발 출구
+    var genderRest = ANY_GENDER     //성별 제한
+
+    //현재 시간을 기본 출발 시간으로 설정정
+    var departureHr = date.get(ChronoField.HOUR_OF_DAY)
+    var departureMin = date.get(ChronoField.MINUTE_OF_DAY) - 60 * date.get(ChronoField.HOUR_OF_DAY)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,19 +70,9 @@ class NewTaxiFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        clearAll()
 
-        Log.i("TAG", "checked radio button id : ${position.checkedRadioButtonId}")
-
-        //DB에 저장될 데이터(-1: 오류)
-        var userId: Long? = arguments?.getLong("user_id")          //작성자 id
-        var gender: String? = arguments?.getString("user_gender")  //작성자 성별
-        val date: LocalDateTime = LocalDateTime.now()   //현재 시간
-        var station: Int = JEONGWANG    //출발 역
-        var entrance: Int = 1           //출발 출구
-        var genderRest = ANY_GENDER     //성별 제한
-        var departureHr: Int = date.get(ChronoField.HOUR_OF_DAY)       //출발 시간
-        var departureMin: Int = date.get(ChronoField.MINUTE_OF_DAY) - 60 * departureHr    //출발 분
-        Log.i("TAG","kakao userId: ${userId}, gender: ${gender}")
+        Log.i("TAG","kakao userId: ${userId}, gender: ${gender} login")
 
         //파이어베이스
         firestore = FirebaseFirestore.getInstance()
@@ -121,10 +116,6 @@ class NewTaxiFragment : Fragment() {
             else location_spinner.visibility = View.VISIBLE
         }
 
-        //디폴트 시간 설정
-        departure_hour.setText("${departureHr}")
-        departure_minute.setText("${departureMin}")
-
         departure_timePicker.setOnTimeChangedListener { timePicker, hr, min ->
             departureHr = hr
             departureMin = min
@@ -140,13 +131,9 @@ class NewTaxiFragment : Fragment() {
             else { //버튼이 설정 버튼일 경우
                 Log.i("TAG","timePicker set: ${departureHr}시 ${departureMin}분 설정")
                 set_departure_time_btn.setText("변경")
-                departure_timePicker.visibility = View.INVISIBLE
+                departure_timePicker.visibility = View.GONE
 
-                departure_hour.setText(departureHr.toString())
-                departure_minute.setText(departureMin.toString())
-
-                if(departureHr >= 0 || departureHr < 12) am_or_pm.setText("오전")
-                else am_or_pm.setText("오후")
+                setDepartureTime(departureHr, departureMin)
             }
         }
 
@@ -178,13 +165,7 @@ class NewTaxiFragment : Fragment() {
 
         //초기화 버튼 클릭시 작성한 내용 리셋
         resetBtn.setOnClickListener {
-            position.clearCheck()
-            gender_restriction.clearCheck()
-            departure_hour.setText("00")
-            departure_minute.setText("00")
-            am_or_pm.setText("am")
-            newtaxi_memo.setText("")
-            location_spinner.visibility = View.INVISIBLE
+            clearAll()
         }
 
         //작성 취소하기
@@ -236,6 +217,30 @@ class NewTaxiFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         taxiActivity = context as TaxiActivity
+    }
+
+    //출발 시간 설정
+    private fun setDepartureTime(hour: Int, min: Int) {
+
+        //24시단위를 12시단위로 변환
+        if(hour > 12) departure_hour.setText("${hour - 12}")
+        else if(hour > 0) departure_hour.setText("${hour}")
+        else departure_hour.setText("12")
+        departure_minute.setText("${min}")
+
+        //오전 오후 설정
+        if(departureHr >= 0 && departureHr <= 12) am_or_pm.setText("오전")
+        else am_or_pm.setText("오후")
+    }
+
+    //작성 내용 초기화
+    private fun clearAll() {
+        position.clearCheck()
+        gender_restriction.clearCheck()
+        setDepartureTime(date.get(ChronoField.HOUR_OF_DAY),
+            date.get(ChronoField.MINUTE_OF_DAY) - 60 * date.get(ChronoField.HOUR_OF_DAY))
+        newtaxi_memo.setText("")
+        location_spinner.visibility = View.INVISIBLE
     }
 
     companion object {
