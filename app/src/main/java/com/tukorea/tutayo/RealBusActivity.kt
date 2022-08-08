@@ -136,7 +136,7 @@ class RealBusActivity : AppCompatActivity() {
         item2.add("8:41")
         item2.add("8:59")
 
-        item2.add("9:5")
+        item2.add("9:05")
         item2.add("9:15")
         item2.add("9:20")
         item2.add("9:35")
