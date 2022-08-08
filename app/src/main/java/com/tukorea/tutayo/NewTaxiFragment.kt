@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -97,6 +98,17 @@ class NewTaxiFragment : Fragment() {
             location_spinner.adapter = adapter
         }
 
+        //출구 선택 스피너 리스너
+        location_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                    entrance = pos + 1 //출구 번호 저장
+                }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
         //출구 번호 스피너는 오이도역 선택시에만 보이도록 함
         position.setOnCheckedChangeListener { compoundButton, b ->
             if(rb_jeongwang.isChecked) location_spinner.visibility = View.INVISIBLE
@@ -114,7 +126,7 @@ class NewTaxiFragment : Fragment() {
 
         }
 
-            //최대 탑승 인원 빼기
+        //최대 탑승 인원 빼기
         minusBtn.setOnClickListener {
             var nowMax = maxNum_EditTxt.text.toString().toInt()
             if(nowMax > 1) nowMax -= 1
@@ -184,7 +196,6 @@ class NewTaxiFragment : Fragment() {
                         Log.w("FIREBASE", "Error adding document", e)
                     }
                 (activity as TaxiActivity).toJFragment() //게시글 페이지로 이동
-
             }
         }
     }
