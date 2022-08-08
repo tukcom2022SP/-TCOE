@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--합승 새 글 작성 페이지 글씨 크기-->
+    <dimen name = "newTaxi_default_size">15sp</dimen>
+    <dimen name = "newTaxi_title_size">20sp</dimen>
+    <dimen name = "newTaxi_time_size">18sp</dimen>
+    <dimen name = "newTaxi_buttonTxt_size">20sp</dimen>
+    <dimen name = "plus_minus_size">30dp</dimen>
+
+    <!--메인 화면-->
+    <dimen name = "ride_icon_size">60dp</dimen>
+    <dimen name = "main_icon_size">180dp</dimen>
+    <dimen name = "main_title_size">50sp</dimen>
+
+
+</resources>

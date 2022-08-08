@@ -22,7 +22,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
+<<<<<<< HEAD
             >
+=======
+            android:background="@color/white">
+>>>>>>> edeffd193a0eb0d6c4d99ead72618ba5cad1aa15
 
             <Button
                 android:id="@+id/writeNew"

@@ -1,6 +1,10 @@
 package com.tukorea.tutayo
 
+<<<<<<< HEAD
 import android.graphics.Color
+=======
+import android.content.Intent
+>>>>>>> edeffd193a0eb0d6c4d99ead72618ba5cad1aa15
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,7 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.taxi_activity.*
-import kotlinx.android.synthetic.main.taxi_fragment_new.*
+import kotlinx.android.synthetic.main.taxi_fragment_add.*
 
 class TaxiActivity : AppCompatActivity() {
     private lateinit var fragmentManager : FragmentManager
@@ -38,8 +42,17 @@ class TaxiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.taxi_activity)
+<<<<<<< HEAD
         var userId = intent.getLongExtra("user_id", 0)
         //var gender = intent.get ...
+=======
+
+        val intent = getIntent()
+        //if(intent.extras != null)
+            var userId = intent.getLongExtra("user_id", 0)
+            var gender = intent.getStringExtra("user_gender")
+            Log.i("TAG","main->taxi intent - user_id: ${userId}, user_gender: ${gender}")
+>>>>>>> edeffd193a0eb0d6c4d99ead72618ba5cad1aa15
 
         fragmentManager = supportFragmentManager
         JFragment = JeongwangFragment()
@@ -52,14 +65,23 @@ class TaxiActivity : AppCompatActivity() {
 
         //새 글 프래그먼트로 사용자 정보 전달
         var bundle = Bundle()
-        bundle.putLong("user_id",0)
-        //bundle.put ... 성별 정보
+
+        if(userId != null && gender != null) {
+            bundle.putLong("user_id",userId)
+            bundle.putString("user_gender",gender)
+
+        }
+        else {
+            Log.i("TAG", "bundle.putExtra failed")
+        }
+
         NewFragment.arguments = bundle
 
         //새 글 작성 버튼 클릭시 새 글 프래그먼트로 넘어감
         writeNew.setOnClickListener {
             writeNew.visibility = View.INVISIBLE
 
+<<<<<<< HEAD
            toNewFragment()
         }
 
@@ -72,17 +94,33 @@ class TaxiActivity : AppCompatActivity() {
 
 
 
+=======
+    }
+>>>>>>> edeffd193a0eb0d6c4d99ead72618ba5cad1aa15
 
 
+<<<<<<< HEAD
     }
 
+=======
+        Log.i("TAG","NewTaxiFragment")
+    }
 
-//    //오이도 프래그먼트 전환
-//    fun toOFragment() {
-//        transaction = fragmentManager.beginTransaction()
-//        transaction.replace(R.id.taxi_fragment_frame, OFragment).commitAllowingStateLoss()
-//        Log.i("TAG","오이도 프래그먼트 호출")
-//    }
+    //정왕 프래그먼트 전환
+    fun toJFragment() {
+        transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.taxi_fragment_frame, viewPagerFragment).commitAllowingStateLoss()
+        writeNew.visibility = View.VISIBLE
+        Log.i("TAG","JFragment")
+    }
+>>>>>>> edeffd193a0eb0d6c4d99ead72618ba5cad1aa15
+
+    //오이도 프래그먼트 전환
+    fun toOFragment() {
+        transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.taxi_fragment_frame, OFragment).commitAllowingStateLoss()
+        Log.i("TAG","OFragment")
+    }
 
 //    override fun onBackPressed() {
 //        //현재 게시글 리스트 페이지인 경우 메인 화면으로 이동
