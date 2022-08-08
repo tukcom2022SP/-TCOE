@@ -24,6 +24,7 @@ import java.time.temporal.ChronoField
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+
 /**
  * A simple [Fragment] subclass.
  * Use the [NewTaxiFragment.newInstance] factory method to
@@ -37,11 +38,18 @@ class NewTaxiFragment : Fragment() {
     private var db = Firebase.firestore
     private var firestore : FirebaseFirestore? = null
 
+    val JEONGWANG = 0
+    val OIDO = 1
+    val ANY_GENDER = 0
+    val SAME_GENDER = 1
+
     private lateinit var taxiActivity: TaxiActivity
 
     //DB에 저장될 새 글 데이터
+
     var userId: Long? = arguments?.getLong("user_id")          //작성자 id
     var gender: String? = arguments?.getString("user_gender")  //작성자 성별
+
     val date: LocalDateTime = LocalDateTime.now()   //현재 시간
     var station: Int = JEONGWANG    //출발 역
     var entrance: Int = 1           //출발 출구
