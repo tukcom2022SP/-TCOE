@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.menu_mypage -> {
-                Toast.makeText(this, "마이페이지 메뉴 실행 테스트", Toast.LENGTH_SHORT).show()
+                
                 getLoginData2()
             }
 
@@ -126,6 +126,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 //만약 택시 메뉴로 진입했을 때, 로그인이 되어 있지 않다면 로그인이 필요합니다 토스트 메시지 띄움
                 //아니면 택시액티비티로 리턴 시키기
                 getLoginData()
+                var intent = Intent(this, TaxiActivity::class.java) //택시 액티비티로 데이터를 전달하기 위한 인텐트
+                UserApiClient.instance.me { user, error ->
+
+                    //사용자 정보
+                    var userId = user?.id //type: Long
+                    var gender = user?.kakaoAccount?.gender.toString()
+
+                    Log.i("TAG", "user info: ${userId}, ${gender}")
+                    //여기까진 값이 들어있음
+
+                    if (userId != null && gender != null) {
+                        intent.putExtra("user_id", userId.toLong()) //type: Long
+                        intent.putExtra("user_gender", gender)      //type: String
+                        startActivity(intent)   //택시 액티비티 전환
+
+                    }
+                    else {
+                        Log.d("DEBUG","user info: null")
+                    }
+                }
 
             }
         }
