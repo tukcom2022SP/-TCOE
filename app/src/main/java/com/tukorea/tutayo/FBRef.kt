@@ -10,8 +10,8 @@ class FBRef {
         private val database = Firebase.database
 
 
-        val boardRef = database.getReference("board")
-        val mDatabaseReference = database.getReference("request") // 참여 요청 보냄
+        val boardRef = database.getReference("time")
+
 
 
 

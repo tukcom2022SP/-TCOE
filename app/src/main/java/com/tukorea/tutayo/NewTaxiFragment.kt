@@ -66,12 +66,14 @@ class NewTaxiFragment : Fragment() {
         Log.i("TAG", "checked radio button id : ${position.checkedRadioButtonId}")
 
         //DB에 저장될 데이터(-1: 오류)
+
         var userId: Long? = arguments?.getLong("user_id")          //작성자 id
         var gender: String? = arguments?.getString("user_gender")  //작성자 성별
         var station: Int = JEONGWANG   //출발 역
         var entrance: Int= -1   //출발 출구
         var genderRest = ANY_GENDER     //성별 제한
         Log.i("TAG","kakao userId: ${userId}, gender: ${gender}")
+
 
         //파이어베이스
         firestore = FirebaseFirestore.getInstance()
