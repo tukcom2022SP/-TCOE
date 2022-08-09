@@ -265,7 +265,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
     }
-
+    //commit test
     private fun kakaoLogout(){
         //로그아웃
         UserApiClient.instance.logout { error ->
