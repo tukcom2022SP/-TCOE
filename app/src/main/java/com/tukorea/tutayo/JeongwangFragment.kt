@@ -1,5 +1,6 @@
 package com.tukorea.tutayo
 
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.taxi_fragment_jeongwang.*
+import kotlinx.android.synthetic.main.taxi_share_dialog.*
 import kotlinx.android.synthetic.main.taxi_share_item.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -91,6 +93,7 @@ class JeongwangFragment : Fragment() { //기본 탭
     inner class JwRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private var jwTaxiData : ArrayList<TaxiData> = arrayListOf()
+        private var context : Context = getContext()!!
 
         //DB에 저장된 문서를 불러와 TaxiData로 변환한 뒤 jwTaxiData라는 리스트에 담음
         init {
@@ -165,7 +168,7 @@ class JeongwangFragment : Fragment() { //기본 탭
 
             viewHolder.setOnClickListener() {
                 var dlg = taxiShareDialog(context,jwTaxiData[position])
-                dlg.showDialog
+                dlg.showDialog()
             }
         }
 
@@ -176,6 +179,28 @@ class JeongwangFragment : Fragment() { //기본 탭
          */
         override fun getItemCount(): Int {
             return jwTaxiData.size
+        }
+    }
+
+    inner class taxiShareDialog(context: Context, taxiItem: TaxiData) {
+        private var dialog = Dialog(context)
+
+        init {
+            dialog.setContentView(R.layout.taxi_share_dialog)
+            dialog.detail_ampm.text = "임시"
+
+
+
+            //삭제 버튼
+
+            //닫기 버튼
+            dialog.detail_cancelBtn.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
+
+        fun showDialog() {
+            dialog.show()
         }
     }
 

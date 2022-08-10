@@ -49,5 +49,12 @@
         <item name="fontFamily">@font/bmjua</item>
     </style>
 
+    <!--택시 아이템 상세보기 그림-->
+    <style name="detail_taxi_img">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+    </style>
 
 </resources>
