@@ -63,6 +63,7 @@
                     style="@style/newtaxi_cardview">
 
                     <LinearLayout
+                        android:id="@+id/linear_item"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:padding="30dp"
