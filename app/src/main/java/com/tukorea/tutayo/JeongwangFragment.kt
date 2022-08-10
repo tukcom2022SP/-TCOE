@@ -60,15 +60,6 @@ class JeongwangFragment : Fragment() { //기본 탭
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-
-
-
-
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -100,7 +91,6 @@ class JeongwangFragment : Fragment() { //기본 탭
     inner class JwRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private var jwTaxiData : ArrayList<TaxiData> = arrayListOf()
-        private var context : Context? = getContext()
 
         //DB에 저장된 문서를 불러와 TaxiData로 변환한 뒤 jwTaxiData라는 리스트에 담음
         init {
@@ -112,6 +102,15 @@ class JeongwangFragment : Fragment() { //기본 탭
                     for (snapshot in querySnapshot!!.documents) {
                         var item = snapshot.toObject(TaxiData::class.java)
                         jwTaxiData.add(item!!)
+                        Log.i("TAG","item: ${item}")
+                        Log.i("TAG","item: ${item.departure_hour}")
+                        Log.i("TAG","item: ${item.departure_minute}")
+                        Log.i("TAG","item: ${item.gender}")
+                        Log.i("TAG","item: ${item.entranceNum}")
+                        Log.i("TAG","item: ${item.maxNum}")
+                        Log.i("TAG","item: ${item.memo}")
+                        Log.i("TAG","item: ${item.position}")
+
                     }
                     notifyDataSetChanged() //업데이트
                 }
@@ -134,11 +133,35 @@ class JeongwangFragment : Fragment() { //기본 탭
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var viewHolder = (holder as ViewHolder).itemView
 
-            viewHolder.item_ampm.text = "임시"
-            viewHolder.item_departure_hour.text = jwTaxiData[position].departHr.toString()
-            viewHolder.item_departure_minute.text = jwTaxiData[position].departMin.toString()
-            viewHolder.item_max_num.text = jwTaxiData[position].maxNum.toString()
+            var hour = jwTaxiData[position].departure_hour.toString().toInt()
+
+            if(hour >= 12) viewHolder.item_ampm.text = "오후"
+            else viewHolder.item_ampm.text = "오전"
+
+            //출발 시간 12시간 단위로 변환하여 설정
+            if(hour > 12) viewHolder.item_departure_hour.text = (hour - 12).toString()
+            else if(hour == 0) viewHolder.item_departure_hour.text = "12"
+            else viewHolder.item_departure_hour.text = hour.toString()
+
+            viewHolder.item_departure_minute.text = jwTaxiData[position].departure_minute.toString()
+
+            when(jwTaxiData[position].position) {
+                0 -> viewHolder.item_position.text = "정왕"
+                1 -> viewHolder.item_position.text = "오이도"
+            }
+            viewHolder.item_entrance.text = jwTaxiData[position].entranceNum.toString()
             viewHolder.item_current_num.text = jwTaxiData[position].shareMember.size.toString()
+            viewHolder.item_max_num.text = jwTaxiData[position].maxNum.toString()
+
+            if(jwTaxiData[position].restriction == 0) {  //성별 제한이 없는 경우
+            }
+            else if (jwTaxiData[position].restriction == 1 && jwTaxiData[position].gender == "MALE") { // 동성만 제한하고 작성자가 남자인 경우
+                viewHolder.item_female.visibility = View.GONE
+
+            }
+            else { // 동성만 제한하고 작성자가 여자인 경우
+                viewHolder.item_male.visibility = View.GONE
+            }
         }
 
         /**
