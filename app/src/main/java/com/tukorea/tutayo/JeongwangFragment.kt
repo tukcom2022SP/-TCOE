@@ -262,24 +262,6 @@ class JeongwangFragment : Fragment() { //기본 탭
 
             //요청 버튼
             dialog.detail_reqBtn.setOnClickListener {
-<<<<<<< HEAD
-                Log.i("태그","요청 버튼 클릭")
-//                var dlg = AlertDialog.Builder(context)
-//                dlg.setMessage("합승을 요청하시겠습니까?")
-//
-//                dlg.setNegativeButton("취소", null)
-//                dlg.setPositiveButton("요청") { dlg, which ->
-//                    db.collection("jwTaxiShare").document(taxiItem.docId).update(
-//                        {
-//                            shareReqList
-//                        }
-//
-//                    )
-//                    Toast.makeText(getContext(),"게시글이 삭제되었습니다",Toast.LENGTH_SHORT).show()
-//                    dialog.dismiss()
-//                }
-//                dlg.show()
-=======
                 Log.i("TAG","요청 버튼 클릭")
                 var dlg = AlertDialog.Builder(context)
                 dlg.setMessage("합승을 요청하시겠습니까?")
@@ -313,7 +295,6 @@ class JeongwangFragment : Fragment() { //기본 탭
 
                 }
                 dlg.show()
->>>>>>> 59acdf90c4a0e007fa9cb718406561f0a9385924
             }
 
             //삭제 버튼
