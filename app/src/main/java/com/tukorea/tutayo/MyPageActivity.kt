@@ -3,6 +3,7 @@ package com.tukorea.tutayo
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,7 +74,7 @@ class MyPageActivity : AppCompatActivity() {
         private var data : TaxiData? = null
         private var dialog = dlg
 
-        val intent = getIntent()
+        val intent = getIntent()!!
         var userId = intent.getLongExtra("user_id", 0)
 
         init{
@@ -90,6 +91,8 @@ class MyPageActivity : AppCompatActivity() {
                     }
                 }
                 notifyDataSetChanged()
+                Log.i("TAG", "mypage userID: ${userId}")
+
             }
 
 
@@ -116,6 +119,8 @@ class MyPageActivity : AppCompatActivity() {
         override fun onCreateViewHolder(parent : ViewGroup, viewType : Int):RecyclerView.ViewHolder {
             var view = LayoutInflater.from(parent.context).inflate(R.layout.mypage_request, parent, false)
             return ViewHolder(view)
+
+
         }
 
         //onCreateViewHolder에서 만든 뷰와 실제 데이터를 연결한다.

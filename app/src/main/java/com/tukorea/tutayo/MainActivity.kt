@@ -109,8 +109,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.menu_mypage -> {
-                
-                getLoginData2()
+                getLoginData()
                 var myintent = Intent(this, MyPageActivity::class.java) //마이페이지로 데이터를 전달하기 위한 인텐트
                 UserApiClient.instance.me { user, error ->
 
@@ -122,8 +121,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     Log.i("TAG", "user info: ${userId}")
                     //여기까진 값이 들어있음
 
-                    if (userId != null && gender != null) {
-                        intent.putExtra("user_id", userId.toLong()) //type: Long
+                    if (userId != null) {
+                        myintent.putExtra("user_id", userId.toLong()) //type: Long
                         startActivity(myintent)   //마이페이지로 데이터 전달
 
                     }
@@ -328,21 +327,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun getLoginData2(){
-        UserApiClient.instance.me {user, error ->
-            if (error != null) {
-
-                var dlg = AlertDialog.Builder(this@MainActivity)
-                dlg.setTitle("알림")
-                dlg.setMessage("로그인 후에 이용 가능합니다.")
-                dlg.show()
-            }
-            else if(user != null){
-                val intent = Intent(this, MyPageActivity::class.java)
-                startActivity(intent)
-            }
-        }
-    }
+//    private fun getLoginData2(){
+//        UserApiClient.instance.me {user, error ->
+//            if (error != null) {
+//
+//                var dlg = AlertDialog.Builder(this@MainActivity)
+//                dlg.setTitle("알림")
+//                dlg.setMessage("로그인 후에 이용 가능합니다.")
+//                dlg.show()
+//            }
+//            else if(user != null){
+//
+//            }
+//        }
+//    }
 
     private fun checkLogin(){
         UserApiClient.instance.me {user, error ->
