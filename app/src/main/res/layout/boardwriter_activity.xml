@@ -126,13 +126,7 @@
                         style="@style/newtaxi_time"
                         android:text="am"/>
 
-                    <Button
-                        android:id="@+id/set_departure_time_btn"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        style="@style/newtaxi_button"
-                        android:text="변경" />
+
 
                 </LinearLayout>
 
@@ -204,13 +198,7 @@
                         style="@style/newtaxi_title"
                         android:text="최대 탑승 인원"/>
 
-                    <ImageButton
-                        android:id="@+id/minusBtn"
-                        android:layout_width="@dimen/plus_minus_size"
-                        android:layout_height="@dimen/plus_minus_size"
-                        android:src="@drawable/minus_icon"
-                        android:scaleType="fitCenter"
-                        android:background="@color/white"/>
+
 
                     <TextView
                         android:id="@+id/maxNum_EditTxt"
@@ -221,13 +209,7 @@
                         android:fontFamily="@font/bmjua"
                         android:text="3"/>
 
-                    <ImageButton
-                        android:id="@+id/plusBtn"
-                        android:layout_width="@dimen/plus_minus_size"
-                        android:layout_height="@dimen/plus_minus_size"
-                        android:src="@drawable/plus_icon"
-                        android:scaleType="fitCenter"
-                        android:background="@color/white"/>
+
 
                 </LinearLayout>
 
@@ -299,7 +281,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/newtaxi_title"
-                        android:text="메일주소"/>
+                        android:text="이메일"/>
 
 
 
@@ -332,7 +314,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/newtaxi_title"
-                        android:text="메일주소"/>
+                        android:text="이메일"/>
 
 
                 </LinearLayout>
@@ -351,12 +333,7 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/resetBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/newtaxi_button"
-            android:text="수정"/>
+
 
         <Button
             android:id="@+id/eraseBtn"
@@ -378,8 +355,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/newtaxi_button"
-            android:text="취소"
-            android:visibility="gone"/>
+            android:text="닫기" />
 
 
 
