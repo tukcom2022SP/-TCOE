@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.taxi_fragment_jeongwang.*
 import kotlinx.android.synthetic.main.taxi_share_dialog.*
 import kotlinx.android.synthetic.main.taxi_share_item.view.*
@@ -40,8 +41,9 @@ class JeongwangFragment : Fragment() { //기본 탭
     private val db = Firebase.firestore
     private var firestore : FirebaseFirestore? = null
 
-    private var userId: Long? = arguments?.getLong("user_id")          //작성자 id
-    private var gender: String? = arguments?.getString("user_gender")  //작성자 성별
+    var userId = null
+    var gender = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +78,8 @@ class JeongwangFragment : Fragment() { //기본 탭
 
     override fun onStart() {
         super.onStart()
-        Log.i("TAG","onStart ${userId}, ${gender}")
+
+
 
     }
 
@@ -108,6 +111,7 @@ class JeongwangFragment : Fragment() { //기본 탭
 
         //DB에 저장된 문서를 불러와 TaxiData로 변환한 뒤 jwTaxiData라는 리스트에 담음
         init {
+
             firestore?.collection("jwTaxiShare")?.addSnapshotListener {
                     querySnapshot, firebaseFirestoreException ->
                 jwTaxiData.clear()
@@ -236,7 +240,15 @@ class JeongwangFragment : Fragment() { //기본 탭
             *
             * */
 
-            Log.i("TAG","test userId: ${userId}, gender: ${gender} login")
+            UserApiClient.instance.me { user, error ->
+
+                //사용자 정보
+                var userId = user?.id
+                var gender = user?.kakaoAccount?.gender.toString()
+
+                Log.i("TAG", "JW Frgment - user info: ${userId}, ${gender}")
+
+            }
 
             if(taxiItem.kakaoUserId == userId) { //내가 작성한 글이면 삭제 버튼 보이고 요청 버튼 가림
                 dialog.detail_reqBtn.visibility = View.GONE
