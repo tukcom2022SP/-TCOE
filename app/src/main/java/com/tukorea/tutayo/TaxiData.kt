@@ -17,5 +17,5 @@ class TaxiData(
     var memo: String = "",          //메모
     var shareMember: List<String> = arrayListOf(),  //합승 명단
     var requestUser: List<String> = arrayListOf(),  //합승 요청 명단
-    var uploadTime: Long = 0        //업로드시간
+    var uploadTime: com.google.firebase.Timestamp? = null               //업로드시간
 )

@@ -111,8 +111,9 @@ class JeongwangFragment : Fragment() { //기본 탭
                     notifyDataSetChanged() //업데이트
                 }
                 else Log.i("TAG","querySnapshot : null")
-                jwTaxiData = jwTaxiData.sortedBy { it.uploadTime } as ArrayList<TaxiData>
+                var sortedJwTaxiData = jwTaxiData.sortedBy { it.uploadTime }
 
+                jwTaxiData = ArrayList(sortedJwTaxiData.reversed())
             }
         }
 
