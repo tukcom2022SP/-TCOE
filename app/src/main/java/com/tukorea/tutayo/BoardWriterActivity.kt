@@ -13,5 +13,7 @@ class BoardWriterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.boardwriter_activity)
 
+
+
     }
 }

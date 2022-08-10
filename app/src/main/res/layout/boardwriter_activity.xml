@@ -364,6 +364,7 @@
             android:layout_height="wrap_content"
             style="@style/newtaxi_button"
             android:text="삭제"/>
+
         <Button
             android:id="@+id/requestBtn"
             android:layout_width="wrap_content"
