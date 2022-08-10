@@ -131,28 +131,11 @@
                                 style="@style/taxi_item_default_text"
                                 android:text=""/>
 
-<<<<<<< HEAD
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="30dp"
-                    android:orientation="horizontal"
-                    android:background="#00FFFFFF">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/newtaxi_title"
-                        android:text="출발 시간 설정"
-                       />
-=======
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/taxi_item_default_text"
                                 android:text="번 출구"/>
->>>>>>> cd757ce1a2fd92933a12b79cd14a07f9dbd9517c
 
                         </LinearLayout>
 
@@ -185,10 +168,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/newtaxi_title"
+                            android:layout_gravity="center"
+
                             android:text="성별 제한"/>
-
-
 
                     </LinearLayout>
 
@@ -203,15 +185,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-<<<<<<< HEAD
-                        style="@style/newtaxi_title"
-                        android:text="최대 탑승 인원"
-                        />
-=======
                         android:padding="30dp"
                         android:orientation="vertical"
                         android:background="#00FFFFFF">
->>>>>>> cd757ce1a2fd92933a12b79cd14a07f9dbd9517c
 
                         <TextView
                             android:layout_width="wrap_content"
