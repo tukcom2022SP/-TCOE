@@ -44,7 +44,7 @@ class TaxiActivity : AppCompatActivity() {
         if(userId != null && gender != null) {
             bundle.putLong("user_id",userId)
             bundle.putString("user_gender",gender)
-
+            Log.i("TAG","taxiActivity -> NewTaxiFragment bundle - putLong: ${userId}, bundle putString ${gender}")
         }
         else {
             Log.i("TAG", "bundle.putExtra failed")
@@ -83,9 +83,4 @@ class TaxiActivity : AppCompatActivity() {
         transaction.replace(R.id.taxi_fragment_frame, OFragment).commitAllowingStateLoss()
         Log.i("TAG","OFragment")
     }
-
-//    override fun onBackPressed() {
-//        //현재 게시글 리스트 페이지인 경우 메인 화면으로 이동
-//        //현재 새 게시글 작성 페이지인 경우 정왕 프래그먼트로 이동
-//    }
 }

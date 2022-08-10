@@ -30,4 +30,17 @@
         <item name="android:layout_marginRight">10dp</item>
     </style>
 
+    <!--새 글 작성 화면 카드뷰-->
+    <style name="newtaxi_cardview">
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardElevation">5dp</item>
+    </style>
+
+    <!--합승 글 아이템-->
+    <style name="taxi_item_default_text">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/bmjua</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
 </resources>

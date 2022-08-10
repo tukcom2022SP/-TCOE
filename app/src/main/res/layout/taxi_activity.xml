@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_200"
+    android:background="@color/purple_201"
     xmlns:tools="http://schemas.android.com/tools">
 
 
@@ -21,7 +21,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:background="@color/white">
 
             <Button
                 android:id="@+id/writeNew"
@@ -39,4 +40,3 @@
 
 
 </LinearLayout>
-

@@ -5,12 +5,4 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/purple_200"
-    tools:context=".OidoFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="왜 xml 변경 안 됨?" />
-
-</LinearLayout>
+    tools:context=".OidoFragment"/>
