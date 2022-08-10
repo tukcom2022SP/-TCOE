@@ -111,6 +111,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.menu_mypage -> {
                 
                 getLoginData2()
+                var myintent = Intent(this, MyPageActivity::class.java) //마이페이지로 데이터를 전달하기 위한 인텐트
+                UserApiClient.instance.me { user, error ->
+
+                    //사용자 정보
+                    var userId = user?.id //type: Long
+
+
+
+                    Log.i("TAG", "user info: ${userId}")
+                    //여기까진 값이 들어있음
+
+                    if (userId != null && gender != null) {
+                        intent.putExtra("user_id", userId.toLong()) //type: Long
+                        startActivity(myintent)   //마이페이지로 데이터 전달
+
+                    }
+                    else {
+                        Log.d("DEBUG","user info: null")
+                    }
+                }
+
             }
 
             R.id.menu_shuttle -> {
