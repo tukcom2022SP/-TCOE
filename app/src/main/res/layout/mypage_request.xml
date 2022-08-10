@@ -53,31 +53,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <!--합승 확정 명단-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/detail_share_member"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    style="@style/newtaxi_cardview">
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="30dp"
-                        android:background="#00FFFFFF"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/detail_taxi_title"
-                            android:text="합승 확정"/>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
 
                 <!--합승 요청-->
                 <androidx.cardview.widget.CardView
@@ -95,11 +70,10 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/detail_taxi_title"
-                            android:text="합승 요청"/>
+                        <ListView
+                            android:id="@+id/reqList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
                     </LinearLayout>
 
@@ -126,6 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/newtaxi_button"
+            android:visibility="gone"
             android:text="삭제"/>
 
         <Button

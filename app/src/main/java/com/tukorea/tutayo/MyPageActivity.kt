@@ -15,8 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.mypage_activity.*
+import kotlinx.android.synthetic.main.mypage_request.*
 import kotlinx.android.synthetic.main.taxi_activity.*
 import kotlinx.android.synthetic.main.taxi_fragment_jeongwang.*
+import kotlinx.android.synthetic.main.taxi_share_dialog.*
+import kotlinx.android.synthetic.main.taxi_share_dialog.detail_cancelBtn
 import kotlinx.android.synthetic.main.taxi_share_item.view.*
 import java.security.AccessController.getContext
 import java.text.FieldPosition
@@ -59,15 +62,29 @@ class MyPageActivity : AppCompatActivity() {
     }
 
     inner class myDialog(context: Context){
-        var dialog = Dialog(context)
+        private var dialog = Dialog(context)
+        private var myReqData : ArrayList<TaxiData> = arrayListOf()
+
+        init{
+            dialog.setContentView(R.layout.mypage_request)
+
+            myReqData.clear()
+
+
+
+
+
+
+            dialog.detail_cancelBtn.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
+
 
         fun showDialog(){
             dialog.show()
         }
 
-        fun setData(context: Context, reqItem: TaxiData){
-
-        }
     }
 
     inner class myRecyclerViewAdapter(context: Context, dlg : myDialog): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -160,8 +177,8 @@ class MyPageActivity : AppCompatActivity() {
             }
 
             viewHolder.setOnClickListener() {
-                //var dlg = myDialog(context,mytaxidata[position])
-                //dlg.showDialog()
+                var dlg = myDialog(context)
+                dlg.showDialog()
                 Toast.makeText(this@MyPageActivity, "테스트", Toast.LENGTH_SHORT).show()
             }
 
