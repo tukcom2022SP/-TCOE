@@ -24,7 +24,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/bmjua"
             android:text="TUTayo"
-            android:textSize="30dp" />
+            android:textSize="27dp" />
 
 
         <ImageView

@@ -21,11 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#878787" />
-
+        
         <!--오이도 탭, 정왕 탭-->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/taxi_tablayout"
