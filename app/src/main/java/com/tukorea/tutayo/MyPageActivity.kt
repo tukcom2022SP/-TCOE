@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +22,13 @@ class MyPageActivity : AppCompatActivity() {
 
     lateinit var taxiActivity: TaxiActivity
     private var firestore: FirebaseFirestore? = null
+    lateinit var image:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mypage_activity)
+            image = findViewById(R.id.img)
 
 
         UserApiClient.instance.me { user, error ->
@@ -33,7 +36,15 @@ class MyPageActivity : AppCompatActivity() {
             name.text = "${user?.kakaoAccount?.profile?.nickname}"
             email.text = "${user?.kakaoAccount?.email}"
             gender.text = "${user?.kakaoAccount?.gender}"
+            if(gender.text=="FEMALE"){
+                image.setImageResource(R.drawable.aunt)
+            }
+            /*else if(gender.text =="MALE"){
+                image.setImageResource(R.drawable.uncle)
+
+            }*/
         }
+
 
         firestore = FirebaseFirestore.getInstance()
         var dlg = myDialog(this)
@@ -131,4 +142,7 @@ class MyPageActivity : AppCompatActivity() {
 
 
 
+
 }
+
+

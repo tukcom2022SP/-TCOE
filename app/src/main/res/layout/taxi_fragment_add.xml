@@ -300,7 +300,7 @@
                                 android:id="@+id/newtaxi_memo"
                                 android:layout_width="fill_parent"
                                 android:layout_height="200dp"
-                                android:hint="\n간단한 메모 작성 \n"
+                                android:hint="\nex) 강아지와 타야 해요 \n"
                                 android:lineSpacingExtra="7dp"
                                 android:fontFamily="@font/bmjua"/>
                         </androidx.core.widget.NestedScrollView>

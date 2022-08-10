@@ -51,7 +51,7 @@ class NewTaxiFragment : Fragment() {
     //DB에 저장될 새 글 데이터
 
 
-    val date: LocalDateTime = LocalDateTime.now()   //현재 시간
+    var date: LocalDateTime = LocalDateTime.now()   //현재 시간
     var station: Int = JEONGWANG    //출발 역
     var entrance: Int = 1           //출발 출구
     var genderRest = ANY_GENDER     //성별 제한
@@ -60,11 +60,21 @@ class NewTaxiFragment : Fragment() {
     var departureHr = date.get(ChronoField.HOUR_OF_DAY)
     var departureMin = date.get(ChronoField.MINUTE_OF_DAY) - 60 * date.get(ChronoField.HOUR_OF_DAY)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
+            date = LocalDateTime.now()   //현재 시간
+            station = JEONGWANG    //출발 역
+            entrance = 1           //출발 출구
+            genderRest = ANY_GENDER     //성별 제한
+
+            //현재 시간을 기본 출발 시간으로 설정정
+            departureHr = date.get(ChronoField.HOUR_OF_DAY)
+            departureMin = date.get(ChronoField.MINUTE_OF_DAY) - 60 * date.get(ChronoField.HOUR_OF_DAY)
         }
     }
 
@@ -198,7 +208,7 @@ class NewTaxiFragment : Fragment() {
                 val share = hashMapOf(
                     "kakaoUserId" to userId,                     //작성자 id
                     "gender" to gender,                          //작성자 성별
-                    "uploadTime" to System.currentTimeMillis().toString().toLong(),  //업로드 시간
+                    "uploadTime" to Timestamp.now(),  //업로드 시간
                     "position" to station,                       //출발 역
                     "entranceNum" to entrance,                   //출구 번호
                     "restriction" to genderRest,                 //성별 제한
@@ -248,6 +258,7 @@ class NewTaxiFragment : Fragment() {
     private fun clearAll() {
         position.clearCheck()
         gender_restriction.clearCheck()
+        date = LocalDateTime.now()
         setDepartureTime(date.get(ChronoField.HOUR_OF_DAY),
             date.get(ChronoField.MINUTE_OF_DAY) - 60 * date.get(ChronoField.HOUR_OF_DAY))
         newtaxi_memo.setText("")
