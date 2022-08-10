@@ -91,7 +91,7 @@ class NewTaxiFragment : Fragment() {
 
         var userId: Long? = arguments?.getLong("user_id")          //작성자 id
         var gender: String? = arguments?.getString("user_gender")  //작성자 성별
-        Log.i("TAG","kakao userId: ${userId}, gender: ${gender} login")
+        Log.i("태그","kakao userId: ${userId}, gender: ${gender} login")
 
         //파이어베이스
         firestore = FirebaseFirestore.getInstance()

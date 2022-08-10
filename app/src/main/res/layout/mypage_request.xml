@@ -12,11 +12,6 @@
         android:layout_margin="20dp">
 
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1">
 
 
             <LinearLayout
@@ -48,6 +43,10 @@
                             android:layout_height="wrap_content"
                             style="@style/detail_taxi_title"
                             android:text="합승 인원"/>
+                        <ListView
+                            android:id="@+id/lst1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"/>
 
                     </LinearLayout>
 
@@ -55,12 +54,14 @@
 
 
                 <!--합승 요청-->
+
+                <!--탑승 인원-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/detail_share_req"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     style="@style/newtaxi_cardview">
+
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -70,18 +71,24 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/detail_taxi_title"
+                            android:text="합승 요청"/>
                         <ListView
-                            android:id="@+id/reqList"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:id="@+id/lst2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"/>
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
+
             </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
+
 
     </androidx.cardview.widget.CardView>
 
