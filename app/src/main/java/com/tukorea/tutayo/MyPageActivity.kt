@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -64,11 +65,29 @@ class MyPageActivity : AppCompatActivity() {
     inner class myDialog(context: Context){
         private var dialog = Dialog(context)
         private var myReqData : ArrayList<TaxiData> = arrayListOf()
+       
 
         init{
-            dialog.setContentView(R.layout.mypage_request)
 
-            myReqData.clear()
+            dialog.setContentView(R.layout.mypage_request)
+            firestore?.collection("jwTaxiShare")?.addSnapshotListener {
+                    querySnapshot, firebaseFirestoreException ->
+                myReqData.clear()
+
+                if(querySnapshot != null) {
+                    for (snapshot in querySnapshot!!.documents) {
+                        var item = snapshot.toObject(TaxiData::class.java)
+                        item!!.docId = snapshot.id
+                        myReqData.add(item!!)
+                    }
+
+                }
+                else Log.i("TAG","querySnapshot : null")
+                var sortedJwTaxiData = myReqData.sortedBy { it.uploadTime }
+
+                myReqData = ArrayList(sortedJwTaxiData.reversed())
+            }
+
 
 
 
