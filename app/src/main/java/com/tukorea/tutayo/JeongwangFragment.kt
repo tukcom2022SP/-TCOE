@@ -40,6 +40,9 @@ class JeongwangFragment : Fragment() { //기본 탭
     private val db = Firebase.firestore
     private var firestore : FirebaseFirestore? = null
 
+    private var userId: Long? = arguments?.getLong("user_id")          //작성자 id
+    private var gender: String? = arguments?.getString("user_gender")  //작성자 성별
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -71,6 +74,11 @@ class JeongwangFragment : Fragment() { //기본 탭
         taxiActivity = context as TaxiActivity
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.i("TAG","onStart ${userId}, ${gender}")
+
+    }
 
 
     companion object {
@@ -182,6 +190,7 @@ class JeongwangFragment : Fragment() { //기본 탭
     inner class taxiShareDialog(context: Context, taxiItem: TaxiData) {
         private var dialog = Dialog(context)
 
+
         init {
             dialog.setContentView(R.layout.taxi_share_dialog)
 
@@ -226,6 +235,22 @@ class JeongwangFragment : Fragment() { //기본 탭
             * 합승 확정 리스트 작성하기
             *
             * */
+
+            Log.i("TAG","test userId: ${userId}, gender: ${gender} login")
+
+            if(taxiItem.kakaoUserId == userId) { //내가 작성한 글이면 삭제 버튼 보이고 요청 버튼 가림
+                dialog.detail_reqBtn.visibility = View.GONE
+                dialog.detail_deleteBtn.visibility = View.VISIBLE
+            }
+            else { //내가 작성한 글이 아니면 삭제 버튼 안보이고 요청 버튼 보임
+                dialog.detail_deleteBtn.visibility = View.GONE
+                dialog.detail_reqBtn.visibility = View.VISIBLE
+            }
+
+            //요청 버튼
+            dialog.detail_reqBtn.setOnClickListener {
+                Log.i("TAG","요청 버튼 클릭")
+            }
 
             //삭제 버튼
             dialog.detail_deleteBtn.setOnClickListener {
