@@ -38,7 +38,7 @@
 
     <!--합승 글 아이템-->
     <style name="taxi_item_default_text">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="fontFamily">@font/bmjua</item>
         <item name="android:textColor">@color/gray</item>
     </style>
