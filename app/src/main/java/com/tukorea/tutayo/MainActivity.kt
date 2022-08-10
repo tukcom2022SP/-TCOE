@@ -69,12 +69,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 //사용자 정보
                 var userId = user?.id //type: Long
                 var gender = user?.kakaoAccount?.gender.toString()
-                val time = FBAuth.getTime()
-                FBRef.boardRef
-                    .push()
-                    .setValue(TaxiData("0",1,time,0,0,0,0))
 
-                Log.d("태그",time.toString())
+
+
                     Log.i("TAG", "user info: ${userId}, ${gender}")
                 //여기까진 값이 들어있음
 

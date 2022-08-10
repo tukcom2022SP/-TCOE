@@ -60,7 +60,7 @@ class RVAdapter2  (private val items : MutableList<String>) :RecyclerView.Adapte
             item4.add(getSpecificTime(10, 5))
             item4.add(getSpecificTime(10, 20))
             item4.add(getSpecificTime(10, 35))
-            item4.add(getSpecificTime(10, 55))
+            item4.add(getSpecificTime(10, 55))//11
 
             item4.add(getSpecificTime(11, 10))
             item4.add(getSpecificTime(11, 30))
@@ -73,7 +73,7 @@ class RVAdapter2  (private val items : MutableList<String>) :RecyclerView.Adapte
             item4.add(getSpecificTime(13, 12))
             item4.add(getSpecificTime(13, 25))
             item4.add(getSpecificTime(13, 35))
-            item4.add(getSpecificTime(13, 55))
+            item4.add(getSpecificTime(13, 55))//21
 
             item4.add(getSpecificTime(14, 17))
             item4.add(getSpecificTime(14, 40))
@@ -87,7 +87,7 @@ class RVAdapter2  (private val items : MutableList<String>) :RecyclerView.Adapte
             item4.add(getSpecificTime(16, 15))
             item4.add(getSpecificTime(16, 30))
             item4.add(getSpecificTime(16, 40))
-            item4.add(getSpecificTime(16, 55))
+            item4.add(getSpecificTime(16, 55))//32
 
             val time = itemView.findViewById<TextView>(R.id.RcyviewItem2)
 
@@ -108,16 +108,18 @@ class RVAdapter2  (private val items : MutableList<String>) :RecyclerView.Adapte
                     time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
                 }
             } else {
-                if (currTime >= getSpecificTime(19, 45)) {
+                if (currTime > getSpecificTime(16, 40) && currTime<=getSpecificTime(16, 55)) {
                     time.setTextColor(Color.BLACK)
                     time.setBackgroundColor(Color.LTGRAY)
                     time.typeface.isBold
                     time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
+
+
                 }
-                time.setTextColor(Color.BLACK)
-                time.setBackgroundColor(Color.LTGRAY)
-                time.typeface.isBold
-                time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
+
+
+
+
             }
 
             time.text = item
