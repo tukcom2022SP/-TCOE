@@ -11,7 +11,7 @@ class BoardWriterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.boardwriter_activity)
+        setContentView(R.layout.taxi_share_dialog)
 
 
 
