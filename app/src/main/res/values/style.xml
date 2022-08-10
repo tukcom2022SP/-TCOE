@@ -43,4 +43,11 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <!--택시 아이템 상세보기 타이틀-->
+    <style name="detail_taxi_title">
+        <item name="android:textSize">@dimen/newTaxi_title_size</item>
+        <item name="fontFamily">@font/bmjua</item>
+    </style>
+
+
 </resources>

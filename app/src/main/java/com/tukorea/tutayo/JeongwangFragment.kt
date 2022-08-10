@@ -162,6 +162,11 @@ class JeongwangFragment : Fragment() { //기본 탭
             else { // 동성만 제한하고 작성자가 여자인 경우
                 viewHolder.item_male.visibility = View.GONE
             }
+
+            viewHolder.setOnClickListener() {
+                var dlg = taxiShareDialog(context,jwTaxiData[position])
+                dlg.showDialog
+            }
         }
 
         /**
