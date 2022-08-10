@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -106,6 +107,7 @@ class JeongwangFragment : Fragment() { //기본 탭
                 if(querySnapshot != null) {
                     for (snapshot in querySnapshot!!.documents) {
                         var item = snapshot.toObject(TaxiData::class.java)
+                        item!!.docId = snapshot.id
                         jwTaxiData.add(item!!)
                     }
                     notifyDataSetChanged() //업데이트
@@ -230,16 +232,19 @@ class JeongwangFragment : Fragment() { //기본 탭
                 var dlg = AlertDialog.Builder(context)
 
                 if(taxiItem.shareMember.isNotEmpty()) { //합승이 확정된 사람이 한 명이라도 있으면
-                    dlg.setMessage("삭제 하시겠습니까?\n아직 합승자가 없습니다.")
+                    dlg.setMessage("삭제 하시겠습니까?\n예정된 합승자가 있습니다.")
                 }
                 else {
-                    dlg.setMessage("삭제 하시겠습니까?\n합승이 확정된 인원이 있습니다.")
+                    dlg.setMessage("삭제 하시겠습니까?\n예정된 합승자가 없습니다.")
                 }
+
                 dlg.setNegativeButton("취소", null)
                 dlg.setPositiveButton("삭제") { dlg, which ->
                     db.collection("jwTaxiShare").document(taxiItem.docId).delete()
+                    Toast.makeText(getContext(),"게시글이 삭제되었습니다",Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }
+                dlg.show()
             }
 
             //닫기 버튼
