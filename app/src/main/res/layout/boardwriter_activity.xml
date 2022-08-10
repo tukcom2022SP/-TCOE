@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/purple_200">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF"
+            android:orientation="vertical">
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_title"
+                        android:text="위치"/>
+
+                    <RadioGroup
+                        android:id="@+id/position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/rb_jeongwang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/newtaxi_default"
+                            android:text="정왕역"/>
+
+                        <RadioButton
+                            android:id="@+id/rb_oido"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/newtaxi_default"
+                            android:text="오이도역"/>
+
+                    </RadioGroup>
+
+                    <!--오이도역 선택시에만 보이는 출구 선택 스피너-->
+                    <Spinner
+                        android:id="@+id/location_spinner"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="40dp"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!--출발 시간 설정-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:orientation="horizontal"
+                    android:background="#00FFFFFF">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_title"
+                        android:text="출발 시간 설정"/>
+
+                    <TextView
+                        android:id="@+id/departure_hour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_time"
+                        android:text="12"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_time"
+                        android:text="시 "/>
+
+                    <TextView
+                        android:id="@+id/departure_minute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_time"
+                        android:text="23"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_time"
+                        android:text="분 "/>
+
+                    <TextView
+                        android:id="@+id/am_or_pm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_time"
+                        android:text="am"/>
+
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!--성별 제한-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:background="#00FFFFFF"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_title"
+                        android:text="성별 제한"/>
+
+                    <RadioGroup
+                        android:id="@+id/gender_restriction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/rb_any_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/newtaxi_default"
+                            android:text="성별 상관 없음"/>
+
+                        <RadioButton
+                            android:id="@+id/rb_same_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/newtaxi_default"
+                            android:text="동성만"/>
+
+                        <!--누르면 타임피커 다이얼로그로 뜨도록 함-->
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!--최대 탑승 인원-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:orientation="horizontal"
+                    android:background="#00FFFFFF">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_title"
+                        android:text="최대 탑승 인원"/>
+
+
+
+                    <TextView
+                        android:id="@+id/maxNum_EditTxt"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:textSize="25sp"
+                        android:gravity="center"
+                        android:fontFamily="@font/bmjua"
+                        android:text="3"/>
+
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!--메모-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:padding="30dp"
+                        android:orientation="horizontal"
+                        android:background="#00FFFFFF">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/newtaxi_title"
+                            android:text="유의사항"/>
+
+                        <androidx.core.widget.NestedScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/newtaxi_memo"
+                                android:layout_width="fill_parent"
+                                android:layout_height="200dp"
+                                android:hint="\n간단한 메모 작성 \n"
+                                android:fontFamily="@font/bmjua"/>
+                        </androidx.core.widget.NestedScrollView>
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </androidx.cardview.widget.CardView>
+
+            <!--출발 시간 설정-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:orientation="horizontal"
+                    android:background="#00FFFFFF">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_title"
+                        android:text="합승자 명단"/>
+
+                    <TextView
+                        android:id="@+id/passenger"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_title"
+                        android:text="이메일"/>
+
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!--출발 시간 설정-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:orientation="horizontal"
+                    android:background="#00FFFFFF">
+
+                    //Writer만 보이기
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_title"
+                        android:text="요청자 명단"/>
+
+                    <TextView
+                        android:id="@+id/requester"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/newtaxi_title"
+                        android:text="이메일"/>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <!--하단 버튼-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+
+        <Button
+            android:id="@+id/eraseBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/newtaxi_button"
+            android:text="삭제"/>
+
+        <Button
+            android:id="@+id/requestBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/newtaxi_button"
+            android:text="요청"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/newtaxi_button"
+            android:text="닫기" />
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</layout>

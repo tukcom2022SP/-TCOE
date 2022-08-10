@@ -16,9 +16,14 @@
         android:theme="@style/Theme.TUtayo"
         tools:targetApi="31">
         <activity
+            android:name=".BoardReaderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BoardWriterActivity"
+            android:exported="false" />
+        <activity
             android:name=".RealBusActivity"
             android:exported="false" />
-
         <activity
             android:name=".TaxiActivity"
             android:exported="true" />
@@ -30,18 +35,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-
         <activity
             android:name=".MyPageActivity"
-            android:exported="true">
-        </activity>
-
-
-        <!-- kakao login activity -->
-
+            android:exported="true" /> <!-- kakao login activity -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true"

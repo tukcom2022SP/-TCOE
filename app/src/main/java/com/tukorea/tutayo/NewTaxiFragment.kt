@@ -65,8 +65,8 @@ class NewTaxiFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-            }
         }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -121,8 +121,8 @@ class NewTaxiFragment : Fragment() {
         //출구 선택 스피너 리스너
         location_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
-                    entrance = pos + 1 //출구 번호 저장
-                }
+                entrance = pos + 1 //출구 번호 저장
+            }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("Not yet implemented")
@@ -195,23 +195,23 @@ class NewTaxiFragment : Fragment() {
             else { //모두 작성 완료한 경우 제출 가능
 
                 //해시맵 형태로 데이터베이스에 add
-               val share = hashMapOf(
-                   "kakaoUserId" to userId,                     //작성자 id
-                   "gender" to gender,                          //작성자 성별
-                   "uploadTime" to System.currentTimeMillis().toString().toLong(),  //업로드 시간
-                   "position" to station,                       //출발 역
-                   "entranceNum" to entrance,                   //출구 번호
-                   "restriction" to genderRest,                 //성별 제한
-                   "departure_hour" to departureHr,             //출발 시간
-                   "departure_minute" to departureMin,          //출발 분
-                   "maxNum" to maxNum_EditTxt.text.toString().toInt(),      //최대 탑승 인원
-                   "memo" to newtaxi_memo.text.toString(),                  //간단 메모
-                   "shareList" to emptyList<String>(),                      //합승 명단이 저장될 리스트
-                   "shareReqList" to emptyList<String>()                    //합승 요청 명단
-               )
+                val share = hashMapOf(
+                    "kakaoUserId" to userId,                     //작성자 id
+                    "gender" to gender,                          //작성자 성별
+                    "uploadTime" to System.currentTimeMillis().toString().toLong(),  //업로드 시간
+                    "position" to station,                       //출발 역
+                    "entranceNum" to entrance,                   //출구 번호
+                    "restriction" to genderRest,                 //성별 제한
+                    "departure_hour" to departureHr,             //출발 시간
+                    "departure_minute" to departureMin,          //출발 분
+                    "maxNum" to maxNum_EditTxt.text.toString().toInt(),      //최대 탑승 인원
+                    "memo" to newtaxi_memo.text.toString(),                  //간단 메모
+                    "shareList" to emptyList<String>(),                      //합승 명단이 저장될 리스트
+                    "shareReqList" to emptyList<String>()                    //합승 요청 명단
+                )
 
                 //DB에 저장장
-               when(station) {
+                when(station) {
                     JEONGWANG -> { //정왕역 선택시 정왕역 컬렉션에 저장
                         addShareData("jwTaxiShare", share)
                         (activity as TaxiActivity).toJFragment() //게시글 페이지로 이동
