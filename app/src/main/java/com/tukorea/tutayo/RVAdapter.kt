@@ -63,11 +63,10 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
             item3.add(getSpecificTime(10, 10))
             item3.add(getSpecificTime(10, 25))
             item3.add(getSpecificTime(10, 45))
-            item3.add(getSpecificTime(10, 55))
 
             item3.add(getSpecificTime(11, 0))
             item3.add(getSpecificTime(11, 20))
-            item3.add(getSpecificTime(11, 40))
+            item3.add(getSpecificTime(11, 40)) //10
 
             item3.add(getSpecificTime(12, 0))
             item3.add(getSpecificTime(12, 22))
@@ -80,7 +79,7 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
 
             item3.add(getSpecificTime(14, 7))
             item3.add(getSpecificTime(14, 30))
-            item3.add(getSpecificTime(14, 50))
+            item3.add(getSpecificTime(14, 50))//20
 
             item3.add(getSpecificTime(15, 10))
             item3.add(getSpecificTime(15, 20))
@@ -94,7 +93,7 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
 
             item3.add(getSpecificTime(17, 5))
             item3.add(getSpecificTime(17, 25))
-            item3.add(getSpecificTime(17, 45))
+            item3.add(getSpecificTime(17, 45))//31
 
             item3.add(getSpecificTime(18, 5))
             item3.add(getSpecificTime(18, 25))
@@ -126,11 +125,14 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
                     time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
                 }
             } else {
-                if (currTime >= getSpecificTime(20,10)) {
+                if (currTime == getSpecificTime(20,10)) {
                     time.setTextColor(Color.BLACK)
                     time.setBackgroundColor(Color.LTGRAY)
                     time.typeface.isBold
                     time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
+                }
+                else{
+
                 }
             }
 

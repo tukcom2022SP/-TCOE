@@ -90,7 +90,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/newtaxi_title"
-                        android:text="출발 시간 설정"/>
+                        android:text="출발 시간 설정"
+                       />
 
                     <TextView
                         android:id="@+id/departure_hour"
@@ -196,7 +197,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/newtaxi_title"
-                        android:text="최대 탑승 인원"/>
+                        android:text="최대 탑승 인원"
+                        />
 
 
 
