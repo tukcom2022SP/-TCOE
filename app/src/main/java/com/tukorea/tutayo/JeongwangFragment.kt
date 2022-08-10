@@ -41,10 +41,6 @@ class JeongwangFragment : Fragment() { //기본 탭
     private val db = Firebase.firestore
     private var firestore : FirebaseFirestore? = null
 
-    var userId = null
-    var gender = null
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -193,6 +189,7 @@ class JeongwangFragment : Fragment() { //기본 탭
 
     inner class taxiShareDialog(context: Context, taxiItem: TaxiData) {
         private var dialog = Dialog(context)
+        var userId : Long = 0
 
 
         init {
@@ -248,20 +245,37 @@ class JeongwangFragment : Fragment() { //기본 탭
 
                 Log.i("TAG", "JW Frgment - user info: ${userId}, ${gender}")
 
+                if(taxiItem.kakaoUserId == userId) { //내가 작성한 글이면 삭제 버튼 보이고 요청 버튼 가림
+                    Log.i("TAG","kakaoUserId: ${taxiItem.kakaoUserId}, userId = ${userId}")
+                    dialog.detail_reqBtn.visibility = View.GONE
+                    dialog.detail_deleteBtn.visibility = View.VISIBLE
+                }
+                else { //내가 작성한 글이 아니면 삭제 버튼 안보이고 요청 버튼 보임
+                    dialog.detail_deleteBtn.visibility = View.GONE
+                    dialog.detail_reqBtn.visibility = View.VISIBLE
+                }
             }
 
-            if(taxiItem.kakaoUserId == userId) { //내가 작성한 글이면 삭제 버튼 보이고 요청 버튼 가림
-                dialog.detail_reqBtn.visibility = View.GONE
-                dialog.detail_deleteBtn.visibility = View.VISIBLE
-            }
-            else { //내가 작성한 글이 아니면 삭제 버튼 안보이고 요청 버튼 보임
-                dialog.detail_deleteBtn.visibility = View.GONE
-                dialog.detail_reqBtn.visibility = View.VISIBLE
-            }
+
 
             //요청 버튼
             dialog.detail_reqBtn.setOnClickListener {
                 Log.i("TAG","요청 버튼 클릭")
+//                var dlg = AlertDialog.Builder(context)
+//                dlg.setMessage("합승을 요청하시겠습니까?")
+//
+//                dlg.setNegativeButton("취소", null)
+//                dlg.setPositiveButton("요청") { dlg, which ->
+//                    db.collection("jwTaxiShare").document(taxiItem.docId).update(
+//                        {
+//                            shareReqList
+//                        }
+//
+//                    )
+//                    Toast.makeText(getContext(),"게시글이 삭제되었습니다",Toast.LENGTH_SHORT).show()
+//                    dialog.dismiss()
+//                }
+//                dlg.show()
             }
 
             //삭제 버튼
