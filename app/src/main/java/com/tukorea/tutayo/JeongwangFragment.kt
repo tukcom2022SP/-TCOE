@@ -216,6 +216,8 @@ class JeongwangFragment : Fragment() { //기본 탭
             }
 
             dialog.detail_memo.text = taxiItem.memo
+            dialog.detail_currentNum.text = taxiItem.shareMember.size.toString()
+            dialog.detail_maxNum.text = taxiItem.maxNum.toString()
 
             /*
             *
@@ -227,7 +229,7 @@ class JeongwangFragment : Fragment() { //기본 탭
             dialog.detail_deleteBtn.setOnClickListener {
                 var dlg = AlertDialog.Builder(context)
 
-                if(taxiItem.shareMember.size > 0) { //합승이 확정된 사람이 한 명이라도 있으면
+                if(taxiItem.shareMember.isNotEmpty()) { //합승이 확정된 사람이 한 명이라도 있으면
                     dlg.setMessage("삭제 하시겠습니까?\n아직 합승자가 없습니다.")
                 }
                 else {

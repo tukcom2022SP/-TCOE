@@ -293,7 +293,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/newtaxi_time"
-                                android:text="3"
+                                android:text=""
                                 android:layout_marginBottom="10dp"/>
 
                             <TextView
@@ -309,7 +309,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/newtaxi_time"
-                                android:text="5"
+                                android:text=""
                                 android:layout_marginBottom="10dp"/>
 
                         </LinearLayout>
@@ -328,7 +328,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="하이하이하이하이"/>
+                                    android:text=""/>
 
                             </LinearLayout>
 
