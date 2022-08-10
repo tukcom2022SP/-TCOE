@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,6 +39,9 @@ class JeongwangFragment : Fragment() { //기본 탭
     private lateinit var taxiActivity : TaxiActivity
     private val db = Firebase.firestore
     private var firestore : FirebaseFirestore? = null
+
+    private var userId: Long? = arguments?.getLong("user_id")          //작성자 id
+    private var gender: String? = arguments?.getString("user_gender")  //작성자 성별
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +74,11 @@ class JeongwangFragment : Fragment() { //기본 탭
         taxiActivity = context as TaxiActivity
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.i("TAG","onStart ${userId}, ${gender}")
+
+    }
 
 
     companion object {
@@ -106,6 +115,7 @@ class JeongwangFragment : Fragment() { //기본 탭
                 if(querySnapshot != null) {
                     for (snapshot in querySnapshot!!.documents) {
                         var item = snapshot.toObject(TaxiData::class.java)
+                        item!!.docId = snapshot.id
                         jwTaxiData.add(item!!)
                     }
                     notifyDataSetChanged() //업데이트
@@ -180,6 +190,7 @@ class JeongwangFragment : Fragment() { //기본 탭
     inner class taxiShareDialog(context: Context, taxiItem: TaxiData) {
         private var dialog = Dialog(context)
 
+
         init {
             dialog.setContentView(R.layout.taxi_share_dialog)
 
@@ -225,21 +236,40 @@ class JeongwangFragment : Fragment() { //기본 탭
             *
             * */
 
+            Log.i("TAG","test userId: ${userId}, gender: ${gender} login")
+
+            if(taxiItem.kakaoUserId == userId) { //내가 작성한 글이면 삭제 버튼 보이고 요청 버튼 가림
+                dialog.detail_reqBtn.visibility = View.GONE
+                dialog.detail_deleteBtn.visibility = View.VISIBLE
+            }
+            else { //내가 작성한 글이 아니면 삭제 버튼 안보이고 요청 버튼 보임
+                dialog.detail_deleteBtn.visibility = View.GONE
+                dialog.detail_reqBtn.visibility = View.VISIBLE
+            }
+
+            //요청 버튼
+            dialog.detail_reqBtn.setOnClickListener {
+                Log.i("TAG","요청 버튼 클릭")
+            }
+
             //삭제 버튼
             dialog.detail_deleteBtn.setOnClickListener {
                 var dlg = AlertDialog.Builder(context)
 
                 if(taxiItem.shareMember.isNotEmpty()) { //합승이 확정된 사람이 한 명이라도 있으면
-                    dlg.setMessage("삭제 하시겠습니까?\n아직 합승자가 없습니다.")
+                    dlg.setMessage("삭제 하시겠습니까?\n예정된 합승자가 있습니다.")
                 }
                 else {
-                    dlg.setMessage("삭제 하시겠습니까?\n합승이 확정된 인원이 있습니다.")
+                    dlg.setMessage("삭제 하시겠습니까?\n예정된 합승자가 없습니다.")
                 }
+
                 dlg.setNegativeButton("취소", null)
                 dlg.setPositiveButton("삭제") { dlg, which ->
                     db.collection("jwTaxiShare").document(taxiItem.docId).delete()
+                    Toast.makeText(getContext(),"게시글이 삭제되었습니다",Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }
+                dlg.show()
             }
 
             //닫기 버튼

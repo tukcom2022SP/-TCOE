@@ -51,6 +51,8 @@ class TaxiActivity : AppCompatActivity() {
         }
 
         NewFragment.arguments = bundle
+        JFragment.arguments = bundle
+        OFragment.arguments = bundle
 
         //새 글 작성 버튼 클릭시 새 글 프래그먼트로 넘어감
         writeNew.setOnClickListener {
