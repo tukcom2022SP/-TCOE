@@ -182,7 +182,46 @@ class JeongwangFragment : Fragment() { //기본 탭
 
         init {
             dialog.setContentView(R.layout.taxi_share_dialog)
-            dialog.detail_ampm.text = "임시"
+
+            //12시 단위로 변환
+            if(taxiItem.departure_hour > 12) {
+                dialog.detail_ampm.text = "오후"
+                dialog.detail_departure_hour.text = (taxiItem.departure_hour - 12).toString()
+
+            }
+            else if(taxiItem.departure_hour == 0) { //자정
+                dialog.detail_ampm.text = "오전"
+                dialog.detail_departure_hour.text = "12"
+            }
+            else {
+                dialog.detail_ampm.text = "오전"
+                dialog.detail_departure_hour.text = taxiItem.departure_hour.toString()
+            }
+
+            dialog.detail_departure_minute.text = taxiItem.departure_minute.toString()
+
+            if(taxiItem.position == 0) dialog.detail_position.text = "정왕"
+            else dialog.detail_position.text = "오이도"
+
+            dialog.detail_entrance.text = taxiItem.entranceNum.toString()
+
+            if(taxiItem.restriction == 0) {  //성별 제한이 없는 경우
+            }
+            else if (taxiItem.restriction == 1 && taxiItem.gender == "MALE") { // 동성만 제한하고 작성자가 남자인 경우
+                dialog.detail_female.visibility = View.GONE
+
+            }
+            else { // 동성만 제한하고 작성자가 여자인 경우
+                dialog.detail_male.visibility = View.GONE
+            }
+
+            dialog.detail_memo.text = taxiItem.memo
+
+            /*
+            *
+            * 합승 확정 리스트 작성하기
+            *
+            * */
 
             //삭제 버튼
             dialog.detail_deleteBtn.setOnClickListener {
