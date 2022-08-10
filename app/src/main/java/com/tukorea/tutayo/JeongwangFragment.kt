@@ -260,7 +260,7 @@ class JeongwangFragment : Fragment() { //기본 탭
 
             //요청 버튼
             dialog.detail_reqBtn.setOnClickListener {
-                Log.i("TAG","요청 버튼 클릭")
+                Log.i("태그","요청 버튼 클릭")
 //                var dlg = AlertDialog.Builder(context)
 //                dlg.setMessage("합승을 요청하시겠습니까?")
 //
