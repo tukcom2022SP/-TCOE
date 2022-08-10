@@ -177,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="게시한 글 목록"
+                android:textSize="20dp"
                 android:fontFamily="@font/bmjua"/>
 
             <androidx.recyclerview.widget.RecyclerView

@@ -49,8 +49,6 @@ class NewTaxiFragment : Fragment() {
     private lateinit var taxiActivity: TaxiActivity
 
     //DB에 저장될 새 글 데이터
-
-
     var date: LocalDateTime = LocalDateTime.now()   //현재 시간
     var station: Int = JEONGWANG    //출발 역
     var entrance: Int = 1           //출발 출구
@@ -72,7 +70,7 @@ class NewTaxiFragment : Fragment() {
             entrance = 1           //출발 출구
             genderRest = ANY_GENDER     //성별 제한
 
-            //현재 시간을 기본 출발 시간으로 설정정
+            //현재 시간을 기본 출발 시간으로 설정
             departureHr = date.get(ChronoField.HOUR_OF_DAY)
             departureMin = date.get(ChronoField.MINUTE_OF_DAY) - 60 * date.get(ChronoField.HOUR_OF_DAY)
         }

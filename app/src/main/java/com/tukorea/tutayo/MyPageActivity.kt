@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.mypage_activity.*
 import kotlinx.android.synthetic.main.taxi_activity.*
 import kotlinx.android.synthetic.main.taxi_fragment_jeongwang.*
+import kotlinx.android.synthetic.main.taxi_share_item.view.*
 import java.security.AccessController.getContext
 import java.text.FieldPosition
 
@@ -78,8 +80,9 @@ class MyPageActivity : AppCompatActivity() {
         var userId = intent.getLongExtra("user_id", 0)
 
         init{
+            mytaxidata.clear() //내 글 리스트를 비워줌
+
             firestore?.collection("jwTaxiShare")?.addSnapshotListener { querySnapShot, firebaseFireStoreException ->
-                mytaxidata.clear() //내 글 리스트를 비워줌
 
                 if(querySnapShot != null){
                     for(snapshot in querySnapShot.documents){
@@ -87,17 +90,15 @@ class MyPageActivity : AppCompatActivity() {
                         if(item!!.kakaoUserId == userId){
                             mytaxidata.add(item!!)
                         }
-
+                        notifyDataSetChanged()
                     }
                 }
-                notifyDataSetChanged()
                 Log.i("TAG", "mypage userID: ${userId}")
 
             }
 
 
             firestore?.collection("oidoTaxiShare")?.addSnapshotListener { querySnapShot, firebaseFireStoreException ->
-                mytaxidata.clear() //내 글 리스트를 비워줌
 
                 if(querySnapShot != null){
                     for(snapshot in querySnapShot.documents){
@@ -106,9 +107,10 @@ class MyPageActivity : AppCompatActivity() {
                         if(item!!.kakaoUserId == userId) {
                             mytaxidata.add(item!!)
                         }
+                        notifyDataSetChanged()
                     }
                 }
-                notifyDataSetChanged()
+
             }
         }
 
@@ -127,11 +129,40 @@ class MyPageActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var viewHolder = (holder as ViewHolder).itemView
 
-            viewHolder.setOnClickListener(){
-                data = mytaxidata[position]
-                dialog.setData(context, mytaxidata[position])
+            var hour = mytaxidata[position].departure_hour.toString().toInt()
 
+            if(hour >= 12) viewHolder.item_ampm.text = "오후"
+            else viewHolder.item_ampm.text = "오전"
 
+            //출발 시간 12시간 단위로 변환하여 설정
+            if(hour > 12) viewHolder.item_departure_hour.text = (hour - 12).toString()
+            else if(hour == 0) viewHolder.item_departure_hour.text = "12"
+            else viewHolder.item_departure_hour.text = hour.toString()
+
+            viewHolder.item_departure_minute.text = mytaxidata[position].departure_minute.toString()
+
+            when(mytaxidata[position].position) {
+                0 -> viewHolder.item_position.text = "정왕"
+                1 -> viewHolder.item_position.text = "오이도"
+            }
+            viewHolder.item_entrance.text = mytaxidata[position].entranceNum.toString()
+            viewHolder.item_current_num.text = mytaxidata[position].shareMember.size.toString()
+            viewHolder.item_max_num.text = mytaxidata[position].maxNum.toString()
+
+            if(mytaxidata[position].restriction == 0) {  //성별 제한이 없는 경우
+            }
+            else if (mytaxidata[position].restriction == 1 && mytaxidata[position].gender == "MALE") { // 동성만 제한하고 작성자가 남자인 경우
+                viewHolder.item_female.visibility = View.GONE
+
+            }
+            else { // 동성만 제한하고 작성자가 여자인 경우
+                viewHolder.item_male.visibility = View.GONE
+            }
+
+            viewHolder.setOnClickListener() {
+                //var dlg = myDialog(context,mytaxidata[position])
+                //dlg.showDialog()
+                Toast.makeText(this@MyPageActivity, "테스트", Toast.LENGTH_SHORT).show()
             }
 
         }
