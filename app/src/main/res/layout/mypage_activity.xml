@@ -3,14 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_200">
+    android:background="@color/purple_200"
+    >
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
 
         <TextView
@@ -22,10 +24,12 @@
             android:fontFamily="@font/bmjua"
             android:text="마이 페이지"
             android:textSize="30dp"
+
             />
 
 
         <ImageView
+
             android:id="@+id/img"
             android:layout_width="200dp"
             android:layout_height="200dp"
