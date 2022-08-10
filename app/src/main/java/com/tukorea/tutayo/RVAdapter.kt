@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.taxi_fragment_new.*
+
 import java.text.SimpleDateFormat
 import java.util.*
 
