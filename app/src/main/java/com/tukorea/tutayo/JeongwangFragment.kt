@@ -240,7 +240,7 @@ class JeongwangFragment : Fragment() { //기본 탭
             UserApiClient.instance.me { user, error ->
 
                 //사용자 정보
-                var userId = user?.id
+                userId = user?.id!!
                 var gender = user?.kakaoAccount?.gender.toString()
 
                 Log.i("TAG", "JW Frgment - user info: ${userId}, ${gender}")
@@ -261,21 +261,35 @@ class JeongwangFragment : Fragment() { //기본 탭
             //요청 버튼
             dialog.detail_reqBtn.setOnClickListener {
                 Log.i("TAG","요청 버튼 클릭")
-//                var dlg = AlertDialog.Builder(context)
-//                dlg.setMessage("합승을 요청하시겠습니까?")
-//
-//                dlg.setNegativeButton("취소", null)
-//                dlg.setPositiveButton("요청") { dlg, which ->
-//                    db.collection("jwTaxiShare").document(taxiItem.docId).update(
-//                        {
-//                            shareReqList
-//                        }
-//
-//                    )
-//                    Toast.makeText(getContext(),"게시글이 삭제되었습니다",Toast.LENGTH_SHORT).show()
-//                    dialog.dismiss()
-//                }
-//                dlg.show()
+                var dlg = AlertDialog.Builder(context)
+                dlg.setMessage("합승을 요청하시겠습니까?")
+
+                dlg.setNegativeButton("취소", null)
+                dlg.setPositiveButton("요청") { dlg, which ->
+
+                    //중복 요청 못하도록 함
+                    if(taxiItem.requestUser.contains(userId.toString())
+                        || taxiItem.shareMemberIDs.contains(userId.toString())) {
+                        Toast.makeText(getContext(),"중복 요청할 수 없습니다",Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        var reqUser = taxiItem.requestUser as ArrayList<String>
+                        reqUser.add(userId.toString())
+                        db.collection("jwTaxiShare").document(taxiItem.docId).update(
+                            "requestUser", reqUser
+                        )
+                            .addOnSuccessListener {
+                                Log.i("TAG","user: ${userId} ")
+                                Log.d("TAG", "DocumentSnapshot successfully updated!")
+                                Toast.makeText(getContext(),"요청이 전송되었습니다",Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener { e -> Log.w("TAG", "Error updating document", e) }
+
+                        dialog.dismiss()
+                    }
+
+                }
+                dlg.show()
             }
 
             //삭제 버튼
