@@ -44,15 +44,14 @@ class TaxiActivity : AppCompatActivity() {
         if(userId != null && gender != null) {
             bundle.putLong("user_id",userId)
             bundle.putString("user_gender",gender)
+            NewFragment.arguments = bundle
+            JFragment.arguments = bundle
+            OFragment.arguments = bundle
             Log.i("TAG","taxiActivity -> NewTaxiFragment bundle - putLong: ${userId}, bundle putString ${gender}")
         }
         else {
             Log.i("TAG", "bundle.putExtra failed")
         }
-
-        NewFragment.arguments = bundle
-        JFragment.arguments = bundle
-        OFragment.arguments = bundle
 
         //새 글 작성 버튼 클릭시 새 글 프래그먼트로 넘어감
         writeNew.setOnClickListener {
