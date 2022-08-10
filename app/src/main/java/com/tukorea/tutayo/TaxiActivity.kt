@@ -25,9 +25,9 @@ class TaxiActivity : AppCompatActivity() {
 
         val intent = getIntent()
         //if(intent.extras != null)
-            var userId = intent.getLongExtra("user_id", 0)
-            var gender = intent.getStringExtra("user_gender")
-            Log.i("TAG","main->taxi intent - user_id: ${userId}, user_gender: ${gender}")
+        var userId = intent.getLongExtra("user_id", 0)
+        var gender = intent.getStringExtra("user_gender")
+        Log.i("TAG","main->taxi intent - user_id: ${userId}, user_gender: ${gender}")
 
         fragmentManager = supportFragmentManager
         JFragment = JeongwangFragment()

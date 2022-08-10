@@ -1,17 +1,21 @@
 package com.tukorea.tutayo
 
 import android.graphics.Color
+import android.icu.util.Calendar
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
+
 import java.text.SimpleDateFormat
+import java.util.*
 
 class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapter.ViewHolder>(){
-
+    private val now: Long = System.currentTimeMillis()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVAdapter.ViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.realbus_item1, parent, false)
@@ -47,89 +51,82 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
 
         fun bindItems(item : String) {
 
-            val item3 = mutableListOf<Int>()
-            item3.add(9 * 60)
-            item3.add(9 * 60 + 20)
-            item3.add(9 * 60 + 50)
+            val item3 = mutableListOf<Long>()
 
-            item3.add(10 * 60 + 10)
-            item3.add(10 * 60 + 25)
-            item3.add(10 * 60 + 45)
 
-            item3.add(11 * 60 + 0)
-            item3.add(11 * 60 + 20)
-            item3.add(11 * 60 + 40)
 
-            item3.add(12 * 60 + 0)
-            item3.add(12 * 60 + 22)
-            item3.add(12 * 60 + 45)
 
-            item3.add(13 * 60 + 2)
-            item3.add(13 * 60 + 15)
-            item3.add(13 * 60 + 25)
-            item3.add(13 * 60 + 45)
+            item3.add(getSpecificTime(9, 0))
+            item3.add(getSpecificTime(9, 20))
+            item3.add(getSpecificTime(9, 50))
 
-            item3.add(14 * 60 + 7)
-            item3.add(14 * 60 + 30)
-            item3.add(14 * 60 + 50)
+            item3.add(getSpecificTime(10, 10))
+            item3.add(getSpecificTime(10, 25))
+            item3.add(getSpecificTime(10, 45))
+            item3.add(getSpecificTime(10, 55))
 
-            item3.add(15 * 60 + 10)
-            item3.add(15 * 60 + 20)
-            item3.add(15 * 60 + 30)
-            item3.add(15 * 60 + 45)
+            item3.add(getSpecificTime(11, 0))
+            item3.add(getSpecificTime(11, 20))
+            item3.add(getSpecificTime(11, 40))
 
-            item3.add(16 * 60 + 5)
-            item3.add(16 * 60 + 20)
-            item3.add(16 * 60 + 30)
-            item3.add(16 * 60 + 45)
+            item3.add(getSpecificTime(12, 0))
+            item3.add(getSpecificTime(12, 22))
+            item3.add(getSpecificTime(12, 45))
 
-            item3.add(17 * 60 + 5)
-            item3.add(17 * 60 + 25)
-            item3.add(17 * 60 + 45)
+            item3.add(getSpecificTime(13, 2))
+            item3.add(getSpecificTime(13, 15))
+            item3.add(getSpecificTime(13, 25))
+            item3.add(getSpecificTime(13, 45))
 
-            item3.add(18 * 60 + 5)
-            item3.add(18 * 60 + 25)
-            item3.add(18 * 60 + 45)
+            item3.add(getSpecificTime(14, 7))
+            item3.add(getSpecificTime(14, 30))
+            item3.add(getSpecificTime(14, 50))
 
-            item3.add(19 * 60 + 5)
-            item3.add(19 * 60 + 25)
-            item3.add(19 * 60 + 45)
+            item3.add(getSpecificTime(15, 10))
+            item3.add(getSpecificTime(15, 20))
+            item3.add(getSpecificTime(15, 30))
+            item3.add(getSpecificTime(15, 45))
 
-            item3.add(20 * 60 + 10)
+            item3.add(getSpecificTime(16, 5))
+            item3.add(getSpecificTime(16, 20))
+            item3.add(getSpecificTime(16, 30))
+            item3.add(getSpecificTime(16, 45))
+
+            item3.add(getSpecificTime(17, 5))
+            item3.add(getSpecificTime(17, 25))
+            item3.add(getSpecificTime(17, 45))
+
+            item3.add(getSpecificTime(18, 5))
+            item3.add(getSpecificTime(18, 25))
+            item3.add(getSpecificTime(18, 45))
+
+            item3.add(getSpecificTime(19, 5))
+            item3.add(getSpecificTime(19, 25))
+            item3.add(getSpecificTime(19, 45))
+
+            item3.add(getSpecificTime(20, 10)) //37
+
 
             val time = itemView.findViewById<TextView>(R.id.RcyviewItem)
 
+            var currTime = getCurrentTime()
 
-            val df = SimpleDateFormat("HH:mm")
-            var current = System.currentTimeMillis() //long타입의 초
-
-            var curr = df.format(current).toString()
-            var curr_arr = curr.split(":")
-            var curr_hour = curr_arr[0] //현재 시 string
-            var curr_min = curr_arr[1]  //현재 분 string
-            var caltoday = curr_hour.toInt() * 60 + curr_min.toInt()
-
-            var curr_arr2 = items[position].split(":")
-            var curr_hour2 = curr_arr2[0] //현재 시 string
-            var curr_min2 = curr_arr2[1]  //현재 분 string
-            var caltoday2 = curr_hour2.toInt() * 60 + curr_min2.toInt()
-
-
-            if (position < 36) {
-
-                val mireInter = item3[position + 1] - item3[position]
-//현재와 지금 위치 격차 18분   지금이랑 이후 격차는 10
-                if (caltoday <= caltoday2 && caltoday2 < caltoday + mireInter) {
+            if(adapterPosition == 0) {
+                if(currTime <= item3[adapterPosition]) {
                     time.setTextColor(Color.BLACK)
                     time.setBackgroundColor(Color.LTGRAY)
                     time.typeface.isBold
                     time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
-
-
                 }
-            }
-            else {
-                if (caltoday > 19 * 60 + 45) {
+            } else if (adapterPosition < 36) {
+                if(item3[adapterPosition -1] <= currTime && item3[adapterPosition] > currTime) {
+                    time.setTextColor(Color.BLACK)
+                    time.setBackgroundColor(Color.LTGRAY)
+                    time.typeface.isBold
+                    time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
+                }
+            } else {
+                if (currTime >= getSpecificTime(20,10)) {
                     time.setTextColor(Color.BLACK)
                     time.setBackgroundColor(Color.LTGRAY)
                     time.typeface.isBold
@@ -143,4 +140,33 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
     }
 
 
-}
+
+    private fun getSpecificTime(hour:Int, minute:Int) : Long {
+                val now: Long = System.currentTimeMillis()
+                val date = Date(now)
+
+                val simpleDate = SimpleDateFormat("yyyy;MM;dd")
+                val timeVal = simpleDate.format(date)
+                var timeArr = timeVal.split(";")
+
+                val calendar: Calendar = Calendar.getInstance()
+                calendar.set(timeArr[0].toInt(), timeArr[1].toInt() -1, timeArr[2].toInt(), hour, minute, 0)
+
+                return calendar.timeInMillis
+            }
+
+            private fun getCurrentTime() : Long {
+                val date = Date(now)
+
+                val simpleDate = SimpleDateFormat("yyyy;MM;dd;HH;mm;ss")
+                val timeVal = simpleDate.format(date)
+                var timeArr = timeVal.split(";")
+                val calendar: Calendar = Calendar.getInstance()
+                calendar.set(timeArr[0].toInt(), timeArr[1].toInt() -1, timeArr[2].toInt(), timeArr[3].toInt(), timeArr[4].toInt(), 0)
+                return calendar.timeInMillis
+            }
+
+        }
+
+
+
