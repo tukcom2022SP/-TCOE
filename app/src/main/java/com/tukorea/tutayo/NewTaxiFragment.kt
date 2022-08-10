@@ -2,6 +2,7 @@ package com.tukorea.tutayo
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Half
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.taxi_fragment_add.*
 import java.time.LocalDateTime
 import java.time.temporal.ChronoField
+import java.util.*
+import kotlin.collections.HashMap
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -91,10 +94,12 @@ class NewTaxiFragment : Fragment() {
             else location_spinner.visibility = View.VISIBLE
 
             when(checkedId){
-                R.id.rb_jeongwang -> station = JEONGWANG
+                R.id.rb_jeongwang -> {
+                    station = JEONGWANG
+                    entrance = 2 //정왕역 출구번호 2번 고정
+                }
                 R.id.rb_oido -> {
                     station = OIDO
-                    Log.i("TAG","station: ${station}, OIDO: ${OIDO}")
                 }
                 else -> Log.i("TAG","newTaxi: position set error")
             }
@@ -193,7 +198,7 @@ class NewTaxiFragment : Fragment() {
                val share = hashMapOf(
                    "kakaoUserId" to userId,                     //작성자 id
                    "gender" to gender,                          //작성자 성별
-                   "uploadTime" to Timestamp.now(),             //업로드 시간
+                   "uploadTime" to System.currentTimeMillis().toString().toLong(),  //업로드 시간
                    "position" to station,                       //출발 역
                    "entranceNum" to entrance,                   //출구 번호
                    "restriction" to genderRest,                 //성별 제한
@@ -205,19 +210,17 @@ class NewTaxiFragment : Fragment() {
                    "shareReqList" to emptyList<String>()                    //합승 요청 명단
                )
 
-                //DB에 문서 추가
-                db.collection("taxiShare")
-                    .add(share)
-                    .addOnSuccessListener { documentReference ->
-                        // 제출 성공 시
-                        Log.d("FIREBASE", "DocumentSnapshot added. ID: ${documentReference}")
-                        Toast.makeText(taxiActivity, "새 글이 작성되었습니다", Toast.LENGTH_SHORT).show()
+                //DB에 저장장
+               when(station) {
+                    JEONGWANG -> { //정왕역 선택시 정왕역 컬렉션에 저장
+                        addShareData("jwTaxiShare", share)
+                        (activity as TaxiActivity).toJFragment() //게시글 페이지로 이동
                     }
-                    .addOnFailureListener { e ->
-                        //제출 실패 시
-                        Log.w("FIREBASE", "Error adding document", e)
+                    OIDO -> { //오이도역 선택시 오이도역 컬렉션에 저장
+                        addShareData("oidoTaxiShare", share)
+                        (activity as TaxiActivity).toOFragment() //게시글 페이지로 이동
                     }
-                (activity as TaxiActivity).toJFragment() //게시글 페이지로 이동
+                }
             }
         }
     }
@@ -249,6 +252,22 @@ class NewTaxiFragment : Fragment() {
             date.get(ChronoField.MINUTE_OF_DAY) - 60 * date.get(ChronoField.HOUR_OF_DAY))
         newtaxi_memo.setText("")
         location_spinner.visibility = View.INVISIBLE
+    }
+
+    //DB에 데이터 추가
+    private fun addShareData(collectionPath: String, share: HashMap<String, Any?>) {
+        //DB에 문서 추가 -
+        db.collection(collectionPath)
+            .add(share)
+            .addOnSuccessListener { documentReference ->
+                // 제출 성공 시
+                Log.d("FIREBASE", "DocumentSnapshot added. ID: ${documentReference}, CollectionPath: ${collectionPath}")
+                Toast.makeText(taxiActivity, "새 글이 작성되었습니다", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                //제출 실패 시
+                Log.w("FIREBASE", "Error adding document", e)
+            }
     }
 
     companion object {

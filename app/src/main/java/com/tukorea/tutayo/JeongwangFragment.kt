@@ -1,10 +1,16 @@
 package com.tukorea.tutayo
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.taxi_fragment_jeongwang.*
+import kotlinx.android.synthetic.main.taxi_share_item.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +27,9 @@ class JeongwangFragment : Fragment() { //기본 탭
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var taxiActivity : TaxiActivity
+    private var firestore : FirebaseFirestore? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,6 +45,31 @@ class JeongwangFragment : Fragment() { //기본 탭
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.taxi_fragment_jeongwang, container, false)
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        //파이어스토어 인스턴스 초기화
+        firestore = FirebaseFirestore.getInstance()
+
+        jw_recycler.adapter = JwRecyclerViewAdapter()
+        jw_recycler.layoutManager = LinearLayoutManager(taxiActivity)
+
+
+
+
+
+
+
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        taxiActivity = context as TaxiActivity
+    }
+
+
 
     companion object {
         /**
@@ -56,4 +90,52 @@ class JeongwangFragment : Fragment() { //기본 탭
                 }
             }
     }
+
+    inner class JwRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+        var jwTaxiData : ArrayList<TaxiData> = arrayListOf()
+
+        //DB에 저장된 문서를 불러와 TaxiData로 변환한 뒤 jwTaxiData라는 리스트에 담음
+        init {
+            firestore?.collection("jwTaxiShare")?.addSnapshotListener {
+                    querySnapshot, firebaseFirestoreException ->
+                jwTaxiData.clear()
+
+                for (snapshot in querySnapshot!!.documents) {
+                    var item = snapshot.toObject(TaxiData::class.java)
+                    jwTaxiData.add(item!!)
+                }
+                notifyDataSetChanged()
+            }
+        }
+
+        //xml파일 inflate해 ViewHolder 생성
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            var view = LayoutInflater.from(parent.context).inflate(R.layout.taxi_recyclerview_item, parent, false)
+            return ViewHolder(view)
+        }
+
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        }
+
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            var viewHolder = (holder as ViewHolder).itemView
+            viewHolder.item_ampm.text = "임시"
+            viewHolder.item_departure_hour.text = jwTaxiData[position].departHr.toString()
+            viewHolder.item_departure_minute.text = jwTaxiData[position].departMin.toString()
+            viewHolder.item_max_num.text = jwTaxiData[position].maxNum.toString()
+            viewHolder.item_current_num.text = jwTaxiData[position].shareMember.size.toString()
+        }
+
+        /**
+         * Returns the total number of items in the data set held by the adapter.
+         *
+         * @return The total number of items in this adapter.
+         */
+        override fun getItemCount(): Int {
+            return jwTaxiData.size
+        }
+    }
+
 }
