@@ -190,6 +190,7 @@ class JeongwangFragment : Fragment() { //기본 탭
     inner class taxiShareDialog(context: Context, taxiItem: TaxiData) {
         private var dialog = Dialog(context)
         var userId : Long = 0
+        var userName : String = ""
 
 
         init {
@@ -241,6 +242,7 @@ class JeongwangFragment : Fragment() { //기본 탭
 
                 //사용자 정보
                 userId = user?.id!!
+                userName = user?.kakaoAccount!!.profile?.nickname.toString()
                 var gender = user?.kakaoAccount?.gender.toString()
 
                 Log.i("TAG", "JW Frgment - user info: ${userId}, ${gender}")
@@ -267,10 +269,13 @@ class JeongwangFragment : Fragment() { //기본 탭
                 dlg.setNegativeButton("취소", null)
                 dlg.setPositiveButton("요청") { dlg, which ->
 
-                    //중복 요청 못하도록 함
-                    if(taxiItem.requestUser.contains(userId.toString())
+                    if(taxiItem.requestUser.contains(userId.toString()) //중복 요청 못하도록 함
                         || taxiItem.shareMemberIDs.contains(userId.toString())) {
                         Toast.makeText(getContext(),"중복 요청할 수 없습니다",Toast.LENGTH_SHORT).show()
+                    }
+
+                    else if (taxiItem.shareMemberIDs.size >= taxiItem.maxNum) { //합승자가 꽉 차면 요청 불가
+                        Toast.makeText(getContext(),"최대 합승 인원 수 이상으로 요청할 수 없습니다",Toast.LENGTH_SHORT).show()
                     }
                     else {
                         var reqUser = taxiItem.requestUser as ArrayList<String>
