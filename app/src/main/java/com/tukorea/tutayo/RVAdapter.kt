@@ -126,7 +126,7 @@ class RVAdapter (val items : MutableList<String>) : RecyclerView.Adapter<RVAdapt
                     time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21F);
                 }
             } else {
-                if (currTime > getSpecificTime(20,10)) {
+                if (currTime >= getSpecificTime(20,10)) {
                     time.setTextColor(Color.BLACK)
                     time.setBackgroundColor(Color.LTGRAY)
                     time.typeface.isBold

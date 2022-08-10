@@ -284,8 +284,13 @@ class RealBusActivity : AppCompatActivity() {
                     }
                     break
                 }
+                else{
+                    intertv2.text = "버스가 없습니다."
+                }
 
-            }}
+            }
+
+        }
 
 
 
