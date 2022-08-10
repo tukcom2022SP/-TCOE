@@ -2,6 +2,7 @@ package com.tukorea.tutayo
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,18 +45,23 @@ class JeongwangFragment : Fragment() { //기본 탭
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.taxi_fragment_jeongwang, container, false)
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        //파이어스토어 인스턴스 초기화
+        firestore = FirebaseFirestore.getInstance()
+        jw_recycler.adapter = JwRecyclerViewAdapter()
+        jw_recycler.layoutManager = LinearLayoutManager(context)
+
     }
 
     override fun onStart() {
         super.onStart()
-
-        //파이어스토어 인스턴스 초기화
-        firestore = FirebaseFirestore.getInstance()
-
-        jw_recycler.adapter = JwRecyclerViewAdapter()
-        jw_recycler.layoutManager = LinearLayoutManager(taxiActivity)
-
-
 
 
 
@@ -93,7 +99,8 @@ class JeongwangFragment : Fragment() { //기본 탭
 
     inner class JwRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        var jwTaxiData : ArrayList<TaxiData> = arrayListOf()
+        private var jwTaxiData : ArrayList<TaxiData> = arrayListOf()
+        private var context : Context? = getContext()
 
         //DB에 저장된 문서를 불러와 TaxiData로 변환한 뒤 jwTaxiData라는 리스트에 담음
         init {
@@ -101,26 +108,32 @@ class JeongwangFragment : Fragment() { //기본 탭
                     querySnapshot, firebaseFirestoreException ->
                 jwTaxiData.clear()
 
-                for (snapshot in querySnapshot!!.documents) {
-                    var item = snapshot.toObject(TaxiData::class.java)
-                    jwTaxiData.add(item!!)
+                if(querySnapshot != null) {
+                    for (snapshot in querySnapshot!!.documents) {
+                        var item = snapshot.toObject(TaxiData::class.java)
+                        jwTaxiData.add(item!!)
+                    }
+                    notifyDataSetChanged() //업데이트
                 }
-                notifyDataSetChanged()
+                else Log.i("TAG","querySnapshot : null")
+
             }
+        }
+
+
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
 
         //xml파일 inflate해 ViewHolder 생성
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            var view = LayoutInflater.from(parent.context).inflate(R.layout.taxi_recyclerview_item, parent, false)
+            var view = LayoutInflater.from(parent.context).inflate(R.layout.taxi_share_item, parent, false)
             return ViewHolder(view)
-        }
-
-        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
 
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var viewHolder = (holder as ViewHolder).itemView
+
             viewHolder.item_ampm.text = "임시"
             viewHolder.item_departure_hour.text = jwTaxiData[position].departHr.toString()
             viewHolder.item_departure_minute.text = jwTaxiData[position].departMin.toString()
