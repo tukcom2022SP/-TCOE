@@ -1,5 +1,6 @@
 package com.tukorea.tutayo
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -11,9 +12,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.taxi_fragment_jeongwang.*
 import kotlinx.android.synthetic.main.taxi_share_dialog.*
 import kotlinx.android.synthetic.main.taxi_share_item.view.*
+import java.util.Arrays.stream
+import java.util.stream.Collectors
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,6 +36,7 @@ class JeongwangFragment : Fragment() { //기본 탭
     private var param2: String? = null
 
     private lateinit var taxiActivity : TaxiActivity
+    private val db = Firebase.firestore
     private var firestore : FirebaseFirestore? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,19 +53,15 @@ class JeongwangFragment : Fragment() { //기본 탭
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.taxi_fragment_jeongwang, container, false)
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         //파이어스토어 인스턴스 초기화
         firestore = FirebaseFirestore.getInstance()
         jw_recycler.adapter = JwRecyclerViewAdapter()
         jw_recycler.layoutManager = LinearLayoutManager(context)
-
     }
 
     override fun onAttach(context: Context) {
@@ -93,7 +95,7 @@ class JeongwangFragment : Fragment() { //기본 탭
     inner class JwRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private var jwTaxiData : ArrayList<TaxiData> = arrayListOf()
-        private var context : Context = getContext()!!
+        private var context : Context = requireContext()
 
         //DB에 저장된 문서를 불러와 TaxiData로 변환한 뒤 jwTaxiData라는 리스트에 담음
         init {
@@ -105,20 +107,13 @@ class JeongwangFragment : Fragment() { //기본 탭
                     for (snapshot in querySnapshot!!.documents) {
                         var item = snapshot.toObject(TaxiData::class.java)
                         jwTaxiData.add(item!!)
-                        Log.i("TAG","item: ${item}")
-                        Log.i("TAG","item: ${item.departure_hour}")
-                        Log.i("TAG","item: ${item.departure_minute}")
-                        Log.i("TAG","item: ${item.gender}")
-                        Log.i("TAG","item: ${item.entranceNum}")
-                        Log.i("TAG","item: ${item.maxNum}")
-                        Log.i("TAG","item: ${item.memo}")
-                        Log.i("TAG","item: ${item.position}")
-
                     }
                     notifyDataSetChanged() //업데이트
                 }
                 else Log.i("TAG","querySnapshot : null")
+                var sortedJwTaxiData = jwTaxiData.sortedBy { it.uploadTime }
 
+                jwTaxiData = ArrayList(sortedJwTaxiData.reversed())
             }
         }
 
@@ -187,11 +182,63 @@ class JeongwangFragment : Fragment() { //기본 탭
 
         init {
             dialog.setContentView(R.layout.taxi_share_dialog)
-            dialog.detail_ampm.text = "임시"
 
+            //12시 단위로 변환
+            if(taxiItem.departure_hour > 12) {
+                dialog.detail_ampm.text = "오후"
+                dialog.detail_departure_hour.text = (taxiItem.departure_hour - 12).toString()
 
+            }
+            else if(taxiItem.departure_hour == 0) { //자정
+                dialog.detail_ampm.text = "오전"
+                dialog.detail_departure_hour.text = "12"
+            }
+            else {
+                dialog.detail_ampm.text = "오전"
+                dialog.detail_departure_hour.text = taxiItem.departure_hour.toString()
+            }
+
+            dialog.detail_departure_minute.text = taxiItem.departure_minute.toString()
+
+            if(taxiItem.position == 0) dialog.detail_position.text = "정왕"
+            else dialog.detail_position.text = "오이도"
+
+            dialog.detail_entrance.text = taxiItem.entranceNum.toString()
+
+            if(taxiItem.restriction == 0) {  //성별 제한이 없는 경우
+            }
+            else if (taxiItem.restriction == 1 && taxiItem.gender == "MALE") { // 동성만 제한하고 작성자가 남자인 경우
+                dialog.detail_female.visibility = View.GONE
+
+            }
+            else { // 동성만 제한하고 작성자가 여자인 경우
+                dialog.detail_male.visibility = View.GONE
+            }
+
+            dialog.detail_memo.text = taxiItem.memo
+
+            /*
+            *
+            * 합승 확정 리스트 작성하기
+            *
+            * */
 
             //삭제 버튼
+            dialog.detail_deleteBtn.setOnClickListener {
+                var dlg = AlertDialog.Builder(context)
+
+                if(taxiItem.shareMember.size > 0) { //합승이 확정된 사람이 한 명이라도 있으면
+                    dlg.setMessage("삭제 하시겠습니까?\n아직 합승자가 없습니다.")
+                }
+                else {
+                    dlg.setMessage("삭제 하시겠습니까?\n합승이 확정된 인원이 있습니다.")
+                }
+                dlg.setNegativeButton("취소", null)
+                dlg.setPositiveButton("삭제") { dlg, which ->
+                    db.collection("jwTaxiShare").document(taxiItem.docId).delete()
+                    dialog.dismiss()
+                }
+            }
 
             //닫기 버튼
             dialog.detail_cancelBtn.setOnClickListener {
