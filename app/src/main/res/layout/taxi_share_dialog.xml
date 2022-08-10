@@ -8,9 +8,9 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        style="@style/newtaxi_cardview"
         android:layout_height="430dp"
         android:layout_margin="20dp">
-
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

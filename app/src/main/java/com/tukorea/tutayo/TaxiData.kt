@@ -15,7 +15,7 @@ class TaxiData(
     var departure_minute: Int = 0,         //출발 분
     var maxNum: Int = 0,            //최대인원
     var memo: String = "",          //메모
-    var shareMember: List<String> = emptyList(),  //합승 명단
-    var requestUser: List<String> = emptyList(),  //합승 요청 명단
+    var shareMember: List<String> = arrayListOf(),  //합승 명단
+    var requestUser: List<String> = arrayListOf(),  //합승 요청 명단
     var uploadTime: Long = 0        //업로드시간
 )
