@@ -1,6 +1,6 @@
 # **TUtayo - TCOE**
 
-### <Git Rule>
+### Git Rule
 
 #### issue
 
