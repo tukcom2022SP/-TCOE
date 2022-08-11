@@ -2,14 +2,20 @@ package com.tukorea.tutayo
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.Toast
+=======
+import android.widget.*
+>>>>>>> ac68ca7166958ce4fa7c0951aefcff307cc5f052
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +24,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.mypage_activity.*
 import kotlinx.android.synthetic.main.mypage_request.*
+<<<<<<< HEAD
 import kotlinx.android.synthetic.main.mypage_share_item.*
+=======
+
+>>>>>>> ac68ca7166958ce4fa7c0951aefcff307cc5f052
 import kotlinx.android.synthetic.main.taxi_activity.*
 import kotlinx.android.synthetic.main.taxi_fragment_jeongwang.*
 import kotlinx.android.synthetic.main.taxi_share_dialog.*
@@ -37,8 +47,8 @@ class MyPageActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mypage_activity)
-            image = findViewById(R.id.img)
 
+        image = findViewById(R.id.img)
 
         UserApiClient.instance.me { user, error ->
             id.text = "${user?.id}"
@@ -70,6 +80,7 @@ class MyPageActivity : AppCompatActivity() {
 
 
         init{
+
 
             dialog.setContentView(R.layout.mypage_request)
             firestore?.collection("jwTaxiShare")?.addSnapshotListener {
@@ -201,9 +212,13 @@ class MyPageActivity : AppCompatActivity() {
             //lst1.adapter = shareReqAdapter(context, )
 
             viewHolder.setOnClickListener() {
-                var dlg = myDialog(context)
-                dlg.showDialog()
-                Toast.makeText(this@MyPageActivity, "테스트", Toast.LENGTH_SHORT).show()
+              /*  var dlg = myDialog(context)
+                dlg.showDialog()*/
+                var intent = Intent(context,MYMYActivity::class.java)
+                startActivity(intent)
+                Handler().postDelayed({ viewHolder.item_current_num.text ="1" }, 2000)
+
+                /*Toast.makeText(this@MyPageActivity, "합승이 허용되었습니다", Toast.LENGTH_SHORT).show()*/
             }
 
         }
@@ -249,5 +264,4 @@ class MyPageActivity : AppCompatActivity() {
 
 
 }
-
 
