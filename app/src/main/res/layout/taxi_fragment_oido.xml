@@ -7,6 +7,22 @@
     android:background="@color/purple_200"
     tools:context=".OidoFragment">
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/taxi_yellow"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="오이도역 합승"
+        android:fontFamily="@font/bmjua"
+        android:textSize="30sp"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/oido_recycler"
         android:scrollbars="vertical"
