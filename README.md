@@ -1,6 +1,6 @@
 # -TCOE
 
-# TUtayo
+# **TUtayo**
 
 하계 비교과 모바일 팀프로젝트
 
