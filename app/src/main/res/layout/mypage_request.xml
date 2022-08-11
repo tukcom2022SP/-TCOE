@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="330dp"
-    android:layout_height="wrap_content"
-    android:background="@color/bright_green"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#00FF0000">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:layout_margin="20dp">
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:background="@color/bright_green"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="430dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center">
 
 
 
@@ -33,20 +40,60 @@
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:padding="30dp"
                         android:background="#00FFFFFF"
                         android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="30dp">
 
                         <TextView
+                            style="@style/detail_taxi_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/detail_taxi_title"
-                            android:text="합승 인원"/>
-                        <ListView
-                            android:id="@+id/lst1"
+                            android:text="합승 인원" />
+
+                        <LinearLayout
+                            android:id="@+id/female3"
                             android:layout_width="wrap_content"
-                            android:layout_height="100dp"/>
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:text="1620718395"
+                                />
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/female"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/female4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:text="1620718395"
+                                />
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/female"
+                                />
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -76,10 +123,44 @@
                             android:layout_height="wrap_content"
                             style="@style/detail_taxi_title"
                             android:text="합승 요청"/>
-                        <ListView
-                            android:id="@+id/lst2"
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="100dp"/>
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:id="@+id/female1">
+                            <TextView
+                                android:id="@+id/item_female1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="2372718779"
+                                android:padding="10dp"/>
+
+                            <ImageView
+                                android:id="@+id/item_female1img"
+                                android:layout_alignParentRight="true"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/female"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:id="@+id/female2">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1620718395"
+                                android:padding="10dp"/>
+
+                            <ImageView
+                                android:layout_alignParentRight="true"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/female"/>
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -90,41 +171,42 @@
 
 
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
 
-    <!--하단 버튼-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/detail_deleteBtn"
-            android:layout_width="wrap_content"
+        <!--하단 버튼-->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/newtaxi_button"
-            android:visibility="gone"
-            android:text="삭제"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/detail_reqBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/newtaxi_button"
-            android:text="합승 요청"
-            android:visibility="gone"/>
+            <Button
+                android:id="@+id/detail_deleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/newtaxi_button"
+                android:visibility="gone"
+                android:text="삭제"/>
 
-        <Button
-            android:id="@+id/detail_cancelBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/newtaxi_button"
-            android:text="닫기" />
+            <Button
+                android:id="@+id/detail_reqBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/newtaxi_button"
+                android:text="합승 요청"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/detail_cancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/newtaxi_button"
+                android:text="닫기" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

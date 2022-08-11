@@ -2,13 +2,14 @@ package com.tukorea.tutayo
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.mypage_activity.*
 import kotlinx.android.synthetic.main.mypage_request.*
+
 import kotlinx.android.synthetic.main.taxi_activity.*
 import kotlinx.android.synthetic.main.taxi_fragment_jeongwang.*
 import kotlinx.android.synthetic.main.taxi_share_dialog.*
@@ -35,8 +37,8 @@ class MyPageActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mypage_activity)
-            image = findViewById(R.id.img)
 
+        image = findViewById(R.id.img)
 
         UserApiClient.instance.me { user, error ->
             id.text = "${user?.id}"
@@ -68,6 +70,7 @@ class MyPageActivity : AppCompatActivity() {
 
 
         init{
+
 
             dialog.setContentView(R.layout.mypage_request)
             firestore?.collection("jwTaxiShare")?.addSnapshotListener {
@@ -195,10 +198,17 @@ class MyPageActivity : AppCompatActivity() {
                 viewHolder.item_male.visibility = View.GONE
             }
 
+
+            //lst1.adapter = shareReqAdapter(context, )
+
             viewHolder.setOnClickListener() {
-                var dlg = myDialog(context)
-                dlg.showDialog()
-                Toast.makeText(this@MyPageActivity, "테스트", Toast.LENGTH_SHORT).show()
+              /*  var dlg = myDialog(context)
+                dlg.showDialog()*/
+                var intent = Intent(context,MYMYActivity::class.java)
+                startActivity(intent)
+                Handler().postDelayed({ viewHolder.item_current_num.text ="1" }, 2000)
+
+                /*Toast.makeText(this@MyPageActivity, "합승이 허용되었습니다", Toast.LENGTH_SHORT).show()*/
             }
 
         }
@@ -206,6 +216,34 @@ class MyPageActivity : AppCompatActivity() {
         override fun getItemCount(): Int {
             return mytaxidata.size
         }
+
+//        inner class shareReqAdapter(val context: Context, val taxiList: ArrayList<TaxiData>) : BaseAdapter() {
+//            override fun getCount(): Int {
+//                TODO("Not yet implemented")
+//                return taxiList.size
+//            }
+//
+//            override fun getItem(p0: Int): Any {
+//                TODO("Not yet implemented")
+//                return taxiList[p0]
+//            }
+//
+//            override fun getItemId(p0: Int): Long {
+//                TODO("Not yet implemented")
+//                return 0
+//            }
+//
+//            override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
+//                TODO("Not yet implemented")
+//
+//                val view: View = LayoutInflater.from(context).inflate(R.layout.mypage_share_item,null)
+//                mypage_item_user_id.text = taxiList[p0].requestUser.toString()
+//                if(taxiList[p0].gender == "FEMALE") mypage_item_user_male.visibility = View.GONE
+//                else mypage_item_user_female.visibility = View.GONE
+//            }
+//
+//
+//        }
     }
 
 
@@ -216,5 +254,4 @@ class MyPageActivity : AppCompatActivity() {
 
 
 }
-
 
