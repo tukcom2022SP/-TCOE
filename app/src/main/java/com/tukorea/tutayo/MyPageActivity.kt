@@ -65,7 +65,7 @@ class MyPageActivity : AppCompatActivity() {
     inner class myDialog(context: Context){
         private var dialog = Dialog(context)
         private var myReqData : ArrayList<TaxiData> = arrayListOf()
-       
+
 
         init{
 
